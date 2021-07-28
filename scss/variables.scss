@@ -4,32 +4,37 @@ $font_heading: Gothic A1;
 $font_main: Metrophobic;
 $font_heading_weight: 700;
 $font_main_weight: 400;
-$retina: "(-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 120dpi)";
+$retina: '(-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 120dpi)';
 
-$thin:100;
-$extralight:200;
-$light:300;
-$normal:400;
-$medium:500;
-$semibold:600;
-$bold:700;
-$extrabold:800;
-$heavy:900;
+$thin: 100;
+$extralight: 200;
+$light: 300;
+$normal: 400;
+$medium: 500;
+$semibold: 600;
+$bold: 700;
+$extrabold: 800;
+$heavy: 900;
 
 $action_1: #1791a7;
 $action_2: #622f88;
 $action_3: #1791a7;
-$color_main: #ffffff;
+$color_main: #cadadd;
 $color_heading: #ffffff;
 $color_white: #ffffff;
 $color_gray: #8966ac;
 $bg_dark: #000000;
 $bg_light: #000000;
 
-$color_red: #EA3223;
+$color_red: #ea3223;
 $color_red_hover: #e10000;
 $color_green: #18c967;
 $color_green_hover: #0cb658;
 $color_facebook: #2e4da7;
 $color_twitter: #0aa0f5;
-$color_dribbble: #E93A7D;
+$color_dribbble: #e93a7d;
+
+/* --------------------------------- Custom --------------------------------- */
+$color_gray_1: #0e1218;
+$color_gray_2: #181e27;
+$gradient_1: linear-gradient(45deg, #0b1113, #051118 46%, #060c1d 71%, #321338);

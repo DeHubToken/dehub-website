@@ -3,7 +3,7 @@
 
 	<head>
 		<meta charset="utf-8">
-		<title>trial 1</title>
+		<title>Dehub - Decentralized Entertainment Aggregator</title>
 		<meta name="viewport"
 			content="width=device-width, initial-scale=1">
 		<link rel="icon"
@@ -24,8 +24,8 @@
 		<!-- Fancybox 3 jQuery plugin CSS (Open images and video in popup) -->
 		<link rel="stylesheet"
 			href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
-		<!-- AOS 2.3.4 jQuery plugin CSS (Animations) -->
-		<link href="https://unpkg.com/aos@2.3.4/dist/aos.css"
+		<!-- AOS jQuery plugin CSS (Animations) -->
+		<link href="https://unpkg.com/aos@next/dist/aos.css"
 			rel="stylesheet">
 		<!-- FontAwesome CSS -->
 		<link rel="stylesheet"
@@ -35,16 +35,19 @@
 			rel="stylesheet" />
 		<!-- jQuery 3.5.1 -->
 		<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+		<script src="https://unpkg.com/screen-size-detector@latest/dist/screen-size-detector.min.js"></script>
+		<script src="https://kit.fontawesome.com/1481019c19.js"
+			crossorigin="anonymous"></script>
 	</head>
 
-	<body>
+	<body class="bg-gradient-1">
 		<!-- Navigation Mobile type 1 -->
 		<a href="#"
-			class="open_menu bg-light radius_full">
+			class="open_menu radius_full">
 			<i class="fas fa-bars lh-40">
 			</i>
 		</a>
-		<div class="navigation_mobile bg-dark type1">
+		<div class="navigation_mobile type1">
 			<a href="#"
 				class="close_menu color-white">
 				<i class="fas fa-times">
@@ -149,10 +152,10 @@
 			</div>
 		</div>
 		<!-- Header 5 -->
-		<header class="pt-160 pb-60 bg-light header_5"
+		<header class="pt-160 pb-60 header_5"
 			data-bg-src="false"
 			data-bg-src-2x="false">
-			<nav class="header_menu_5 pt-35 pb-35 fixed-top bg-dark">
+			<nav class="header_menu_5 pt-35 pb-35">
 				<div class="container px-xl-0">
 					<div class="row align-items-center">
 						<div class="col-lg-3">
@@ -166,7 +169,7 @@
 							</a>
 						</div>
 						<div class="col-lg-9 justify-content-end align-items-center f-18 medium"
-							data-aos="zoom-in"
+							data-aos="fade-down"
 							data-aos-delay="500">
 							<div class="d-block float-right mx-10 mb-10">
 								<a href="#"
@@ -187,25 +190,43 @@
 							</div>
 							<div class="w-full d-flex justify-content-end">
 								<a href="#intro"
-									class="link color-main mx-15">
+									class="nav-item link color-main mx-15">
 									Introduction
 								</a>
 								<a href="#features"
-									class="link color-main mx-15">
+									class="nav-item link color-main mx-15">
 									Project Features
 								</a>
 								<a href="#dehub"
-									class="link color-main mx-15">
+									class="nav-item link color-main mx-15">
 									$DEHUB
 								</a>
 								<a href="#partners"
-									class="link color-main mx-15">
+									class="nav-item link color-main mx-15">
 									Our Partners
 								</a>
 								<a href="#team"
-									class="link color-main mx-15">
+									class="nav-item link color-main mx-15">
 									The Team
 								</a>
+								<div class="nav-item dropdown">
+									<a class="link color-main mx-15 dropdown-toggle"
+										href="#"
+										id="dAppsDropdown"
+										role="button"
+										data-toggle="dropdown"
+										aria-haspopup="true"
+										aria-expanded="false">
+										dApps
+									</a>
+									<div class="dropdown-menu bg-gray-1 pt-20 pb-20 mt-10 radius4"
+										aria-labelledby="dAppsDropdown">
+										<a class="dropdown-item color-main radius4"
+											href="#">Claim BNB Rewards</a>
+										<a class="dropdown-item color-main radius4"
+											href="#">Lottery</a>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -268,7 +289,7 @@
 		</header>
 		<!-- Feature 24 -->
 		<section id="intro"
-			class="pt-100 pb-105 feature_24 bg-dark color-filter-dark-8"
+			class="pt-100 pb-105 feature_24"
 			data-bg-src="false"
 			data-bg-src-2x="false">
 			<div class="container px-xl-0">
@@ -310,7 +331,7 @@
 		</section>
 		<!-- Application 5 -->
 		<section id="features"
-			class="pt-100 pb-100 application_5 bg-dark color-filter-dark-7"
+			class="pt-100 pb-100 application_5"
 			data-bg-src="false"
 			data-bg-src-2x="false">
 			<div class="container px-xl-0">
@@ -403,7 +424,7 @@
 			</div>
 		</section>
 		<!-- Feature 35 -->
-		<section class="pt-95 pb-100 feature_35 bg-dark">
+		<section class="pt-95 pb-100 feature_35">
 			<div class="container px-xl-0">
 				<div class="row text-center text-md-left">
 					<div class="mb-60 col-sm-6 col-lg-4"
@@ -581,13 +602,10 @@
 			</div>
 		</section>
 		<!-- Feature 33 -->
-		<section class="pt-105 pb-130 feature_33 bg-dark"
-			data-bg-src="false">
+		<section class="pt-105 pb-130 feature_33">
 			<div class="container px-xl-0">
 				<div class="row">
-					<div class="col-xl-1">
-					</div>
-					<div class="col-xl-7 col-lg-8">
+					<div class="col-sm-12">
 						<h2 class="small"
 							data-aos="zoom-in"
 							data-aos-delay="0">
@@ -596,23 +614,23 @@
 						<div class="mt-25 mb-30 f-22 op-7 color-heading text-adaptive description"
 							data-aos="zoom-in"
 							data-aos-delay="250">
-							Total Supply 8,000,000,000 Dehub Tokens
-							<br>Final Supply 1,000,000,000 Dehub Tokens
+							<div>Total Supply 8,000,000,000 Dehub Tokens</div>
+							<div>Final Supply 1,000,000,000 Dehub Tokens</div>
 						</div>
 					</div>
 				</div>
-				<div class="row flex-md-row-reverse align-items-end">
-					<div class="col-lg-1">
-					</div>
-					<div class="col-lg-6 col-md-6 col-sm-6 col-8 text-md-right"
+
+				<div class="row">
+					<div class="col-sm-12 text-center"
 						data-aos="zoom-in"
-						data-aos-delay="750">
-						<img src="uploads/piechart011.png"
-							srcset="uploads/piechart011.png 2x"
-							alt=""
-							class="img img-fluid mb-250 mx-150 w-570 h-570">
+						data-aos-delay="250"
+						data-aos-id="pie-in">
+						<div id="pieChart"></div>
 					</div>
-					<div class="col-xl-4 col-lg-5 col-md-6 col-sm-8">
+				</div>
+
+				<div class="row">
+					<div class="col">
 						<div class="mt-55 block"
 							data-aos="zoom-in"
 							data-aos-delay="0">
@@ -624,6 +642,8 @@
 								<br>- A public presale will be hosted on a reputable Launchpad at a rate of 0.00125$/$Dehub.
 							</div>
 						</div>
+					</div>
+					<div class="col">
 						<div class="mt-55 block"
 							data-aos="zoom-in"
 							data-aos-delay="0">
@@ -634,6 +654,8 @@
 								On selling out, 1,200,000,000 Tokens will be listed on “Pancakeswap” at price of $0.0015/$Dehub.
 							</div>
 						</div>
+					</div>
+					<div class="col">
 						<div class="mt-55 block"
 							data-aos="zoom-in"
 							data-aos-delay="0">
@@ -644,6 +666,11 @@
 								The Dehub Burned Wallet will receive its share from the 1% reflections in a process that slowly removes tokens from circulation thus increasing the value of the remaining tokens.
 							</div>
 						</div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-4">
 						<div class="mt-55 block"
 							data-aos="zoom-in"
 							data-aos-delay="0">
@@ -655,6 +682,8 @@
 								<br>Operation wallets cannot sell below their % allocation and only the reflections will be tradable.
 							</div>
 						</div>
+					</div>
+					<div class="col-4">
 						<div class="mt-55 block"
 							data-aos="zoom-in"
 							data-aos-delay="0">
@@ -672,7 +701,7 @@
 		</section>
 		<!-- Feature 3 -->
 		<section id="dehub"
-			class="pt-105 pb-70 bg-light text-center feature_3"
+			class="pt-105 pb-70 text-center feature_3"
 			data-bg-src="false">
 			<div class="container px-xl-0">
 				<div class="row justify-content-center">
@@ -791,7 +820,7 @@
 		</section>
 		<!-- Team 4 -->
 		<section id="partners"
-			class="pt-105 pb-100 bg-light text-center team_4"
+			class="pt-105 pb-100 text-center team_4"
 			data-bg-src="false"
 			data-bg-src-2x="false">
 			<div class="container px-xl-0">
@@ -801,17 +830,16 @@
 					Our Partners &amp; Advisors
 				</h2>
 				<div class="row justify-content-center">
-					<div class="mt-70 col-lg-4 col-sm-6"
+					<div class="mt-150 pl-50 pr-50 col-lg-4 col-sm-6"
 						data-aos="zoom-in"
 						data-aos-delay="0">
-						<img src="uploads/9347872129729737062626268555498089681518592n.png"
+						<img src="uploads/visual-vr-logo.svg"
 							alt=""
-							class="radius6 img-fluid h-50 w-300"
-							srcset="uploads/9347872129729737062626268555498089681518592n.png 2x">
+							class="img-fluid h-50 w-250">
 						<div class="mt-20 mb-10 f-22 title">
-							VISUAL VR
+							<a href=""><i class="external-link-square-alt"></i>VISUAL VR</a>
 						</div>
-						<div class="f-14 semibold text-uppercase sp-20 action-1">
+						<div class="f-12 semibold text-uppercase sp-20 action-1">
 							www.visual-vr.com
 						</div>
 						<div class="mt-10 color-heading text-adaptive">
@@ -820,17 +848,16 @@
 							<br> production studio
 						</div>
 					</div>
-					<div class="mt-70 col-lg-4 col-sm-6"
+					<div class="mt-150 pl-50 pr-50 col-lg-4 col-sm-6"
 						data-aos="zoom-in"
 						data-aos-delay="250">
-						<img src="uploads/nulsedited.png"
+						<img src="uploads/nuls-logo.svg"
 							alt=""
-							class="radius6 img-fluid h-50 w-300"
-							srcset="uploads/nulsedited.png 2x">
+							class="img-fluid h-50 w-300">
 						<div class="mt-20 mb-10 f-22 title">
 							NULS
 						</div>
-						<div class="f-14 semibold text-uppercase sp-20 action-1">
+						<div class="f-12 semibold text-uppercase sp-20 action-1">
 							www.nuls.io
 						</div>
 						<div class="mt-10 color-heading text-adaptive">
@@ -838,18 +865,17 @@
 							<br>that uses the Proof of Credit consensus mechanism to mine via staking
 						</div>
 					</div>
-					<div class="mt-70 col-lg-4 col-sm-6"
+					<div class="mt-150 pl-50 pr-50 col-lg-4 col-sm-6"
 						data-aos="zoom-in"
 						data-aos-delay="500">
-						<img src="uploads/screenshot20200330at21.png"
+						<img src="uploads/ngne-logo.svg"
 							alt=""
-							class="radius6 img-fluid h-50 w-300"
-							srcset="uploads/screenshot20200330at21.png 2x">
+							class="img-fluid h-50 w-150">
 						<div class="mt-20 mb-10 f-22 title">
 							NGNE SPORTS
 						</div>
-						<div class="f-14 semibold text-uppercase sp-20 action-1">
-							www.ngnesports.com/
+						<div class="f-12 semibold text-uppercase sp-20 action-1">
+							www.ngnesports.com
 						</div>
 						<div class="mt-10 color-heading text-adaptive">
 							UK based sports company
@@ -857,70 +883,66 @@
 							<br>&amp; PPE for events
 						</div>
 					</div>
-					<div class="mt-70 col-lg-4 col-sm-6"
+					<div class="mt-150 pl-50 pr-50 col-lg-4 col-sm-6"
 						data-aos="zoom-in"
 						data-aos-delay="0">
-						<img src="uploads/vida.jpg"
+						<img src="uploads/vida-logo.svg"
 							alt=""
-							class="radius6 img-fluid w-300 h-50"
-							srcset="uploads/vida.jpg 2x">
+							class="img-fluid w-250 h-50">
 						<div class="mt-20 mb-10 f-22 title">
 							VIDA SPORTS MANAGEMENT
 						</div>
-						<div class="f-14 semibold text-uppercase sp-20 action-1">
+						<div class="f-12 semibold text-uppercase sp-20 action-1">
 							www.vidasportsentertainment.com
 						</div>
 						<div class="mt-10 color-heading text-adaptive">
-							Dehub's PPV Events Managment
+							Dehub's PPV Events Management
 							<br>Vida offers services for athlete management,
 							<br>Event management &amp; match making.
 						</div>
 					</div>
-					<div class="mt-70 col-lg-4 col-sm-6"
+					<div class="mt-150 pl-50 pr-50 col-lg-4 col-sm-6"
 						data-aos="zoom-in"
 						data-aos-delay="0">
-						<img src="uploads/jdnedited.png"
+						<img src="uploads/jdn-logo.svg"
 							alt=""
-							class="radius6 img-fluid w-300 h-50"
-							srcset="uploads/jdnedited.png 2x">
+							class="img-fluid w-150 h-50">
 						<div class="mt-20 mb-10 f-22 title">
 							JDN | ADVERTISING COPYWRITER
 						</div>
-						<div class="f-14 semibold text-uppercase sp-20 action-1">
+						<div class="f-12 semibold text-uppercase sp-20 action-1">
 							www.jdn.media
 						</div>
 						<div class="mt-10 color-heading text-adaptive">
 							Media &amp; Branding Advisor
 						</div>
 					</div>
-					<div class="mt-70 col-lg-4 col-sm-6"
+					<div class="mt-150 pl-50 pr-50 col-lg-4 col-sm-6"
 						data-aos="zoom-in"
 						data-aos-delay="0">
-						<img src="uploads/saikhdei400x400.jpg"
+						<img src="uploads/rapz-logo.svg"
 							alt=""
-							class="radius6 img-fluid w-300 h-50"
-							srcset="uploads/saikhdei400x400.jpg 2x">
+							class="img-fluid w-100 h-50">
 						<div class="mt-20 mb-10 f-22 title">
 							RAPZ
 						</div>
-						<div class="f-14 semibold text-uppercase sp-20 action-1">
+						<div class="f-12 semibold text-uppercase sp-20 action-1">
 							www.rapzuk.com
 						</div>
 						<div class="mt-10 color-heading text-adaptive">
 							Dehub's exclusive fight wear supplier
 						</div>
 					</div>
-					<div class="mt-70 col-lg-4 col-sm-6"
+					<div class="mt-150 pl-50 pr-50 col-lg-4 col-sm-6"
 						data-aos="zoom-in"
 						data-aos-delay="500">
-						<img src="uploads/079874cf0ad5eae6.png"
+						<img src="uploads/agenz-logo.svg"
 							alt=""
-							class="radius6 img-fluid h-50 w-300"
-							srcset="uploads/079874cf0ad5eae6.png 2x">
+							class="img-fluid h-50 w-200 pb-40">
 						<div class="mt-20 mb-10 f-22 title">
 							AGENZ LTD
 						</div>
-						<div class="f-14 semibold text-uppercase sp-20 action-1">
+						<div class="f-12 semibold text-uppercase sp-20 action-1">
 							www.agenz.uk
 						</div>
 						<div class="mt-10 color-heading text-adaptive">
@@ -939,7 +961,7 @@
 		</section>
 		<!-- Team 3 -->
 		<section id="team"
-			class="pt-105 pb-100 bg-light text-center team_3 color-filter-dark-8"
+			class="pt-105 pb-100 text-center team_3"
 			data-bg-src="false"
 			data-bg-src-2x="false">
 			<div class="container px-xl-0">
@@ -1209,7 +1231,7 @@
 			</div>
 		</section>
 		<!-- Footer 2 -->
-		<footer class="pt-70 pb-65 bg-light text-center footer_2">
+		<footer class="pt-70 pb-65 text-center footer_2">
 			<div class="container px-xl-0">
 				<div class="row justify-content-center">
 					<div class="col-12 lh-40"
@@ -1239,38 +1261,12 @@
 				</div>
 			</div>
 		</footer>
-		<!-- forms alerts -->
-		<div class="alert alert-success alert-dismissible fixed-top alert-form-success"
-			role="alert">
-			<button type="button"
-				class="close"
-				data-dismiss="alert"
-				aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			Thanks for your message!
-		</div>
-		<div class="alert alert-warning alert-dismissible fixed-top alert-form-check-fields"
-			role="alert">
-			<button type="button"
-				class="close"
-				data-dismiss="alert"
-				aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			Please, fill in required fields.
-		</div>
-		<div class="alert alert-danger alert-dismissible fixed-top alert-form-error"
-			role="alert">
-			<button type="button"
-				class="close"
-				data-dismiss="alert"
-				aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			<div class="message">An error occurred while sending data :( Please, check if your hosting supports PHP and check how to set form data sending <a href="https://designmodo.com/startup/documentation/#form-handler"
-					target="_blank"
-					class="link color-transparent-white">here</a>.</div>
 		</div>
 
 		<!-- gReCaptcha popup (uncomment if you need a recaptcha integration) -->
 		<!--
-		<div class="bg-dark op-8 grecaptcha-overlay"></div>
-		<div class="bg-light radius10 w-350 h-120 px-20 pt-20 pb-20 grecaptcha-popup">
+		<div class= op-8 grecaptcha-overlay"></div>
+		<div class= radius10 w-350 h-120 px-20 pt-20 pb-20 grecaptcha-popup">
 			<div class="w-full h-full d-flex justify-content-center align-items-center">
 				<div id="g-recaptcha" data-sitekey="PUT_YOUR_SITE_KEY_HERE"></div>
 			</div>
@@ -1286,18 +1282,20 @@
 			Don't forget to replace the key "AIzaSyDP6Ex5S03nvKZJZSvGXsEAi3X_tFkua4U" to your own! 
 			Learn how to get a key: https://help.designmodo.com/article/startup-google-maps-api/ 
 		-->
-		<script type="text/javascript"
-			src="https://maps.googleapis.com/maps/api/js?v=3&key=AIzaSyDP6Ex5S03nvKZJZSvGXsEAi3X_tFkua4U"></script>
+		<!-- <script type="text/javascript"
+			src="https://maps.googleapis.com/maps/api/js?v=3&key=AIzaSyDP6Ex5S03nvKZJZSvGXsEAi3X_tFkua4U"></script> -->
 		<!-- Slick 1.8.1 jQuery plugin JS (Sliders) -->
 		<script type="text/javascript"
 			src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-		<!-- AOS 2.3.4 jQuery plugin JS (Animations) -->
-		<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+		<!-- AOS jQuery plugin JS (Animations) -->
+		<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 		<!-- Maskedinput jQuery plugin JS (Masks for input fields) -->
 		<script src="js/jquery.maskedinput.min.js"></script>
 		<!-- Startup JS (Custom js for all blocks) -->
 		<script src="js/script.js"></script>
 		<!-- Custom JS outside designmodo -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.7.2/d3.min.js"></script>
+		<script src="custom/js/d3pie.min.js"></script>
 		<script src="custom/js/script.js"></script>
 	</body>
 
