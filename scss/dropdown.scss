@@ -1,0 +1,7 @@
+.nav-item {
+	.dropdown-item:focus,
+	.dropdown-item:hover {
+		color: $color_white;
+		text-decoration: none;
+	}
+}
