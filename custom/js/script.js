@@ -202,9 +202,8 @@ function MY_scripts() {
 		inp.remove();
 	}
 
-	const $presaleAddr = $('.presaleAddr');
 	let copyProcessing = false;
-	$presaleAddr.on('click', (e) => {
+	$('.presaleAddr').on('click', (e) => {
 		if (!copyProcessing) {
 			copyProcessing = true;
 			copy(e.target.innerText);
@@ -214,6 +213,22 @@ function MY_scripts() {
 				$(e.target).text(orig);
 				copyProcessing = false;
 			}, 3000);
+		}
+	});
+
+	/* ---------------------------- Coming soon click --------------------------- */
+	let comingSoonCoolDown = false;
+	$('.comingSoon').on('click', (e) => {
+		e.stopImmediatePropagation();
+		e.preventDefault();
+		if (!comingSoonCoolDown) {
+			comingSoonCoolDown = true;
+			const orig = $(e.target).text();
+			$(e.target).text('Coming soon!');
+			setTimeout(() => {
+				$(e.target).text(orig);
+				comingSoonCoolDown = false;
+			}, 500);
 		}
 	});
 }
