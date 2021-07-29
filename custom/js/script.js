@@ -231,4 +231,8 @@ function MY_scripts() {
 			}, 500);
 		}
 	});
+
+	$('.preventDefault').on('click', (e) => {
+		e.preventDefault();
+	});
 }
