@@ -191,4 +191,29 @@ function MY_scripts() {
 	$(document).on('aos:in:pie-in', () => {
 		resizePie(screen.width);
 	});
+
+	/* ------------------------------ Click to copy ----------------------------- */
+	function copy(text) {
+		const inp = document.createElement('input');
+		document.body.appendChild(inp);
+		inp.value = text;
+		inp.select();
+		document.execCommand('copy', false);
+		inp.remove();
+	}
+
+	const $presaleAddr = $('.presaleAddr');
+	let copyProcessing = false;
+	$presaleAddr.on('click', (e) => {
+		if (!copyProcessing) {
+			copyProcessing = true;
+			copy(e.target.innerText);
+			const orig = $(e.target).text();
+			$(e.target).text('Copied to clipboard!');
+			setTimeout(() => {
+				$(e.target).text(orig);
+				copyProcessing = false;
+			}, 3000);
+		}
+	});
 }
