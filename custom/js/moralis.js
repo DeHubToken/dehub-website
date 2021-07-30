@@ -1,3 +1,6 @@
+/**
+ * Moralis integration
+ */
 $(document).ready(function () {
 	moralisInit();
 	const user = currUser();
@@ -23,7 +26,13 @@ function currUser() {
 async function logIn() {
 	let user = currUser();
 	if (!user) {
-		user = await Moralis.Web3.authenticate();
+		try {
+			user = await Moralis.Web3.authenticate();
+		} catch (error) {
+			// Most likely user canceled signature.
+			// We just silence the error here for now. You will still see Metamask
+			// error in the console, but this is better than two unhandled errors :))
+		}
 	}
 	console.log('logged in user:', user);
 	return user;
@@ -50,14 +59,16 @@ $('#logout').on('click', async (e) => {
 });
 
 function renderConnectedWallet(user) {
-	const $connectedWallet = $('#connected-wallet');
-	const $label = $connectedWallet.find('.label');
-	const addr = user.attributes.ethAddress;
-	const label = `${addr.substring(0, 6)}...${addr.substring(38)}`;
-	$label.text(label);
-	// Visibility
-	$('#connect-wallet').addClass('d-none');
-	$connectedWallet.removeClass('d-none');
+	if (user) {
+		const $connectedWallet = $('#connected-wallet');
+		const $label = $connectedWallet.find('.label');
+		const addr = user.attributes.ethAddress;
+		const label = `${addr.substring(0, 6)}...${addr.substring(38)}`;
+		$label.text(label);
+		// Visibility
+		$('#connect-wallet').addClass('d-none');
+		$connectedWallet.removeClass('d-none');
+	}
 }
 
 function renderDisconnectedWallet() {

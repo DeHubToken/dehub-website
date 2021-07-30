@@ -1,3 +1,8 @@
+// So you're wondering why you found this class...
+// Just use it to avoid things like: span:not([class]) affecting your elements
+.nonEmpty {
+}
+
 .solid-2px-border {
 	border: 2px solid $action_2;
 }
