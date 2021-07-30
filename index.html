@@ -79,6 +79,7 @@
 		<script src="https://kit.fontawesome.com/1481019c19.js"
 			crossorigin="anonymous"></script>
 		<!-- Moralis SDK code -->
+		<script src="https://github.com/WalletConnect/walletconnect-monorepo/releases/download/1.4.1/web3-provider.min.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
 		<script src="https://unpkg.com/moralis/dist/moralis.js"></script>
 	</head>
@@ -210,19 +211,33 @@
 								<a href="https://t.me/Dehubofficial"
 									class="link color-main fab fa-telegram-plane mx-5 align-middle">
 								</a>
-								<a href="#"
-									class="btn action-2 sm ml-20 btn-connect-wallet btn-logged-out">
+								<!-- ---------------------- Connect with wallet start ---------------------- -->
+								<a id="connect-wallet"
+									href="#"
+									class="btn action-2 sm ml-20">
 									<i class="fad fa-wallet"></i>
 									&nbsp;
-									<span class="btn-connect-wallet-label">Connect Wallet</span>
+									<span>Connect Wallet</span>
 								</a>
-								<!-- <a href="#"
-									class="link color-main fab fa-medium-m mx-5">
-								</a>
-								<a href="#"
-									class="link color-main fab fa-reddit-alien mx-5">
-								</a> -->
+								<div id="connected-wallet"
+									class="btn-group ml-20 d-none"
+									role="group"
+									aria-label="Wallet Authentication">
+									<button id="address-bar"
+										type="button"
+										class="btn action-2 sm">
+										<img class="w-30 pr-10 pb-10"
+											src="uploads/metamask.svg">
+										<span class="label">Loading...</span>
+									</button>
+									<button id="logout"
+										type="button"
+										class="btn action-2 op-6 sm">
+										<i class="fad fa-sign-out"></i>
+									</button>
+								</div>
 							</div>
+							<!-- ----------------------- Connect with wallet end ----------------------- -->
 							<div class="w-full d-flex justify-content-end">
 								<a href="#intro"
 									class="nav-item link color-main mx-15">

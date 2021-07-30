@@ -1,10 +1,18 @@
 $(document).ready(function () {
 	moralisInit();
+	const user = currUser();
+	if (user) {
+		console.log('Already logged in');
+		console.log(user);
+		renderConnectedWallet(user);
+	}
 });
 
 function moralisInit() {
 	Moralis.initialize('gpNiEhi3L1EL2xQmkFxCFOpOAXjdLxAyFnZ5TDZ7');
 	Moralis.serverURL = 'https://da0aomzbpucr.usemoralis.com:2053/server';
+	Moralis.Web3.getSigningData = () =>
+		'Welcome to DeHub! To proceed securely please sign this connection.';
 }
 
 function currUser() {
@@ -26,21 +34,38 @@ async function logOut() {
 	console.log('logged out');
 }
 
-$('.btn-connect-wallet').on('click', async (e) => {
+$('#connect-wallet').on('click', async (e) => {
 	e.preventDefault();
-	const $that = $(e.target);
-	const $label = $that.first('btn-connect-wallet-label');
-	console.log($label);
-	const user = currUser();
-	console.log(user);
-	if (user) {
-		// If logged-in -> logout
-		await logOut();
-		$that.toggleClass('btn-logged-in btn-logged-out');
-	} else {
-		// If not logged-in -> login
-		await logIn();
-		$that.toggleClass('btn-logged-out btn-logged-in');
-		$label.text('Hello!');
+	let user = currUser();
+	if (!user) {
+		user = await logIn();
 	}
+	renderConnectedWallet(user);
 });
+
+$('#logout').on('click', async (e) => {
+	e.preventDefault();
+	await logOut();
+	renderDisconnectedWallet();
+});
+
+function renderConnectedWallet(user) {
+	const $connectedWallet = $('#connected-wallet');
+	const $label = $connectedWallet.find('.label');
+	const addr = user.attributes.ethAddress;
+	const label = `${addr.substring(0, 6)}...${addr.substring(38)}`;
+	$label.text(label);
+	// Visibility
+	$('#connect-wallet').addClass('d-none');
+	$connectedWallet.removeClass('d-none');
+}
+
+function renderDisconnectedWallet() {
+	const $connectedWallet = $('#connected-wallet');
+	const $label = $connectedWallet.find('.label');
+	const label = `Loading...`;
+	$label.text(label);
+	// Visibility
+	$('#connect-wallet').removeClass('d-none');
+	$connectedWallet.addClass('d-none');
+}
