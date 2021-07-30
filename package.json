@@ -7,7 +7,8 @@
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"sass:watch": "sass --watch scss/style.scss:css/style.css --no-source-map",
 		"sass:min": "sass scss/style.scss css/style.min.css --style compressed --no-source-map",
-		"sass:watch:min": "sass --watch scss/style.scss:css/style.min.css --style compressed --no-source-map"
+		"sass:watch:min": "sass --watch scss/style.scss:css/style.min.css --style compressed --no-source-map",
+		"serve": "npx http-server"
 	},
 	"repository": {
 		"type": "git",

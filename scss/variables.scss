@@ -51,3 +51,16 @@ $gradient_3: linear-gradient(
 	rgba(6, 12, 29, 0.7) 71%,
 	rgba(50, 19, 56, 0.7)
 );
+$bg_button_glass1: linear-gradient(
+	128deg,
+	rgba(11, 32, 40, 0.6) 0%,
+	rgba(32, 68, 88, 0.6) 25%,
+	rgba(133, 34, 152, 0.6) 100%
+);
+
+$bg_button_glass2: linear-gradient(
+	128deg,
+	rgba(11, 32, 40, 0.6) 0%,
+	rgba(32, 68, 88, 0.6) 25%,
+	rgba(13, 128, 151, 0.6) 100%
+);
