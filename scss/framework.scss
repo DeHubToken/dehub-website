@@ -326,7 +326,7 @@ $i: 0;
 		&:hover:after {
 			left: 100%;
 		}
-		span {
+		span:not([class]) {
 			position: absolute;
 			display: block;
 			transition: 0.5s ease;
@@ -407,7 +407,7 @@ $i: 0;
 		&:hover:after {
 			left: 100%;
 		}
-		span {
+		span:not([class]) {
 			position: absolute;
 			display: block;
 			transition: 0.5s ease;
