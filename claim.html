@@ -226,7 +226,8 @@
 									class="nav-item link color-main mx-15">
 									Main Website
 								</a>
-								<div class="nav-item dropdown">
+								<div id="nav-dropdown"
+									class="nav-item dropdown">
 									<a class="link color-main mx-15 dropdown-toggle"
 										href="#"
 										id="dAppsDropdown"
@@ -236,7 +237,8 @@
 										aria-expanded="false">
 										dApps
 									</a>
-									<div class="dropdown-menu bg-gray-1 pt-20 pb-20 mt-10 radius4"
+									<div id="dApps-dropdown"
+										class="dropdown-menu bg-gray-1 pt-20 pb-20 mt-10 radius4"
 										aria-labelledby="dAppsDropdown">
 										<a href="claim.html"
 											class="dropdown-item btn glass-1 mb-10 text-left">
@@ -296,22 +298,23 @@
 						</div>
 					</div>
 					<div class="col-xl-7 col-lg-6 col-md-12">
-						<div class="px-45 pt-20 pb-30 radius10 mb-30 block bg-gradient-3"
+						<div class="card bg-transparent bg-gradient-2 radius10 border-0"
 							data-aos="fade-up"
 							data-aos-delay="1000">
-							<div class="mb-20 f-22">
-								<i class="fad fa-exclamation-circle align-middle f-40 action-2 mt-10"></i>
-								<span class="t-6">&nbsp; Terms & Conditions</span>
+							<div class="card-body">
+								This is some text within a card body.
 							</div>
-							<div class="op-7 text-adaptive color-main pl-10">
-								<ul class="list-group">
-									<li class="list-group-item bg-transparent border-dark">Dehub Tokens will be distributed before listing on Pancakeswap.</li>
-									<li class="list-group-item bg-transparent border-dark">Do not send BNBs from an exchange as we cant send back Dehub tokens.</li>
-									<li class="list-group-item bg-transparent border-dark">Do not send other than Binance Smart Chain BNB.</li>
-									<li class="list-group-item bg-transparent border-dark">Wallets with total contribution less than 0.5 BNB will be refunded minus transfer gas fees.</li>
-									<li class="list-group-item bg-transparent border-dark">Wallets with total contribution more than 125 BNB will get refunded of excess BNBs minus transfer gas fees.</li>
-									<li class="list-group-item bg-transparent border-dark">Single transactions less than 0.5 BNB are accepted as long as the total contribution amount is equal to 0.5 BNB or more from the same wallet.</li>
-								</ul>
+							<div class="card-footer text-right">
+								<a href="#"
+									class="btn glass-1 shadow mb-10 text-left">
+									<span></span>
+									<span></span>
+									<span></span>
+									<span></span>
+									<i class="fad fa-gift color-main"></i>
+									&nbsp;
+									<span class="nonEmpty">Claim</span>
+								</a>
 							</div>
 						</div>
 					</div>
@@ -361,6 +364,7 @@
 		<script src="js/script.js"></script>
 		<!-- Custom JS outside designmodo -->
 		<script src="custom/js/script.js"></script>
+		<script src="custom/js/bootstrap-hacks.js"></script>
 		<script src="custom/js/moralis.js"></script>
 		<script type="module"
 			src="custom/js/particles.js"></script>
