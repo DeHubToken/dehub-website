@@ -12,8 +12,8 @@ $(document).ready(function () {
 });
 
 function moralisInit() {
-	Moralis.initialize('gpNiEhi3L1EL2xQmkFxCFOpOAXjdLxAyFnZ5TDZ7');
-	Moralis.serverURL = 'https://da0aomzbpucr.usemoralis.com:2053/server';
+	Moralis.initialize('qYPpbsEGdwTUjz3B8I23NXoy8DVBGBpAfSHHvyQF');
+	Moralis.serverURL = 'https://kakpr5xrgbmw.usemoralis.com:2053/server';
 	Moralis.Web3.getSigningData = () =>
 		'Welcome to DeHub! To proceed securely please sign this connection.';
 }
@@ -29,6 +29,7 @@ async function logIn() {
 		try {
 			user = await Moralis.Web3.authenticate();
 		} catch (error) {
+			console.log(error);
 			// Most likely user canceled signature.
 			// We just silence the error here for now. You will still see Metamask
 			// error in the console, but this is better than two unhandled errors :))
