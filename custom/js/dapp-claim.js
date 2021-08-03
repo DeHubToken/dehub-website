@@ -6,6 +6,7 @@ const abi = [
 	'function claimCycleHours() public view returns(uint256)',
 	'function claimableDistribution() public view returns(uint256)',
 	'function calcClaimableShare(address holderAddr) public view returns(uint256)',
+	'function totalClaimed() public view returns(uint256)',
 	'function claimReward() external returns(uint256)',
 ];
 
@@ -15,7 +16,13 @@ const signer = provider.getSigner();
 const signerAddr = await signer.getAddress();
 const dhb = new ethers.Contract(CONTRACT_ADDR, abi, signer);
 
-let isEnabled, hasClaimed, cycleHours, balance, totalClaimable, claimableShare;
+let isEnabled,
+	hasClaimed,
+	cycleHours,
+	balance,
+	totalClaimable,
+	claimableShare,
+	totalClaimed;
 
 async function updateData() {
 	isEnabled = await dhb.isDistributionEnabled();
@@ -26,12 +33,15 @@ async function updateData() {
 	claimableShare = ethers.utils.formatEther(
 		await dhb.calcClaimableShare(signerAddr)
 	);
+	totalClaimed = ethers.utils.formatEther(await dhb.totalClaimed());
+
 	console.log(isEnabled);
 	console.log(hasClaimed);
 	console.log(cycleHours);
 	console.log(balance);
 	console.log(totalClaimable);
 	console.log(claimableShare);
+	console.log(totalClaimed);
 }
 
 /* ----------------------------------- UI ----------------------------------- */
@@ -42,6 +52,7 @@ async function updateView() {
 	$('.current-balance').text(balance);
 	$('.total-claimable').text(totalClaimable);
 	$('.claimable-share').text(claimableShare);
+	$('.total-claimed').text(totalClaimed);
 	// Handle exceptions
 	if (!isEnabled) {
 		await showDisabledMessage();
