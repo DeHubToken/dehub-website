@@ -79,6 +79,7 @@
 			crossorigin="anonymous"></script>
 		<!-- Moralis SDK code -->
 		<script src="https://github.com/WalletConnect/walletconnect-monorepo/releases/download/1.4.1/web3-provider.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
 		<script src="https://unpkg.com/moralis/dist/moralis.js"></script>
 	</head>
 
@@ -275,38 +276,35 @@
 			data-bg-src="false"
 			data-bg-src-2x="false">
 			<div class="container px-xl-0">
-				<div class="row">
-					<div class="col-xl-5 col-lg-6 col-md-9"
-						data-aos="zoom-in"
-						data-aos-delay="0">
-						<h2 class="small">
-							Claim Your BNB Rewards
-						</h2>
-						<div class="mt-15 mb-35 color-heading text-adaptive">
-							Every $DeHub holder is entitled to a fair share of BNB rewards. <br><br>
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-							tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-							quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-						</div>
-						<div class="buttons">
-							<a href="#"
-								class="btn glass-1 mr-10 mb-15">
-								<span></span>
-								<span></span>
-								<span></span>
-								<span></span>
-								BUY $DEHUB TOKENS</a>
-						</div>
-					</div>
+				<div class="row justify-content-center">
 					<div class="col-xl-7 col-lg-6 col-md-12">
 						<div class="card bg-transparent bg-gradient-2 radius10 border-0"
 							data-aos="fade-up"
 							data-aos-delay="1000">
-							<div class="card-body">
-								This is some text within a card body.
+							<div class="card-header pt-20">
+								<h5>Claim Your BNB reward</h5>
 							</div>
+							<ul class="list-group list-group-flush">
+								<li class="list-group-item bg-transparent">
+									Every $DeHub holder is entitled to a fair share of BNB rewards. <br><br>
+
+								</li>
+								<li class="list-group-item bg-transparent">
+									<strong>Your $DeHub balance:</strong>
+									<span class="current-balance text-monospace float-right">...</span>
+								</li>
+								<li class="list-group-item bg-transparent">
+									<strong>Total BNB reward pool:</strong>
+									<span class="total-claimable text-monospace float-right">...</span>
+								</li>
+								<li class="list-group-item bg-transparent">
+									<strong>Your BNB reward:</strong>
+									<span class="claimable-share text-monospace float-right">...</span>
+								</li>
+							</ul>
 							<div class="card-footer text-right">
-								<a href="#"
+								<a id="claim-btn"
+									href="#"
 									class="btn glass-1 shadow mb-10 text-left">
 									<span></span>
 									<span></span>
