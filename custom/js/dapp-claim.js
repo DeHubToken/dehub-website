@@ -37,28 +37,48 @@ async function updateData() {
 /* ----------------------------------- UI ----------------------------------- */
 
 async function updateView() {
+	showLoading();
 	await updateData();
 	$('.current-balance').text(balance);
 	$('.total-claimable').text(totalClaimable);
 	$('.claimable-share').text(claimableShare);
 	// Handle exceptions
-	if (isEnabled) {
+	if (!isEnabled) {
 		$('#distribution-disabled-msg').removeClass('d-none');
-		hideView();
+		hideLoading();
+		hideInterface();
 	} else if (hasClaimed) {
 		$('#already-claimed-msg').removeClass('d-none');
-		hideView();
+		hideLoading();
+		hideInterface();
 	} else {
-		unhideView();
+		showInterface();
 	}
 }
 
-function hideView() {
+function showLoading() {
+	$('#distribution-loading-msg').removeClass('d-none');
+	hideAllMessages;
+	hideInterface();
+}
+
+function hideLoading() {
+	$('#distribution-loading-msg').addClass('d-none');
+}
+
+function hideInterface() {
 	$('#view').addClass('d-none');
 }
 
-function unhideView() {
+function showInterface() {
+	hideLoading();
+	hideAllMessages();
 	$('#view').removeClass('d-none');
+}
+
+function hideAllMessages() {
+	$('#distribution-disabled-msg').addClass('d-none');
+	$('#distribution-claimed-msg').addClass('d-none');
 }
 
 function updateClaimButton() {

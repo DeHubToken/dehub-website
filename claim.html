@@ -282,25 +282,54 @@
 							data-aos="fade-up"
 							data-aos-delay="1000">
 							<div class="card-header pt-20">
-								<h5>Claim Your BNB reward</h5>
+								<h5>
+									Claim Your BNB reward
+									<button class="color-main bg-transparent"
+										data-toggle="popover"
+										title="How it works?"
+										data-content="Every $DeHub holder is entitled to a fair share of BNB rewards. 
+										Each cycle we calculate a new BNB reward pool based on the total BNB accumulated from fees.
+										You can claim your fair share every once per cycle based on your current $DeHub holdings.">
+										<i class="fad fa-info-circle"></i>
+									</button>
+
+								</h5>
 							</div>
+							<!-- ------------------------------- Loader -------------------------------- -->
+							<div id="distribution-loading-msg"
+								class="card-body text-center pt-100 pb-150">
+								<div class="fa-3x pb-30">
+									<i class="fad fa-circle-notch fa-spin"></i>
+								</div>
+								<h5>Syncing with $DeHub Contract</h5>
+								<span>Please give it a second.</span>
+							</div>
+							<!-- ---------------------------- Claimed wall ----------------------------- -->
 							<div id="already-claimed-msg"
-								class="card-body text-center d-none">
+								class="card-body text-center pt-100 pb-150 d-none">
+								<div class="fa-3x pb-30">
+									<i class="fad fa-circle-notch fa-spin"></i>
+								</div>
 								<h5>You have already claimed your share for this cycle.</h5>
 								<span>Please come back later, to claim again.</span>
 							</div>
+							<!-- ---------------------------- Disabled wall ---------------------------- -->
 							<div id="distribution-disabled-msg"
-								class="card-body text-center d-none">
-								<br><br><br><br>
+								class="card-body text-center pt-100 pb-150 d-none">
+								<div class="fa-3x pb-30">
+									<i class="fad fa-snooze"></i>
+								</div>
 								<h5>Reward distribution has been disabled for now.</h5>
-								<span>Please come back later, or get more information in our Telegram group.</span>
-								<br><br><br><br><br><br>
+								<span>Please come back later, or get more information in our <a href="https://t.me/Dehubofficial"
+										class="link">Telegram group <i class="fal fa-external-link"></i></a></span>
 							</div>
+							<!-- --------------------------- dApp interface ---------------------------- -->
 							<div id="view">
 								<ul class="list-group list-group-flush">
-									<li class="list-group-item bg-transparent">
-										Every $DeHub holder is entitled to a fair share of BNB rewards. <br><br>
-									</li>
+									<!-- <li class="list-group-item bg-transparent pb-30">
+										Every $DeHub holder is entitled to a fair share of BNB rewards. Each cycle we calculate a new BNB reward pool based on the total BNB accumulated from fees. <br>
+										You can claim your fair share every once per cycle based on your current $DeHub holdings. <br>
+									</li> -->
 									<li class="list-group-item bg-transparent">
 										<strong>Your $DeHub balance:</strong>
 										<span class="current-balance text-monospace float-right">...</span>

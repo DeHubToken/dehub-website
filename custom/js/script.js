@@ -4,6 +4,9 @@
 
 $(document).ready(function () {
 	MY_scripts();
+	$('[data-toggle="popover"]').popover({
+		trigger: 'hover',
+	});
 });
 
 function MY_scripts() {
