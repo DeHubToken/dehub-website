@@ -1,6 +1,7 @@
 import * as ethers from '/custom/libs/ethers/ethers-5.1.esm.min.js';
 const abi = [
 	'function isDistributionEnabled() public view returns(bool)',
+	'function hasAlreadyClaimed(address holderAddr) public view returns(bool)',
 	'function balanceOf(address account) public view returns(uint256)',
 	'function claimCycleHours() public view returns(uint256)',
 	'function claimableDistribution() public view returns(uint256)',
@@ -14,10 +15,11 @@ const signer = provider.getSigner();
 const signerAddr = await signer.getAddress();
 const dhb = new ethers.Contract(CONTRACT_ADDR, abi, signer);
 
-let isEnabled, cycleHours, balance, totalClaimable, claimableShare;
+let isEnabled, hasClaimed, cycleHours, balance, totalClaimable, claimableShare;
 
 async function updateData() {
 	isEnabled = await dhb.isDistributionEnabled();
+	hasClaimed = await dhb.hasAlreadyClaimed(signerAddr);
 	cycleHours = ethers.utils.formatUnits(await dhb.claimCycleHours(), 0);
 	balance = ethers.utils.formatUnits(await dhb.balanceOf(signerAddr), 5);
 	totalClaimable = ethers.utils.formatEther(await dhb.claimableDistribution());
@@ -25,6 +27,7 @@ async function updateData() {
 		await dhb.calcClaimableShare(signerAddr)
 	);
 	console.log(isEnabled);
+	console.log(hasClaimed);
 	console.log(cycleHours);
 	console.log(balance);
 	console.log(totalClaimable);
@@ -38,11 +41,29 @@ async function updateView() {
 	$('.current-balance').text(balance);
 	$('.total-claimable').text(totalClaimable);
 	$('.claimable-share').text(claimableShare);
+	// Handle exceptions
+	if (isEnabled) {
+		$('#distribution-disabled-msg').removeClass('d-none');
+		hideView();
+	} else if (hasClaimed) {
+		$('#already-claimed-msg').removeClass('d-none');
+		hideView();
+	} else {
+		unhideView();
+	}
+}
+
+function hideView() {
+	$('#view').addClass('d-none');
+}
+
+function unhideView() {
+	$('#view').removeClass('d-none');
 }
 
 function updateClaimButton() {
 	const $claimBtn = $('#claim-btn');
-	if (!isEnabled) {
+	if (!isEnabled || hasClaimed) {
 		$claimBtn.addClass('disabled');
 	} else {
 		$claimBtn.removeClass('disabled');
