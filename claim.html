@@ -271,19 +271,18 @@
 		</header>
 
 		<!-- Feature 24 -->
-		<section id="intro"
-			class="pt-100 pb-105 feature_24"
+		<section class="pt-100 pb-105 feature_24"
 			data-bg-src="false"
 			data-bg-src-2x="false">
 			<div class="container px-xl-0">
 				<div class="row justify-content-center">
-					<div class="col-xl-7 col-lg-6 col-md-12">
+					<div class="col-lg-7">
 						<div class="card bg-transparent bg-gradient-2 radius10 border-0"
 							data-aos="fade-up"
 							data-aos-delay="1000">
 							<div class="card-header pt-20">
 								<h5>
-									Claim Your BNB reward
+									Claim BNB Reward
 									<button class="color-main bg-transparent"
 										data-toggle="popover"
 										title="How it works?"
@@ -295,67 +294,77 @@
 
 								</h5>
 							</div>
-							<!-- ------------------------------- Loader -------------------------------- -->
-							<div id="distribution-loading-msg"
-								class="card-body text-center pt-100 pb-150">
-								<div class="fa-3x pb-30">
-									<i class="fad fa-circle-notch fa-spin"></i>
+							<div class="card-body text-center pl-0 pr-0 pt-50 h-300">
+								<!-- ------------------------------- Loader -------------------------------- -->
+								<div id="loading-msg">
+									<div class="fa-3x pb-30">
+										<i class="fad fa-circle-notch fa-spin"></i>
+									</div>
+									<h5>Syncing with $DeHub Contract</h5>
+									<span>Please give it a second.</span>
 								</div>
-								<h5>Syncing with $DeHub Contract</h5>
-								<span>Please give it a second.</span>
+								<!-- ---------------------------- Claimed wall ----------------------------- -->
+								<div id="claimed-msg">
+									<div class="fa-3x pb-30">
+										<i class="fad fa-calendar-check"></i>
+									</div>
+									<h5>You have already claimed your share for this cycle.</h5>
+									<span>Please come back later, to claim again.</span>
+								</div>
+								<!-- ---------------------------- Disabled wall ---------------------------- -->
+								<div id="disabled-msg">
+									<div class="fa-3x pb-30">
+										<i class="fad fa-snooze"></i>
+									</div>
+									<h5>Reward distribution has been disabled for now.</h5>
+									<span>Please come back later, or get more information in our <a href="https://t.me/Dehubofficial"
+											class="link">Telegram group <i class="fal fa-external-link"></i></a></span>
+								</div>
+								<!-- --------------------------- dApp interface ---------------------------- -->
+								<div id="interface"
+									class="px-15">
+
+									<div class="row pb-10 border-bottom border-translucent-1 px-5 text-left">
+										<div class="col-sm-6">
+											<strong>Your $DeHub balance:</strong>
+										</div>
+										<div class="col-sm-6 text-sm-right pt-5 pt-xl-0">
+											<span class="current-balance text-monospace">...</span>
+										</div>
+									</div>
+
+									<div class="row pt-10 pb-10 border-bottom border-translucent-1 px-5 text-left">
+										<div class="col-sm-6">
+											<strong>Total BNB reward pool:</strong>
+										</div>
+										<div class="col-sm-6 text-sm-right pt-5 pt-xl-0">
+											<span class="total-claimable text-monospace">...</span>
+										</div>
+									</div>
+
+									<div class="row pt-10 px-5 text-left">
+										<div class="col-sm-6">
+											<strong>Your BNB reward:</strong>
+										</div>
+										<div class="col-sm-6 text-sm-right pt-5 pt-xl-0">
+											<span class="claimable-share text-monospace">...</span>
+										</div>
+									</div>
+								</div>
+
 							</div>
-							<!-- ---------------------------- Claimed wall ----------------------------- -->
-							<div id="already-claimed-msg"
-								class="card-body text-center pt-100 pb-150 d-none">
-								<div class="fa-3x pb-30">
-									<i class="fad fa-circle-notch fa-spin"></i>
-								</div>
-								<h5>You have already claimed your share for this cycle.</h5>
-								<span>Please come back later, to claim again.</span>
-							</div>
-							<!-- ---------------------------- Disabled wall ---------------------------- -->
-							<div id="distribution-disabled-msg"
-								class="card-body text-center pt-100 pb-150 d-none">
-								<div class="fa-3x pb-30">
-									<i class="fad fa-snooze"></i>
-								</div>
-								<h5>Reward distribution has been disabled for now.</h5>
-								<span>Please come back later, or get more information in our <a href="https://t.me/Dehubofficial"
-										class="link">Telegram group <i class="fal fa-external-link"></i></a></span>
-							</div>
-							<!-- --------------------------- dApp interface ---------------------------- -->
-							<div id="view">
-								<ul class="list-group list-group-flush">
-									<!-- <li class="list-group-item bg-transparent pb-30">
-										Every $DeHub holder is entitled to a fair share of BNB rewards. Each cycle we calculate a new BNB reward pool based on the total BNB accumulated from fees. <br>
-										You can claim your fair share every once per cycle based on your current $DeHub holdings. <br>
-									</li> -->
-									<li class="list-group-item bg-transparent">
-										<strong>Your $DeHub balance:</strong>
-										<span class="current-balance text-monospace float-right">...</span>
-									</li>
-									<li class="list-group-item bg-transparent">
-										<strong>Total BNB reward pool:</strong>
-										<span class="total-claimable text-monospace float-right">...</span>
-									</li>
-									<li class="list-group-item bg-transparent">
-										<strong>Your BNB reward:</strong>
-										<span class="claimable-share text-monospace float-right">...</span>
-									</li>
-								</ul>
-								<div class="card-footer text-right">
-									<a id="claim-btn"
-										href="#"
-										class="btn glass-1 shadow mb-10 text-left">
-										<span></span>
-										<span></span>
-										<span></span>
-										<span></span>
-										<i class="fad fa-gift color-main"></i>
-										&nbsp;
-										<span class="nonEmpty">Claim</span>
-									</a>
-								</div>
+							<div class="card-footer text-right">
+								<a id="claim-btn"
+									href="#"
+									class="btn glass-1 shadow mb-10 text-left">
+									<span></span>
+									<span></span>
+									<span></span>
+									<span></span>
+									<i class="fad fa-gift color-main"></i>
+									&nbsp;
+									<span class="nonEmpty">Claim</span>
+								</a>
 							</div>
 						</div>
 					</div>

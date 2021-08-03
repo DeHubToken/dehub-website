@@ -37,48 +37,43 @@ async function updateData() {
 /* ----------------------------------- UI ----------------------------------- */
 
 async function updateView() {
-	showLoading();
+	await showLoading();
 	await updateData();
 	$('.current-balance').text(balance);
 	$('.total-claimable').text(totalClaimable);
 	$('.claimable-share').text(claimableShare);
 	// Handle exceptions
 	if (!isEnabled) {
-		$('#distribution-disabled-msg').removeClass('d-none');
-		hideLoading();
-		hideInterface();
-	} else if (hasClaimed) {
-		$('#already-claimed-msg').removeClass('d-none');
-		hideLoading();
-		hideInterface();
+		await showDisabledMessage();
 	} else {
-		showInterface();
+		await showInterface();
 	}
 }
 
-function showLoading() {
-	$('#distribution-loading-msg').removeClass('d-none');
-	hideAllMessages;
-	hideInterface();
+async function showLoading() {
+	await $('#claim-btn').fadeTo('slow', 0).promise();
+	await $('#interface, #claimed-msg, #disabled-msg').fadeOut('slow').promise();
+	await $('#loading-msg').fadeIn('slow').promise();
 }
 
-function hideLoading() {
-	$('#distribution-loading-msg').addClass('d-none');
+async function showInterface() {
+	await $('#claim-btn').fadeTo('slow', 1).promise();
+	await $('#loading-msg, #claimed-msg, #disabled-msg')
+		.fadeOut('fast')
+		.promise();
+	await $('#interface').fadeIn('slow').promise();
 }
 
-function hideInterface() {
-	$('#view').addClass('d-none');
+async function showDisabledMessage() {
+	await $('#claim-btn').fadeTo('slow', 0).promise();
+	await $('#claimed-msg, #loading-msg, #interface').fadeOut('slow').promise();
+	await $('#disabled-msg').fadeIn('slow').promise();
 }
 
-function showInterface() {
-	hideLoading();
-	hideAllMessages();
-	$('#view').removeClass('d-none');
-}
-
-function hideAllMessages() {
-	$('#distribution-disabled-msg').addClass('d-none');
-	$('#distribution-claimed-msg').addClass('d-none');
+async function showClaimedMessage() {
+	await $('#claim-btn').fadeTo('slow', 0).promise();
+	await $('#loading-msg, #disable-msg, #interface').fadeOut('slow').promise();
+	await $('#claimed-msg').fadeIn('slow').promise();
 }
 
 function updateClaimButton() {
@@ -91,17 +86,25 @@ function updateClaimButton() {
 }
 
 async function claim() {
-	const $claimBtn = $('#claim-btn');
-	$claimBtn.addClass('disabled').find('.nonEmpty').text('Claiming...');
-	try {
-		const tx = await dhb.claimReward();
-		tx.await();
-		console.log(tx);
-	} catch (error) {}
-	await updateView();
-	$claimBtn.removeClass('disabled').find('.nonEmpty').text('Claim');
+	if (hasClaimed) {
+		await showClaimedMessage();
+		setTimeout(async () => {
+			await updateView();
+		}, 2000);
+	} else {
+		const $claimBtn = $('#claim-btn');
+		$claimBtn.addClass('disabled').find('.nonEmpty').text('Claiming...');
+		try {
+			const tx = await dhb.claimReward();
+			tx.await();
+			console.log(tx);
+		} catch (error) {}
+		$claimBtn.removeClass('disabled').find('.nonEmpty').text('Claim');
+		await updateView();
+	}
 }
 
+// Initialize...
 await updateView();
 updateClaimButton();
 $('#claim-btn').on('click', () => claim());
