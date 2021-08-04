@@ -119,3 +119,20 @@ async function claim() {
 await updateView();
 updateClaimButton();
 $('#claim-btn').on('click', () => claim());
+
+// window.ethereum.on('accountsChanged', function (accounts) {
+// 	console.log('!!!!!!!');
+// });
+
+provider.provider.on('connect', (connectInfo) => {
+	console.log(connectInfo);
+});
+
+provider.provider.on('accountsChanged', (accounts) => {
+	console.log(accounts);
+	console.log(provider.provider.isConnected());
+});
+
+provider.provider.on('chainChanged', (chainId) => {
+	console.log(chainId);
+});
