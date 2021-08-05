@@ -254,30 +254,29 @@
 									class="link color-main fab fa-reddit-alien mx-5">
 								</a> -->
 								<!-- ---------------------- Connect with wallet start ---------------------- -->
-								<a id="connect-wallet"
-									href="#"
-									class="btn action-2 sm ml-20">
-									<i class="fad fa-wallet"></i>
-									&nbsp;
-									<span>Connect Wallet</span>
-								</a>
-								<div id="connected-wallet"
-									class="btn-group ml-20 d-none"
-									role="group"
-									aria-label="Wallet Authentication">
-									<button id="address-bar"
-										type="button"
-										class="btn action-2 sm">
-										<img class="w-30 pr-10 pb-10"
-											src="uploads/metamask.svg">
-										<span class="label">Loading...</span>
-									</button>
-									<button id="logout"
-										type="button"
-										class="btn action-2 op-6 sm">
-										<i class="fad fa-sign-out"></i>
-									</button>
+								<div class="connect-wallet-widget d-inline-block">
+									<a href="#"
+										class="connect-wallet btn action-2 sm ml-20">
+										<i class="fad fa-wallet"></i>
+										&nbsp;
+										<span>Connect Wallet</span>
+									</a>
+									<div class="connected-wallet btn-group ml-20 d-none"
+										role="group"
+										aria-label="Wallet Authentication">
+										<button type="button"
+											class="address-bar btn action-2 sm">
+											<img class="w-30 pr-10 pb-10"
+												src="uploads/metamask.svg">
+											<span class="label">Loading...</span>
+										</button>
+										<button type="button"
+											class="logout btn action-2 op-6 sm">
+											<i class="fad fa-sign-out"></i>
+										</button>
+									</div>
 								</div>
+								<!-- ----------------------- Connect with wallet end ----------------------- -->
 							</div>
 							<!-- ----------------------- Connect with wallet end ----------------------- -->
 							<div class="w-full d-flex justify-content-end">
@@ -1175,7 +1174,7 @@
 							data-aos-delay="250">
 							<img src="uploads/malik-avatar.jpg"
 								alt=""
-								class="rounded-circle img-fluid w-170 h-170 solid-4px-border"
+								class="rounded-circle img-fluid w-170 h-170 border-solid-4px"
 								srcset="uploads/malik-avatar.jpg 2x">
 							<div class="mt-20 mb-10 f-22 title">
 								Malik Jan
@@ -1193,7 +1192,7 @@
 							data-aos-delay="250">
 							<img src="uploads/ahmad-avatar.jpg"
 								alt=""
-								class="rounded-circle img-fluid w-170 h-170 solid-4px-border"
+								class="rounded-circle img-fluid w-170 h-170 border-solid-4px"
 								srcset="uploads/ahmad-avatar.jpg 2x">
 							<div class="mt-20 mb-10 f-22 title">
 								Ahmad Banna
@@ -1211,7 +1210,7 @@
 							<img src="uploads/rani-avatar.jpg"
 								srcset="uploads/rani-avatar.jpg 2x"
 								alt=""
-								class="rounded-circle img-fluid w-170 h-170 solid-4px-border">
+								class="rounded-circle img-fluid w-170 h-170 border-solid-4px">
 							<div class="mt-20 mb-10 f-22 title">
 								Rani Mazen
 							</div>
@@ -1228,7 +1227,7 @@
 							<img src="uploads/aleksandr-avatar.jpg"
 								srcset="uploads/aleksandr-avatar.jpg 2x"
 								alt=""
-								class="rounded-circle img-fluid w-170 h-170 solid-4px-border">
+								class="rounded-circle img-fluid w-170 h-170 border-solid-4px">
 							<div class="mt-20 mb-10 f-22 title">
 								Aleksandr Pasevin
 							</div>
@@ -1245,7 +1244,7 @@
 							<img src="uploads/diana-avatar.jpg"
 								srcset="uploads/diana-avatar.jpg 2x"
 								alt=""
-								class="rounded-circle img-fluid w-170 h-170 solid-4px-border">
+								class="rounded-circle img-fluid w-170 h-170 border-solid-4px">
 							<div class="mt-20 mb-10 f-22 title">
 								Diana Yaman
 							</div>
@@ -1263,7 +1262,7 @@
 							<img src="uploads/jasmine-avatar.jpg"
 								srcset="uploads/jasmine-avatar.jpg 2x"
 								alt=""
-								class="rounded-circle img-fluid w-170 h-170 solid-4px-border">
+								class="rounded-circle img-fluid w-170 h-170 border-solid-4px">
 							<div class="mt-20 mb-10 f-22 title">
 								Jasmine Corpuz
 							</div>
@@ -1281,7 +1280,7 @@
 							<img src="uploads/mike-avatar.jpg"
 								srcset="uploads/mike-avatar.jpg 2x"
 								alt=""
-								class="rounded-circle img-fluid w-170 h-170 solid-4px-border">
+								class="rounded-circle img-fluid w-170 h-170 border-solid-4px">
 							<div class="mt-20 mb-10 f-22 title">
 								Mike Hales
 							</div>
@@ -1299,7 +1298,7 @@
 							<img src="uploads/indi-avatar.jpg"
 								srcset="uploads/indi-avatar.jpg 2x"
 								alt=""
-								class="rounded-circle img-fluid w-170 h-170 solid-4px-border">
+								class="rounded-circle img-fluid w-170 h-170 border-solid-4px">
 							<div class="mt-20 mb-10 f-22 title">
 								Indi Jay Cammish
 							</div>
@@ -1317,7 +1316,7 @@
 							<img src="uploads/angel-avatar.jpg"
 								srcset="uploads/angel-avatar.jpg 2x"
 								alt=""
-								class="rounded-circle img-fluid w-170 h-170 solid-4px-border">
+								class="rounded-circle img-fluid w-170 h-170 border-solid-4px">
 							<div class="mt-20 mb-10 f-22 title">
 								Angel Matamoros
 							</div>
@@ -1365,6 +1364,75 @@
 		</footer>
 		</div>
 
+		<!-- ---------------------------- Modals Start ----------------------------- -->
+
+		<div class="modal fade"
+			id="walletConnectModal"
+			tabindex="-1"
+			aria-labelledby="walletConnectModal"
+			aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title"
+							id="walletConnectModalLabel">Connect Wallet</h5>
+						<button type="button"
+							class="close"
+							data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true"><i class="fal fa-times"></i></span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<ul class="list-group">
+							<li class="list-group-item bg-transparent border-translucent-1">
+								<a href="#"
+									class="btn glass-2 shadow mb-10 btn-block text-left">
+									<span></span>
+									<span></span>
+									<span></span>
+									<span></span>
+									<span class="nonEmpty">
+										<img class="w-30 pr-10 pb-5"
+											src="uploads/metamask.svg">
+										Metamask
+									</span>
+								</a>
+							</li>
+							<li class="list-group-item bg-transparent border-translucent-1">
+								<a href="#"
+									class="btn glass-2 shadow mb-10 btn-block text-left">
+									<span></span>
+									<span></span>
+									<span></span>
+									<span></span>
+									<span class="nonEmpty">
+										<img class="w-30 pr-10 pb-1"
+											src="uploads/walletconnect-logo.svg">
+										Wallet Connect
+									</span>
+								</a>
+							</li>
+						</ul>
+					</div>
+					<div class="modal-footer connect-help">
+						<div class="small d-block">Haven't got a crypto wallet yet?</div>
+						<a href="#"
+							class="btn glass-1 shadow mb-10 btn-block">
+							<span></span>
+							<span></span>
+							<span></span>
+							<span></span>
+							<span class="nonEmpty">Learn How to Connect</span>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- ----------------------------- Modals End ------------------------------ -->
+
+		<!-- ------------------------------- Scripts ------------------------------- -->
 		<!-- Bootstrap 4.5.2 JS -->
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
 		<!-- Fancybox 3 jQuery plugin JS (Open images and video in popup) -->
@@ -1380,6 +1448,10 @@
 		<script src="custom/js/script.js"></script>
 		<script src="custom/js/views/bootstrap-hacks.js"></script>
 		<script src="custom/js/views/pie.js"></script>
+		<!-- ---------------------- Blockchain gateway start ----------------------- -->
+		<script type="module"
+			src="custom/js/views/wallet-button.js"></script>
+		<!-- ----------------------- Blockchain gateway end ------------------------ -->
 		<script type="module"
 			src="custom/js/views/particles.js"></script>
 	</body>

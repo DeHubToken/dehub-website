@@ -7,7 +7,9 @@ Moralis.Web3.getSigningData = () =>
 	'Welcome to DeHub! To proceed securely please sign this connection.';
 
 export function currUser() {
-	return Moralis.User.current();
+	const user = Moralis.User.current();
+	console.log('User:', user);
+	return user;
 }
 
 export async function logIn() {

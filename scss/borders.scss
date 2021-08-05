@@ -1,3 +1,11 @@
 .border-translucent-1 {
-	border-color: rgba(0, 0, 0, 0.125) !important;
+	border-color: $color_border_translucent_1 !important;
+}
+
+.border-solid-2px {
+	border: 2px solid $action_2;
+}
+
+.border-solid-4px {
+	border: 4px solid $action_2;
 }

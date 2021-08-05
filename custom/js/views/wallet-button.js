@@ -37,9 +37,10 @@ $('.connect-wallet').on('click', async (e) => {
 	e.preventDefault();
 	let user = currUser();
 	if (!user) {
-		user = await logIn();
+		$('#walletConnectModal').modal();
+		// user = await logIn();
 	}
-	renderConnectedWallet(user);
+	// renderConnectedWallet(user);
 });
 
 $('.logout').on('click', async (e) => {
