@@ -1,6 +1,6 @@
 import { currUser, logIn, logOut } from '../controllers/auth.js';
 
-function renderConnectedWallet(user) {
+function showConnectedWallet(user) {
 	if (user) {
 		const $connectedWallet = $('.connected-wallet');
 		const $label = $connectedWallet.find('.label');
@@ -13,7 +13,7 @@ function renderConnectedWallet(user) {
 	}
 }
 
-function renderDisconnectedWallet() {
+function showDisconnectedWallet() {
 	const $connectedWallet = $('.connected-wallet');
 	const $label = $connectedWallet.find('.label');
 	const label = `Loading...`;
@@ -24,20 +24,23 @@ function renderDisconnectedWallet() {
 }
 
 /* ----------------------------- Event listeners ---------------------------- */
-$(document).ready(() => {
-	const user = currUser();
-	if (user) {
-		console.log('Already logged in');
-		console.log(user);
-		renderConnectedWallet(user);
-	}
+$(document).on('logged:in', (_, user) => {
+	console.log('[WALLET-BUTTON][EVENT]: logged:in');
+	console.log(user);
+	$('#walletConnectModal').modal('hide');
+	showConnectedWallet(user);
+});
+
+$(document).on('logged:out', () => {
+	console.log('[WALLET-BUTTON][EVENT]: logged:out');
+	showDisconnectedWallet();
 });
 
 $('.connect-wallet').on('click', (e) => {
 	e.preventDefault();
 	const user = currUser();
 	if (user) {
-		renderConnectedWallet(user);
+		showConnectedWallet(user);
 	} else {
 		$('#walletConnectModal').modal();
 	}
@@ -46,11 +49,12 @@ $('.connect-wallet').on('click', (e) => {
 $('#walletConnectModal .btn').on('click', async (e) => {
 	e.preventDefault();
 	const providerName = $(e.target).data('provider');
-	logIn(providerName);
+	await logIn(providerName);
 });
 
 $('.logout').on('click', async (e) => {
 	e.preventDefault();
 	await logOut();
-	renderDisconnectedWallet();
 });
+
+/* -------------------------------- Listeners ------------------------------- */

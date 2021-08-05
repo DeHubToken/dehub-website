@@ -16,7 +16,7 @@ const CONTRACT_ADDR = '0x6F2aabE11E78c6cd642689bC5896F1e4d84096aA';
 
 // Must wrap everything in async because of Safari...
 (async () => {
-	let provider, signer, signerAddr, dhb;
+	let signer, signerAddr, dhb;
 	let isEnabled,
 		hasClaimed,
 		cycleHours,
@@ -25,17 +25,28 @@ const CONTRACT_ADDR = '0x6F2aabE11E78c6cd642689bC5896F1e4d84096aA';
 		claimableShare,
 		totalClaimed;
 
-	/* ------------------------------- Initialize ------------------------------- */
-	if (currUser()) {
-		provider = new ethers.providers.Web3Provider(window.ethereum);
-		signer = provider.getSigner();
+	/* ----------------------------- Event listeners ---------------------------- */
+	$(document).on('logged:in', async (_, user, authProvider) => {
+		console.log('[DAPP-CLAIM][EVENT]: logged:in');
+		await initDapp(authProvider);
+	});
+
+	$(document).on('logged:out', () => {
+		console.log('[DAPP-CLAIM][EVENT]: logged:out');
+		updateClaimButton();
+		showConnectWallet();
+	});
+
+	async function initDapp(authProvider) {
+		signer = authProvider.getSigner();
 		signerAddr = await signer.getAddress();
 		dhb = new ethers.Contract(CONTRACT_ADDR, abi, signer);
-		updateEventListeners();
+		await updateView();
+		updateClaimButton();
+		$('#claim-btn')
+			.off()
+			.on('click', () => claim());
 	}
-	await updateView();
-	updateClaimButton();
-	$('#claim-btn').on('click', () => claim());
 
 	// window.ethereum.on('accountsChanged', function (accounts) {
 	// 	console.log('!!!!!!!');
@@ -88,6 +99,9 @@ const CONTRACT_ADDR = '0x6F2aabE11E78c6cd642689bC5896F1e4d84096aA';
 	}
 
 	async function showDapp() {
+		await $('#interface, #claimed-msg, #disabled-msg')
+			.fadeOut('fast')
+			.promise();
 		await $('#dapp-connect-wallet-container').fadeOut('slow').promise();
 		await $('#claim-dapp').fadeIn('slow').promise();
 	}
@@ -127,10 +141,10 @@ const CONTRACT_ADDR = '0x6F2aabE11E78c6cd642689bC5896F1e4d84096aA';
 
 	function updateClaimButton() {
 		const $claimBtn = $('#claim-btn');
-		if (!isEnabled || hasClaimed) {
-			$claimBtn.addClass('disabled');
+		if (!currUser() || !isEnabled || hasClaimed) {
+			$claimBtn.addClass('disabled').removeAttr('style');
 		} else {
-			$claimBtn.removeClass('disabled');
+			$claimBtn.removeClass('disabled').removeAttr('style');
 		}
 	}
 
@@ -151,20 +165,5 @@ const CONTRACT_ADDR = '0x6F2aabE11E78c6cd642689bC5896F1e4d84096aA';
 			$claimBtn.removeClass('disabled').find('.nonEmpty').text('Claim');
 			await updateView();
 		}
-	}
-
-	function updateListeners() {
-		provider.provider.on('connect', (connectInfo) => {
-			console.log(connectInfo);
-		});
-
-		provider.provider.on('accountsChanged', (accounts) => {
-			console.log(accounts);
-			console.log(provider.provider.isConnected());
-		});
-
-		provider.provider.on('chainChanged', (chainId) => {
-			console.log(chainId);
-		});
 	}
 })();

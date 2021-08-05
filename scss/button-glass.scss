@@ -76,4 +76,11 @@
 		height: 100%;
 		transform: translateY(-100%);
 	}
+
+	&.disabled {
+		opacity: 0.3;
+	}
+	&:disabled {
+		opacity: 0.3;
+	}
 }
