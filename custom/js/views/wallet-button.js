@@ -1,4 +1,10 @@
-import { currUser, logIn, logOut } from '../controllers/auth.js';
+import {
+	currUser,
+	logIn,
+	logOut,
+	isChainCorrect,
+	askToSwitchChain,
+} from '../controllers/auth.js';
 
 function showConnectedWallet(user) {
 	if (user) {
@@ -28,7 +34,9 @@ $(document).on('logged:in', (_, user) => {
 	console.log('[WALLET-BUTTON][EVENT]: logged:in');
 	console.log(user);
 	$('#walletConnectModal').modal('hide');
-	showConnectedWallet(user);
+	if (isChainCorrect()) {
+		showConnectedWallet(user);
+	}
 });
 
 $(document).on('logged:out', () => {
@@ -36,11 +44,15 @@ $(document).on('logged:out', () => {
 	showDisconnectedWallet();
 });
 
-$('.connect-wallet').on('click', (e) => {
+$('.connect-wallet').on('click', async (e) => {
 	e.preventDefault();
 	const user = currUser();
 	if (user) {
-		showConnectedWallet(user);
+		if (isChainCorrect()) {
+			showConnectedWallet(user);
+		} else {
+			await askToSwitchChain();
+		}
 	} else {
 		$('#walletConnectModal').modal();
 	}

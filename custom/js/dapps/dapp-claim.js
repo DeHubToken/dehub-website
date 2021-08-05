@@ -37,6 +37,12 @@ const CONTRACT_ADDR = '0x6F2aabE11E78c6cd642689bC5896F1e4d84096aA';
 		showConnectWallet();
 	});
 
+	$(document).on('chain:mismatch', () => {
+		console.log('[DAPP-CLAIM][EVENT]: chain:mismatch');
+		updateClaimButton();
+		showConnectWallet();
+	});
+
 	async function initDapp(authProvider) {
 		signer = authProvider.getSigner();
 		signerAddr = await signer.getAddress();
