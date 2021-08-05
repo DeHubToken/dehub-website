@@ -35,22 +35,18 @@ $(document).ready(() => {
 
 $('.connect-wallet').on('click', (e) => {
 	e.preventDefault();
-	let user = currUser();
-	if (!user) {
+	const user = currUser();
+	if (user) {
+		renderConnectedWallet(user);
+	} else {
 		$('#walletConnectModal').modal();
 	}
-	// renderConnectedWallet(user);
 });
 
-$('#walletConnectModal .btn.metamask').on('click', async (e) => {
+$('#walletConnectModal .btn').on('click', async (e) => {
 	e.preventDefault();
-	console.log('!!!!!!!!');
-	logIn('metamask');
-});
-
-$('#walletConnectModal .btn.walletconnect').on('click', async (e) => {
-	e.preventDefault();
-	logIn('walletconnect');
+	const providerName = $(e.target).data('provider');
+	logIn(providerName);
 });
 
 $('.logout').on('click', async (e) => {
