@@ -12,11 +12,12 @@ export function currUser() {
 	return user;
 }
 
-export async function logIn() {
+export async function logIn(providerName) {
 	let user = currUser();
 	if (!user) {
 		try {
-			user = await Moralis.Web3.authenticate();
+			const params = { provider: providerName };
+			user = await Moralis.Web3.authenticate(params);
 		} catch (error) {
 			console.log(error);
 			// Most likely user canceled signature.

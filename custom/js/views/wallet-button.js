@@ -33,14 +33,24 @@ $(document).ready(() => {
 	}
 });
 
-$('.connect-wallet').on('click', async (e) => {
+$('.connect-wallet').on('click', (e) => {
 	e.preventDefault();
 	let user = currUser();
 	if (!user) {
 		$('#walletConnectModal').modal();
-		// user = await logIn();
 	}
 	// renderConnectedWallet(user);
+});
+
+$('#walletConnectModal .btn.metamask').on('click', async (e) => {
+	e.preventDefault();
+	console.log('!!!!!!!!');
+	logIn('metamask');
+});
+
+$('#walletConnectModal .btn.walletconnect').on('click', async (e) => {
+	e.preventDefault();
+	logIn('walletconnect');
 });
 
 $('.logout').on('click', async (e) => {
