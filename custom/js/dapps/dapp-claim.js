@@ -1,4 +1,5 @@
 import * as ethers from '/custom/libs/ethers/ethers-5.1.esm.min.js';
+import { currUser } from '../controllers/auth.js';
 const abi = [
 	'function isDistributionEnabled() public view returns(bool)',
 	'function hasAlreadyClaimed(address holderAddr) public view returns(bool)',
@@ -11,10 +12,15 @@ const abi = [
 ];
 
 const CONTRACT_ADDR = '0x6F2aabE11E78c6cd642689bC5896F1e4d84096aA';
-const provider = new ethers.providers.Web3Provider(window.ethereum);
-const signer = provider.getSigner();
-const signerAddr = await signer.getAddress();
-const dhb = new ethers.Contract(CONTRACT_ADDR, abi, signer);
+let provider, signer, signerAddr, dhb;
+
+if (currUser()) {
+	provider = new ethers.providers.Web3Provider(window.ethereum);
+	signer = provider.getSigner();
+	signerAddr = await signer.getAddress();
+	dhb = new ethers.Contract(CONTRACT_ADDR, abi, signer);
+	updateEventListeners();
+}
 
 let isEnabled,
 	hasClaimed,
@@ -47,18 +53,33 @@ async function updateData() {
 /* ----------------------------------- UI ----------------------------------- */
 
 async function updateView() {
-	await showLoading();
-	await updateData();
-	$('.current-balance').text(balance);
-	$('.total-claimable').text(totalClaimable);
-	$('.claimable-share').text(claimableShare);
-	$('.total-claimed').text(totalClaimed);
-	// Handle exceptions
-	if (!isEnabled) {
-		await showDisabledMessage();
+	if (currUser()) {
+		await showDapp();
+		await showLoading();
+		await updateData();
+		$('.current-balance').text(balance);
+		$('.total-claimable').text(totalClaimable);
+		$('.claimable-share').text(claimableShare);
+		$('.total-claimed').text(totalClaimed);
+		// Handle exceptions
+		if (!isEnabled) {
+			await showDisabledMessage();
+		} else {
+			await showInterface();
+		}
 	} else {
-		await showInterface();
+		await showConnectWallet();
 	}
+}
+
+async function showDapp() {
+	await $('#dapp-connect-wallet-container').fadeOut('slow').promise();
+	await $('#claim-dapp').fadeIn('slow').promise();
+}
+
+async function showConnectWallet() {
+	await $('#claim-dapp').fadeOut('slow').promise();
+	await $('#dapp-connect-wallet-container').fadeIn('slow').promise();
 }
 
 async function showLoading() {
@@ -115,7 +136,22 @@ async function claim() {
 	}
 }
 
-// Initialize...
+function updateListeners() {
+	provider.provider.on('connect', (connectInfo) => {
+		console.log(connectInfo);
+	});
+
+	provider.provider.on('accountsChanged', (accounts) => {
+		console.log(accounts);
+		console.log(provider.provider.isConnected());
+	});
+
+	provider.provider.on('chainChanged', (chainId) => {
+		console.log(chainId);
+	});
+}
+
+/* ------------------------------- Initialize ------------------------------- */
 await updateView();
 updateClaimButton();
 $('#claim-btn').on('click', () => claim());
@@ -123,16 +159,3 @@ $('#claim-btn').on('click', () => claim());
 // window.ethereum.on('accountsChanged', function (accounts) {
 // 	console.log('!!!!!!!');
 // });
-
-provider.provider.on('connect', (connectInfo) => {
-	console.log(connectInfo);
-});
-
-provider.provider.on('accountsChanged', (accounts) => {
-	console.log(accounts);
-	console.log(provider.provider.isConnected());
-});
-
-provider.provider.on('chainChanged', (chainId) => {
-	console.log(chainId);
-});

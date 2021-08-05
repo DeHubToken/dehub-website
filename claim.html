@@ -211,32 +211,30 @@
 									class="link color-main fab fa-reddit-alien mx-5">
 								</a> -->
 								<!-- ---------------------- Connect with wallet start ---------------------- -->
-								<a id="connect-wallet"
-									href="#"
-									class="btn action-2 sm ml-20">
-									<i class="fad fa-wallet"></i>
-									&nbsp;
-									<span>Connect Wallet</span>
-								</a>
-								<div id="connected-wallet"
-									class="btn-group ml-20 d-none"
-									role="group"
-									aria-label="Wallet Authentication">
-									<button id="address-bar"
-										type="button"
-										class="btn action-2 sm">
-										<img class="w-30 pr-10 pb-10"
-											src="uploads/metamask.svg">
-										<span class="label">Loading...</span>
-									</button>
-									<button id="logout"
-										type="button"
-										class="btn action-2 op-6 sm">
-										<i class="fad fa-sign-out"></i>
-									</button>
+								<div class="connect-wallet-widget d-inline-block">
+									<a href="#"
+										class="connect-wallet btn action-2 sm ml-20">
+										<i class="fad fa-wallet"></i>
+										&nbsp;
+										<span>Connect Wallet</span>
+									</a>
+									<div class="connected-wallet btn-group ml-20 d-none"
+										role="group"
+										aria-label="Wallet Authentication">
+										<button type="button"
+											class="address-bar btn action-2 sm">
+											<img class="w-30 pr-10 pb-10"
+												src="uploads/metamask.svg">
+											<span class="label">Loading...</span>
+										</button>
+										<button type="button"
+											class="logout btn action-2 op-6 sm">
+											<i class="fad fa-sign-out"></i>
+										</button>
+									</div>
 								</div>
+								<!-- ----------------------- Connect with wallet end ----------------------- -->
 							</div>
-							<!-- ----------------------- Connect with wallet end ----------------------- -->
 							<div class="w-full d-flex justify-content-end">
 								<a href="index.html"
 									target="_blank"
@@ -310,71 +308,96 @@
 								</h5>
 							</div>
 							<div class="card-body text-center pl-0 pr-0 pt-50 h-500">
-								<!-- ------------------------------- Loader -------------------------------- -->
-								<div id="loading-msg">
-									<div class="fa-3x pb-30">
-										<i class="fad fa-circle-notch fa-spin"></i>
+								<!-- ---------------------- Connect with wallet start ---------------------- -->
+								<div id="dapp-connect-wallet-container">
+									<a href="#"
+										class="connect-wallet btn action-2 sm ml-20">
+										<i class="fad fa-wallet"></i>
+										&nbsp;
+										<span>Connect Wallet</span>
+									</a>
+									<div class="connected-wallet btn-group ml-20 d-none"
+										role="group"
+										aria-label="Wallet Authentication">
+										<button type="button"
+											class="address-bar btn action-2 sm">
+											<img class="w-30 pr-10 pb-10"
+												src="uploads/metamask.svg">
+											<span class="label">Loading...</span>
+										</button>
+										<button type="button"
+											class="logout btn action-2 op-6 sm">
+											<i class="fad fa-sign-out"></i>
+										</button>
 									</div>
-									<h5>Syncing with $DeHub Contract</h5>
-									<span>Please give it a second.</span>
 								</div>
-								<!-- ---------------------------- Claimed wall ----------------------------- -->
-								<div id="claimed-msg">
-									<div class="fa-3x pb-30">
-										<i class="fad fa-calendar-check"></i>
-									</div>
-									<h5>You have already claimed your share for this cycle.</h5>
-									<span>Please come back later, to claim again.</span>
-								</div>
-								<!-- ---------------------------- Disabled wall ---------------------------- -->
-								<div id="disabled-msg">
-									<div class="fa-3x pb-30">
-										<i class="fad fa-snooze"></i>
-									</div>
-									<h5>Reward distribution has been disabled for now.</h5>
-									<span>Please come back later, or get more information in our <a href="https://t.me/Dehubofficial"
-											class="link">Telegram group <i class="fal fa-external-link"></i></a></span>
-								</div>
-								<!-- --------------------------- dApp interface ---------------------------- -->
-								<div id="interface"
-									class="px-15">
-
-									<div class="container pb-50">
+								<!-- ----------------------- Connect with wallet end ----------------------- -->
+								<div id="claim-dapp">
+									<!-- ------------------------------- Loader -------------------------------- -->
+									<div id="loading-msg">
 										<div class="fa-3x pb-30">
-											<i class="fad fa-gift"></i>
+											<i class="fad fa-circle-notch fa-spin"></i>
 										</div>
-										<h5>Total BNB Claimed by Holders</h5>
-										<span class="total-claimed bold text-monospace">...</span>
+										<h5>Syncing with $DeHub Contract</h5>
+										<span>Please give it a second.</span>
 									</div>
-
-									<div class="row pb-10 border-bottom border-translucent-1 px-5 text-left">
-										<div class="col-sm-6 bold">
-											Your $DeHub balance:
+									<!-- ---------------------------- Claimed wall ----------------------------- -->
+									<div id="claimed-msg">
+										<div class="fa-3x pb-30">
+											<i class="fad fa-calendar-check"></i>
 										</div>
-										<div class="col-sm-6 text-sm-right pt-5 pt-xl-0">
-											<span class="current-balance text-monospace">...</span>
-										</div>
+										<h5>You have already claimed your share for this cycle.</h5>
+										<span>Please come back later, to claim again.</span>
 									</div>
-
-									<div class="row pt-10 pb-10 border-bottom border-translucent-1 px-5 text-left">
-										<div class="col-sm-6 bold">
-											Total BNB reward pool:
+									<!-- ---------------------------- Disabled wall ---------------------------- -->
+									<div id="disabled-msg">
+										<div class="fa-3x pb-30">
+											<i class="fad fa-snooze"></i>
 										</div>
-										<div class="col-sm-6 text-sm-right pt-5 pt-xl-0">
-											<span class="total-claimable text-monospace">...</span>
-										</div>
+										<h5>Reward distribution has been disabled for now.</h5>
+										<span>Please come back later, or get more information in our <a href="https://t.me/Dehubofficial"
+												class="link">Telegram group <i class="fal fa-external-link"></i></a></span>
 									</div>
+									<!-- --------------------------- dApp interface ---------------------------- -->
+									<div id="interface"
+										class="px-15">
 
-									<div class="row pt-10 px-5 text-left">
-										<div class="col-sm-6 bold">
-											Your BNB reward:
+										<div class="container pb-50">
+											<div class="fa-3x pb-30">
+												<i class="fad fa-gift"></i>
+											</div>
+											<h5>Total BNB Claimed by Holders</h5>
+											<span class="total-claimed bold text-monospace">...</span>
 										</div>
-										<div class="col-sm-6 text-sm-right pt-5 pt-xl-0">
-											<span class="claimable-share text-monospace">...</span>
+
+										<div class="row pb-10 border-bottom border-translucent-1 px-5 text-left">
+											<div class="col-sm-6 bold">
+												Your $DeHub balance:
+											</div>
+											<div class="col-sm-6 text-sm-right pt-5 pt-xl-0">
+												<span class="current-balance text-monospace">...</span>
+											</div>
+										</div>
+
+										<div class="row pt-10 pb-10 border-bottom border-translucent-1 px-5 text-left">
+											<div class="col-sm-6 bold">
+												Total BNB reward pool:
+											</div>
+											<div class="col-sm-6 text-sm-right pt-5 pt-xl-0">
+												<span class="total-claimable text-monospace">...</span>
+											</div>
+										</div>
+
+										<div class="row pt-10 px-5 text-left">
+											<div class="col-sm-6 bold">
+												Your BNB reward:
+											</div>
+											<div class="col-sm-6 text-sm-right pt-5 pt-xl-0">
+												<span class="claimable-share text-monospace">...</span>
+											</div>
 										</div>
 									</div>
 								</div>
-
 							</div>
 							<div class="card-footer text-right">
 								<a id="claim-btn"
@@ -432,14 +455,16 @@
 		<script src="js/script.js"></script>
 		<!-- Custom JS outside designmodo -->
 		<script src="custom/js/script.js"></script>
-		<script src="custom/js/bootstrap-hacks.js"></script>
+		<script src="custom/js/views/bootstrap-hacks.js"></script>
 		<!-- ---------------------- Blockchain gateway start ----------------------- -->
-		<script src="custom/js/moralis.js"></script>
 		<script type="module"
-			src="custom/js/dapp-claim.js"></script>
+			src="custom/js/views/wallet-button.js"></script>
+		<script async
+			type="module"
+			src="custom/js/dapps/dapp-claim.js"></script>
 		<!-- ----------------------- Blockchain gateway end ------------------------ -->
 		<script type="module"
-			src="custom/js/particles.js"></script>
+			src="custom/js/views/particles.js"></script>
 	</body>
 
 </html>
