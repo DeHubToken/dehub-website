@@ -120,11 +120,17 @@ export function isChainCorrect() {
  */
 Moralis.Web3.onAccountsChanged(async (accounts) => {
 	if (currUser()) {
-		const confirmed = confirm(
-			'Do you want to link this address to your account?'
-		);
-		if (confirmed) {
-			await Moralis.Web3.link(accounts[0]);
+		if (accounts.length > 0) {
+			// TODO: show bootstrap modal instead.
+			const confirmed = confirm(
+				'Do you want to link this address to your account?'
+			);
+			if (confirmed) {
+				await Moralis.Web3.link(accounts[0]);
+			}
+		} else {
+			// No accounts returned means the last account has been disconnected from the dApp
+			logOut();
 		}
 	}
 });
