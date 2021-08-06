@@ -10,12 +10,12 @@ import * as ethers from '/custom/libs/ethers/ethers-5.1.esm.min.js';
 const CHAIN_ID = '0x61';
 const RPC_URL = 'https://data-seed-prebsc-2-s3.binance.org:8545/';
 
-Moralis.initialize('4VxfmspNNL6kh39h2pleJx9nuN2YGKbvoFXPofcX');
-Moralis.serverURL = 'https://phcmjyh5no3n.usemoralis.com:2053/server';
+Moralis.initialize('V0nRrGNuSWyuthhvcLDT3l6RSK4IfuIzX0uadjL6');
+Moralis.serverURL = 'https://hjsc4v566bn3.usemoralis.com:2053/server';
 Moralis.Web3.getSigningData = () =>
 	'Welcome to DeHub! To proceed securely please sign this connection.';
 
-let authProvider = authenticateProvider();
+export let authProvider = authenticateProvider();
 function authenticateProvider() {
 	const $doc = $(document);
 	const user = currUser();
@@ -110,20 +110,39 @@ export function isChainCorrect() {
 	return authProvider.provider.chainId === CHAIN_ID;
 }
 
+export async function linkAccount(account) {
+	console.log('Linking account: ', account);
+	try {
+		const user = await Moralis.Web3.link(account);
+		const $doc = $(document);
+		authProvider = authenticateProvider();
+		$doc.ready(() => $doc.trigger('logged:in', [user, authProvider]));
+	} catch (error) {
+		console.log(error);
+		logOut();
+	}
+}
+
 /* -------------------------------- Listeners ------------------------------- */
 
 Moralis.Web3.onAccountsChanged(async (accounts) => {
-	if (currUser()) {
+	const user = currUser();
+	if (user) {
+		// window.location.reload();
+		const $doc = $(document);
+		const acc = accounts[0];
+		const isLinked = user.attributes.accounts.some((i) => i === acc);
+		console.log(acc, user.attributes.accounts, isLinked);
 		if (accounts.length > 0) {
-			// TODO: show bootstrap modal instead.
-			const confirmed = confirm(
-				'Do you want to link this address to your account?'
-			);
-			if (confirmed) {
-				await Moralis.Web3.link(accounts[0]);
+			if (!isLinked) {
+				$doc.ready(() => $doc.trigger('account:changed:new', [acc]));
+			} else {
+				authProvider = authenticateProvider();
+				$doc.ready(() => $doc.trigger('account:changed:old'));
 			}
 		} else {
 			// No accounts returned means the last account has been disconnected from the dApp
+			console.log('All accounts disconnected, logging out.');
 			logOut();
 		}
 	}

@@ -4,14 +4,20 @@ import {
 	logOut,
 	isChainCorrect,
 	askToSwitchChain,
+	linkAccount,
+	authProvider,
 } from '../controllers/auth.js';
+import { truncateAddress } from '../helpers.js';
 
-function showConnectedWallet(user) {
+async function showConnectedWallet() {
+	const user = currUser();
 	if (user) {
 		const $connectedWallet = $('.connected-wallet');
 		const $label = $connectedWallet.find('.label');
-		const addr = user.attributes.ethAddress;
-		const label = `${addr.substring(0, 6)}...${addr.substring(38)}`;
+		const signer = authProvider.getSigner();
+		const signerAddr = await signer.getAddress();
+		console.log(signerAddr);
+		const label = truncateAddress(signerAddr);
 		$label.text(label);
 		// Visibility
 		$('.connect-wallet').addClass('d-none');
@@ -27,21 +33,37 @@ function showDisconnectedWallet() {
 	// Visibility
 	$('.connect-wallet').removeClass('d-none');
 	$connectedWallet.addClass('d-none');
+	$('.modal').modal('hide');
 }
 
 /* ----------------------------- Event listeners ---------------------------- */
-$(document).on('logged:in', (_, user) => {
+const $doc = $(document);
+$doc.on('logged:in', async (_, user, authProvider) => {
 	console.log('[WALLET-BUTTON][EVENT]: logged:in');
 	console.log(user);
-	$('#walletConnectModal').modal('hide');
+	$('.modal').modal('hide');
 	if (isChainCorrect()) {
-		showConnectedWallet(user);
+		await showConnectedWallet();
 	}
 });
 
-$(document).on('logged:out', () => {
+$doc.on('logged:out', () => {
 	console.log('[WALLET-BUTTON][EVENT]: logged:out');
 	showDisconnectedWallet();
+});
+
+$doc.on('account:changed:new', (_, account) => {
+	console.log('[WALLET-BUTTON][EVENT]: account:changed:new');
+	const $modal = $('#accountLinkModal');
+	const label = `New address detected: ${truncateAddress(account)}`;
+	$('#accountLinkModal .accountLink').data('account', account);
+	$modal.find('.accountAddr').text(label);
+	$modal.modal();
+});
+
+$doc.on('account:changed:old', () => {
+	console.log('[WALLET-BUTTON][EVENT]: account:changed:old');
+	// showConnectedWallet();
 });
 
 $('.connect-wallet').on('click', async (e) => {
@@ -49,7 +71,7 @@ $('.connect-wallet').on('click', async (e) => {
 	const user = currUser();
 	if (user) {
 		if (isChainCorrect()) {
-			showConnectedWallet(user);
+			await showConnectedWallet();
 		} else {
 			await askToSwitchChain();
 		}
@@ -67,6 +89,12 @@ $('#walletConnectModal .btn').on('click', async (e) => {
 $('.logout').on('click', async (e) => {
 	e.preventDefault();
 	await logOut();
+});
+
+$('#accountLinkModal .accountLink').on('click', async (e) => {
+	e.preventDefault();
+	const acc = $(e.target).data('account');
+	linkAccount(acc);
 });
 
 /* -------------------------------- Listeners ------------------------------- */

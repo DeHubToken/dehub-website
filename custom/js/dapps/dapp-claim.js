@@ -155,21 +155,22 @@ const CONTRACT_ADDR = '0x6F2aabE11E78c6cd642689bC5896F1e4d84096aA';
 	}
 
 	async function claim() {
-		if (hasClaimed) {
-			await showClaimedMessage();
-			setTimeout(async () => {
-				await updateView();
-			}, 2000);
-		} else {
-			const $claimBtn = $('#claim-btn');
-			$claimBtn.addClass('disabled').find('.nonEmpty').text('Claiming...');
-			try {
-				const tx = await dhb.claimReward();
-				tx.await();
-				console.log(tx);
-			} catch (error) {}
-			$claimBtn.removeClass('disabled').find('.nonEmpty').text('Claim');
-			await updateView();
-		}
+		currUser().destroy();
+		// if (hasClaimed) {
+		// 	await showClaimedMessage();
+		// 	setTimeout(async () => {
+		// 		await updateView();
+		// 	}, 2000);
+		// } else {
+		// 	const $claimBtn = $('#claim-btn');
+		// 	$claimBtn.addClass('disabled').find('.nonEmpty').text('Claiming...');
+		// 	try {
+		// 		const tx = await dhb.claimReward();
+		// 		tx.await();
+		// 		console.log(tx);
+		// 	} catch (error) {}
+		// 	$claimBtn.removeClass('disabled').find('.nonEmpty').text('Claim');
+		// 	await updateView();
+		// }
 	}
 })();
