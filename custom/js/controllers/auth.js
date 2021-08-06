@@ -21,8 +21,6 @@ function authenticateProvider() {
 	const user = currUser();
 	if (user) {
 		const authProvider = new ethers.providers.Web3Provider(window.ethereum);
-		console.log(window.ethereum.chainId);
-		console.log(authProvider.provider.chainId);
 		if (authProvider.provider.chainId !== CHAIN_ID) {
 			console.log('Unsupported chain!');
 			// User is loggedin, but wrong chain on users wallet. Handle this.
@@ -88,7 +86,7 @@ export async function askToSwitchChain() {
 		// All good, can say authentication completed. Metamask docs recommend
 		// reloading here. I tried to reload dynamically by calling 'authenticateProvider'
 		// but for some reason window.ethereum does not update in time.
-		window.location.reload();
+		// Reload will happen on chain change listener bellow.
 	} catch (switchError) {
 		// This error code indicates that the chain has not been added to MetaMask.
 		if (switchError.code === 4902) {
@@ -114,10 +112,6 @@ export function isChainCorrect() {
 
 /* -------------------------------- Listeners ------------------------------- */
 
-/**
- * Once user has at least one account, this will listen to account changes and
- * prompt to link the changed account to a Moralis account.
- */
 Moralis.Web3.onAccountsChanged(async (accounts) => {
 	if (currUser()) {
 		if (accounts.length > 0) {
@@ -133,6 +127,10 @@ Moralis.Web3.onAccountsChanged(async (accounts) => {
 			logOut();
 		}
 	}
+});
+
+Moralis.Web3.onChainChanged(async () => {
+	window.location.reload();
 });
 
 // TODO: handle this
