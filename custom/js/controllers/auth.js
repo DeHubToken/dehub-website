@@ -70,9 +70,12 @@ export async function logIn(providerName) {
 }
 
 export async function logOut() {
+	const $doc = $(document);
+	const props = ['Logging out', 'Good bye...'];
+	$doc.ready(() => $doc.trigger('fullScreenLoader:show', props));
 	await Moralis.User.logOut();
 	authProvider = undefined;
-	const $doc = $(document);
+	$doc.ready(() => $doc.trigger('fullScreenLoader:hide'));
 	$doc.ready(() => $doc.trigger('logged:out'));
 }
 
@@ -83,6 +86,9 @@ export async function logOut() {
 export async function askToSwitchChain() {
 	console.log('Will ask to switch network!');
 	const $doc = $(document);
+	const props = ['Waiting', 'Please confirm network switch with your wallet.'];
+	$doc.ready(() => $doc.trigger('fullScreenLoader:show', props));
+
 	const prov = authProvider.provider;
 	try {
 		await prov.request({
@@ -110,6 +116,7 @@ export async function askToSwitchChain() {
 		// TODO: handle other "switch" errors by showing error alert
 		$doc.ready(() => $doc.trigger('error:chain:switch', [switchError]));
 	}
+	$doc.ready(() => $doc.trigger('fullScreenLoader:hide'));
 }
 
 export function isChainCorrect() {
