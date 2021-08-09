@@ -7,7 +7,8 @@ import * as ethers from '/custom/libs/ethers/ethers-5.1.esm.min.js';
 // Mainnet
 // const CHAIN_ID = '0x38'; // mainnet
 // Testnet
-const CHAIN_ID = '0x61';
+const CHAIN_ID_HEX = '0x61';
+const CHAIN_ID_DEC = 97;
 const RPC_URL = 'https://data-seed-prebsc-2-s3.binance.org:8545/';
 
 Moralis.initialize('V0nRrGNuSWyuthhvcLDT3l6RSK4IfuIzX0uadjL6');
@@ -22,8 +23,8 @@ function authenticateProvider() {
 	const user = currUser();
 	if (user) {
 		const authProvider = new ethers.providers.Web3Provider(currProvider);
-		console.log(authProvider.provider.chainId);
-		if (authProvider.provider.chainId !== CHAIN_ID) {
+		const id = authProvider.provider.chainId;
+		if (id !== CHAIN_ID_DEC && id !== CHAIN_ID_HEX) {
 			console.log('Unsupported chain!');
 			// User is loggedin, but wrong chain on users wallet. Handle this.
 			$doc.ready(() => $doc.trigger('chain:mismatch'));
@@ -100,7 +101,7 @@ export async function askToSwitchChain() {
 	try {
 		await prov.request({
 			method: 'wallet_switchEthereumChain',
-			params: [{ chainId: CHAIN_ID }],
+			params: [{ chainId: CHAIN_ID_HEX }],
 		});
 		// All good, can say authentication completed. Metamask docs recommend
 		// reloading here. I tried to reload dynamically by calling 'authenticateProvider'
@@ -112,7 +113,7 @@ export async function askToSwitchChain() {
 			try {
 				await prov.request({
 					method: 'wallet_addEthereumChain',
-					params: [{ chainId: CHAIN_ID, rpcUrl: RPC_URL }],
+					params: [{ chainId: CHAIN_ID_HEX, rpcUrl: RPC_URL }],
 				});
 			} catch (addError) {
 				// TODO: handle "add" error by showing error alert
@@ -127,7 +128,8 @@ export async function askToSwitchChain() {
 }
 
 export function isChainCorrect() {
-	return authProvider.provider.chainId === CHAIN_ID;
+	const id = authProvider.provider.chainId;
+	return id === CHAIN_ID_HEX || id === CHAIN_ID_DEC;
 }
 
 export async function linkAccount(account) {
