@@ -171,7 +171,7 @@ const CONTRACT_ADDR = '0x6F2aabE11E78c6cd642689bC5896F1e4d84096aA';
 			setTimeout(async () => {
 				await updateView();
 			}, 2000);
-		} else if (!isClaiming) {
+		} else if (!isClaiming && canClaim()) {
 			isClaiming = true;
 			// Delay for coin animation to finish before fading out.
 			setTimeout(() => {
