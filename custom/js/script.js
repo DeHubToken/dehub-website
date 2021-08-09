@@ -56,4 +56,10 @@ function MY_scripts() {
 	$('.preventDefault').on('click', (e) => {
 		e.preventDefault();
 	});
+
+	$('.claim').on('click', (e) => {
+		e.preventDefault();
+		console.log('!!!!!!!!!');
+		window.open('/claim');
+	});
 }
