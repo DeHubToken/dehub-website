@@ -63,8 +63,10 @@ export async function logIn(providerName) {
 		try {
 			const params = { provider: providerName };
 			user = await Moralis.Web3.authenticate(params);
-			const web3 = await new Moralis.Web3.enable({ provider: 'walletconnect' });
-			currProvider = await web3.eth.currentProvider;
+			console.log(user);
+			// console.log(await Moralis.Web3.getWeb3Provider());
+			// const web3 = await new Moralis.Web3.enable({ provider: 'walletconnect' });
+			// currProvider = await web3.eth.currentProvider;
 			authProvider = authenticateProvider();
 		} catch (error) {
 			console.log(error);
