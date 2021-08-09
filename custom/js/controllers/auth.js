@@ -59,7 +59,6 @@ export async function logIn(providerName) {
 			authProvider = authenticateProvider();
 		} catch (error) {
 			console.log(error);
-			throw error;
 			// Most likely user canceled signature.
 			// We just silence the error here for now. You will still see Metamask
 			// error in the console, but this is better than two unhandled errors :))
