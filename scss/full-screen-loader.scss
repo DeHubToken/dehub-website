@@ -1,0 +1,17 @@
+#full-screen-loader {
+	background: $gradient_1;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	z-index: 99999;
+	top: 0;
+	overflow: hidden;
+	table {
+		width: 100%;
+		height: 100%;
+	}
+}
+
+body.loading {
+	overflow: hidden;
+}
