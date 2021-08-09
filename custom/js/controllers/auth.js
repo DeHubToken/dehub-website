@@ -167,24 +167,3 @@ Moralis.Web3.onAccountsChanged(async (accounts) => {
 Moralis.Web3.onChainChanged(async () => {
 	window.location.reload();
 });
-
-// TODO: handle this
-function updateProviderListeners() {
-	authProvider.provider.on('network', (newNetwork, oldNetwork) => {
-		console.log('!!!!!!!!!!');
-		console.log(newNetwork, oldNetwork);
-	});
-
-	authProvider.provider.on('connect', (connectInfo) => {
-		console.log(connectInfo);
-	});
-
-	authProvider.provider.on('accountsChanged', (accounts) => {
-		console.log(accounts);
-		console.log(authProvider.provider.isConnected());
-	});
-
-	authProvider.provider.on('chainChanged', (chainId) => {
-		console.log(chainId);
-	});
-}
