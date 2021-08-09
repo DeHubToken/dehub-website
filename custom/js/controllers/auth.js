@@ -15,12 +15,13 @@ Moralis.serverURL = 'https://hjsc4v566bn3.usemoralis.com:2053/server';
 Moralis.Web3.getSigningData = () =>
 	'Welcome to DeHub! To proceed securely please sign this connection.';
 
+let currProvider;
 export let authProvider = authenticateProvider();
 function authenticateProvider() {
 	const $doc = $(document);
 	const user = currUser();
 	if (user) {
-		const authProvider = new ethers.providers.Web3Provider(window.ethereum);
+		const authProvider = new ethers.providers.Web3Provider(currProvider);
 		if (authProvider.provider.chainId !== CHAIN_ID) {
 			console.log('Unsupported chain!');
 			// User is loggedin, but wrong chain on users wallet. Handle this.
@@ -41,9 +42,13 @@ function authenticateProvider() {
 }
 
 export function currUser() {
-	const user = Moralis.User.current();
-	console.log('User:', user);
-	return user;
+	if (currProvider) {
+		const user = Moralis.User.current();
+		console.log('User:', user);
+		return user;
+	} else {
+		return undefined;
+	}
 }
 
 export async function logIn(providerName) {
@@ -56,6 +61,8 @@ export async function logIn(providerName) {
 		try {
 			const params = { provider: providerName };
 			user = await Moralis.Web3.authenticate(params);
+			const web3 = await new Moralis.Web3.enable({ provider: 'walletconnect' });
+			currProvider = await web3.eth.currentProvider;
 			authProvider = authenticateProvider();
 		} catch (error) {
 			console.log(error);
