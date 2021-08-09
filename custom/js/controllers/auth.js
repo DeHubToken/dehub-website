@@ -125,15 +125,18 @@ export function isChainCorrect() {
 
 export async function linkAccount(account) {
 	console.log('Linking account: ', account);
+	const $doc = $(document);
+	const props = ['Waiting', 'Please confirm account linking with your wallet.'];
+	$doc.ready(() => $doc.trigger('fullScreenLoader:show', props));
 	try {
 		const user = await Moralis.Web3.link(account);
-		const $doc = $(document);
 		authProvider = authenticateProvider();
 		$doc.ready(() => $doc.trigger('logged:in', [user, authProvider]));
 	} catch (error) {
 		console.log(error);
 		logOut();
 	}
+	$doc.ready(() => $doc.trigger('fullScreenLoader:hide'));
 }
 
 /* -------------------------------- Listeners ------------------------------- */
