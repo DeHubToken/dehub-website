@@ -22,6 +22,7 @@ function authenticateProvider() {
 	const user = currUser();
 	if (user) {
 		const authProvider = new ethers.providers.Web3Provider(currProvider);
+		console.log(authProvider.provider.chainId);
 		if (authProvider.provider.chainId !== CHAIN_ID) {
 			console.log('Unsupported chain!');
 			// User is loggedin, but wrong chain on users wallet. Handle this.
