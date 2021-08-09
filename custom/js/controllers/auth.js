@@ -47,8 +47,12 @@ export function currUser() {
 }
 
 export async function logIn(providerName) {
+	const $doc = $(document);
 	let user = currUser();
 	if (!user) {
+		// Show full screen loader
+		const props = ['Waiting', 'Please confirm with your wallet.'];
+		$doc.ready(() => $doc.trigger('fullScreenLoader:show', props));
 		try {
 			const params = { provider: providerName };
 			user = await Moralis.Web3.authenticate(params);
@@ -61,6 +65,7 @@ export async function logIn(providerName) {
 			// error in the console, but this is better than two unhandled errors :))
 		}
 	}
+	$doc.ready(() => $doc.trigger('fullScreenLoader:hide'));
 	return user;
 }
 

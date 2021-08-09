@@ -7,10 +7,6 @@ import {
 	linkAccount,
 	authProvider,
 } from '../controllers/auth.js';
-import {
-	hideFullScreenLoader,
-	showFullScreenLoader,
-} from '../full-screen-loader.js';
 import { truncateAddress } from '../helpers.js';
 
 async function showConnectedWallet() {
@@ -87,13 +83,7 @@ $('.connect-wallet').on('click', async (e) => {
 $('#walletConnectModal .btn').on('click', async (e) => {
 	e.preventDefault();
 	const providerName = $(e.target).data('provider');
-	try {
-		showFullScreenLoader('Waiting', 'Please confirm with your wallet.');
-		await logIn(providerName);
-		hideFullScreenLoader();
-	} catch (error) {
-		hideFullScreenLoader();
-	}
+	await logIn(providerName);
 });
 
 $('.logout').on('click', async (e) => {
