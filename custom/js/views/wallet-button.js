@@ -87,9 +87,12 @@ $('.connect-wallet').on('click', async (e) => {
 $('#walletConnectModal .btn').on('click', async (e) => {
 	e.preventDefault();
 	const providerName = $(e.target).data('provider');
-	showFullScreenLoader();
-	await logIn(providerName);
-	// hideFullScreenLoader();
+	try {
+		showFullScreenLoader('Waiting', 'Please confirm with your wallet.');
+		await logIn(providerName);
+	} catch (error) {
+		hideFullScreenLoader();
+	}
 });
 
 $('.logout').on('click', async (e) => {
