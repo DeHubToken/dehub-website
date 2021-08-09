@@ -13,3 +13,8 @@
 .bs-popover-right > .arrow::after {
 	border-right-color: $color_gray_1;
 }
+
+.bs-popover-auto[x-placement^='top'] > .arrow::after,
+.bs-popover-top > .arrow::after {
+	border-top-color: $color_gray_1;
+}

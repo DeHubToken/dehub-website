@@ -7,7 +7,7 @@ $(document).ready(function () {
 	initFullScreenLoader();
 	MY_scripts();
 	$('[data-toggle="popover"]').popover({
-		trigger: 'hover',
+		trigger: 'hover focus',
 	});
 });
 
