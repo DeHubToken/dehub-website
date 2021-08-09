@@ -1,5 +1,6 @@
 import * as ethers from '/custom/libs/ethers/ethers-5.1.esm.min.js';
 import { currUser } from '../controllers/auth.js';
+import { initCoinButton } from '../views/coin-button.js';
 
 const abi = [
 	'function isDistributionEnabled() public view returns(bool)',
@@ -16,6 +17,9 @@ const CONTRACT_ADDR = '0x6F2aabE11E78c6cd642689bC5896F1e4d84096aA';
 
 // Must wrap everything in async because of Safari...
 (async () => {
+	initCoinButton();
+
+	let isClaiming = false;
 	let signer, signerAddr, dhb;
 	let isEnabled,
 		hasClaimed,
@@ -53,10 +57,6 @@ const CONTRACT_ADDR = '0x6F2aabE11E78c6cd642689bC5896F1e4d84096aA';
 			.off()
 			.on('click', () => claim());
 	}
-
-	// window.ethereum.on('accountsChanged', function (accounts) {
-	// 	console.log('!!!!!!!');
-	// });
 
 	async function updateData() {
 		isEnabled = await dhb.isDistributionEnabled();
@@ -117,7 +117,11 @@ const CONTRACT_ADDR = '0x6F2aabE11E78c6cd642689bC5896F1e4d84096aA';
 		await $('#dapp-connect-wallet-container').fadeIn('slow').promise();
 	}
 
-	async function showLoading() {
+	async function showLoading(title, subtitle) {
+		const defaultTitle = 'Syncing with $DeHub Contract';
+		const defaultSubtitle = 'Please give it a second.';
+		$('.loader-title').text(title || defaultTitle);
+		$('.loader-subtitle').text(subtitle || defaultSubtitle);
 		await $('#claim-btn').fadeTo('slow', 0).promise();
 		await $('#interface, #claimed-msg, #disabled-msg')
 			.fadeOut('slow')
@@ -146,15 +150,17 @@ const CONTRACT_ADDR = '0x6F2aabE11E78c6cd642689bC5896F1e4d84096aA';
 	}
 
 	function canClaim() {
-		return currUser() && !isEnabled && !hasClaimed && balance !== '0.0';
+		const can = currUser() && isEnabled && !hasClaimed && balance !== '0.0';
+		console.log('Can claim:', can);
+		return can;
 	}
 
 	function updateClaimButton() {
 		const $claimBtn = $('#claim-btn');
-		if (!canClaim()) {
-			$claimBtn.addClass('disabled').removeAttr('style');
-		} else {
+		if (canClaim()) {
 			$claimBtn.removeClass('disabled').removeAttr('style');
+		} else {
+			$claimBtn.addClass('disabled').removeAttr('style');
 		}
 	}
 
@@ -165,16 +171,22 @@ const CONTRACT_ADDR = '0x6F2aabE11E78c6cd642689bC5896F1e4d84096aA';
 			setTimeout(async () => {
 				await updateView();
 			}, 2000);
-		} else {
-			const $claimBtn = $('#claim-btn');
-			$claimBtn.addClass('disabled').find('.nonEmpty').text('Claiming...');
+		} else if (!isClaiming) {
+			isClaiming = true;
+			// Delay for coin animation to finish before fading out.
+			setTimeout(() => {
+				showLoading(
+					'Claiming your BNB Reward',
+					"Please confirm transaction if you haven't so far."
+				);
+			}, 1300);
 			try {
 				const tx = await dhb.claimReward();
 				tx.await();
 				console.log(tx);
 			} catch (error) {}
-			$claimBtn.removeClass('disabled').find('.nonEmpty').text('Claim');
 			await updateView();
+			isClaiming = false;
 		}
 	}
 })();
