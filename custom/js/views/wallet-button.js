@@ -90,6 +90,7 @@ $('#walletConnectModal .btn').on('click', async (e) => {
 	try {
 		showFullScreenLoader('Waiting', 'Please confirm with your wallet.');
 		await logIn(providerName);
+		hideFullScreenLoader();
 	} catch (error) {
 		hideFullScreenLoader();
 	}

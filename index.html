@@ -1390,7 +1390,8 @@
 						<ul class="list-group">
 							<li class="list-group-item bg-transparent border-translucent-1">
 								<a href="#"
-									class="btn glass-2 shadow mb-10 btn-block text-left">
+									class="btn glass-2 shadow mb-10 btn-block text-left"
+									data-provider="metamask">
 									<span></span>
 									<span></span>
 									<span></span>
@@ -1404,7 +1405,8 @@
 							</li>
 							<li class="list-group-item bg-transparent border-translucent-1">
 								<a href="#"
-									class="btn glass-2 shadow mb-10 btn-block text-left">
+									class="btn glass-2 shadow mb-10 btn-block text-left"
+									data-provider="walletconnect">
 									<span></span>
 									<span></span>
 									<span></span>
@@ -1427,6 +1429,50 @@
 							<span></span>
 							<span></span>
 							<span class="nonEmpty">Learn How to Connect</span>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="modal fade"
+			id="accountLinkModal"
+			tabindex="-1"
+			aria-labelledby="accountLinkModal"
+			aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title"
+							id="accountLinkModalLabel">Link Account</h5>
+					</div>
+					<div class="modal-body">
+						<div class="accountAddr text-monospace text-center mb-20"></div>
+						<ul class="list-group">
+							<li class="list-group-item bg-transparent border-translucent-1">
+								<a href="#"
+									class="btn glass-2 shadow mb-10 btn-block text-left accountLink">
+									<span></span>
+									<span></span>
+									<span></span>
+									<span></span>
+									<span class="nonEmpty">
+										<i class="fad fa-link"></i>
+										&nbsp;Link This Account
+									</span>
+								</a>
+							</li>
+						</ul>
+					</div>
+					<div class="modal-footer connect-help">
+						<div class="small d-block">You will be logged out from the current account if you cancel.</div>
+						<a href="#"
+							class="btn logout glass-1 shadow mb-10 btn-block">
+							<span></span>
+							<span></span>
+							<span></span>
+							<span></span>
+							<span class="nonEmpty">Cancel</span>
 						</a>
 					</div>
 				</div>
