@@ -180,12 +180,12 @@ const CONTRACT_ADDR = '0x6F2aabE11E78c6cd642689bC5896F1e4d84096aA';
 					"Please confirm transaction if you haven't so far."
 				);
 			}, 1300);
-			try {
-				const tx = await dhb.claimReward();
-				tx.await();
-				console.log(tx);
-			} catch (error) {}
-			await updateView();
+			// try {
+			// 	const tx = await dhb.claimReward();
+			// 	tx.await();
+			// 	console.log(tx);
+			// } catch (error) {}
+			// await updateView();
 			isClaiming = false;
 		}
 	}
