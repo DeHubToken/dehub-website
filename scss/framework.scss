@@ -296,166 +296,19 @@ $i: 0;
 		}
 	}
 	&.glass-1 {
+		@include button-glass();
 		background: $bg_button_glass1;
 		color: $color_white;
-		&:before {
-			content: '';
-			position: absolute;
-			top: 0;
-			left: 0;
-			width: 0%;
-			height: 100%;
-			background: rgba(255, 255, 255, 0.1);
-		}
-		&:after {
-			content: '';
-			position: absolute;
-			top: 0;
-			left: -100%;
-			width: 100%;
-			height: 100%;
-			background: linear-gradient(
-				90deg,
-				transparent,
-				rgba(255, 255, 255, 0.4),
-				transparent
-			);
-			transition: 0.5s;
-			transition-delay: 0.5s;
-		}
-		&:hover:after {
-			left: 100%;
-		}
-		span:not([class]) {
-			position: absolute;
-			display: block;
-			transition: 0.5s ease;
-		}
-		span:nth-child(1) {
-			top: 0;
-			left: 0;
-			width: 0;
-			height: 1px;
-			background: #fff;
-		}
-		&:hover span:nth-child(1) {
-			width: 100%;
-			transform: translateX(100%);
-		}
-		span:nth-child(3) {
-			bottom: 0;
-			right: 0;
-			width: 0;
-			height: 1px;
-			background: #fff;
-		}
-		&:hover span:nth-child(3) {
-			width: 100%;
-			transform: translateX(-100%);
-		}
-		span:nth-child(2) {
-			top: 0;
-			left: 0;
-			width: 1px;
-			height: 0;
-			background: #fff;
-		}
-		&:hover span:nth-child(2) {
-			height: 100%;
-			transform: translateY(100%);
-		}
-		span:nth-child(4) {
-			bottom: 0;
-			right: 0;
-			width: 1px;
-			height: 0;
-			background: #fff;
-		}
-		&:hover span:nth-child(4) {
-			height: 100%;
-			transform: translateY(-100%);
-		}
 	}
 	&.glass-2 {
+		@include button-glass();
 		background: $bg_button_glass2;
 		color: $color_white;
-		&:before {
-			content: '';
-			position: absolute;
-			top: 0;
-			left: 0;
-			width: 0%;
-			height: 100%;
-			background: rgba(255, 255, 255, 0.1);
-		}
-		&:after {
-			content: '';
-			position: absolute;
-			top: 0;
-			left: -100%;
-			width: 100%;
-			height: 100%;
-			background: linear-gradient(
-				90deg,
-				transparent,
-				rgba(255, 255, 255, 0.4),
-				transparent
-			);
-			transition: 0.5s;
-			transition-delay: 0.5s;
-		}
-		&:hover:after {
-			left: 100%;
-		}
-		span:not([class]) {
-			position: absolute;
-			display: block;
-			transition: 0.5s ease;
-		}
-		span:nth-child(1) {
-			top: 0;
-			left: 0;
-			width: 0;
-			height: 1px;
-			background: #fff;
-		}
-		&:hover span:nth-child(1) {
-			width: 100%;
-			transform: translateX(100%);
-		}
-		span:nth-child(3) {
-			bottom: 0;
-			right: 0;
-			width: 0;
-			height: 1px;
-			background: #fff;
-		}
-		&:hover span:nth-child(3) {
-			width: 100%;
-			transform: translateX(-100%);
-		}
-		span:nth-child(2) {
-			top: 0;
-			left: 0;
-			width: 1px;
-			height: 0;
-			background: #fff;
-		}
-		&:hover span:nth-child(2) {
-			height: 100%;
-			transform: translateY(100%);
-		}
-		span:nth-child(4) {
-			bottom: 0;
-			right: 0;
-			width: 1px;
-			height: 0;
-			background: #fff;
-		}
-		&:hover span:nth-child(4) {
-			height: 100%;
-			transform: translateY(-100%);
-		}
+	}
+
+	/* Drop shadows */
+	&.shadow {
+		box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3) !important;
 	}
 
 	/* Borders */
@@ -1308,36 +1161,36 @@ textarea.input {
 $i: 0;
 @while $i < 1001 {
 	.mt-#{$i} {
-		margin-top: 1px * $i;
+		margin-top: 1px * $i !important;
 	}
 	.mb-#{$i} {
-		margin-bottom: 1px * $i;
+		margin-bottom: 1px * $i !important;
 	}
 	.mr-#{$i} {
-		margin-right: 1px * $i;
+		margin-right: 1px * $i !important;
 	}
 	.ml-#{$i} {
-		margin-left: 1px * $i;
+		margin-left: 1px * $i !important;
 	}
 	.mx-#{$i} {
-		margin-left: 1px * $i;
-		margin-right: 1px * $i;
+		margin-left: 1px * $i !important;
+		margin-right: 1px * $i !important;
 	}
 	.pt-#{$i} {
-		padding-top: 1px * $i;
+		padding-top: 1px * $i !important;
 	}
 	.pb-#{$i} {
-		padding-bottom: 1px * $i;
+		padding-bottom: 1px * $i !important;
 	}
 	.pr-#{$i} {
-		padding-right: 1px * $i;
+		padding-right: 1px * $i !important;
 	}
 	.pl-#{$i} {
-		padding-left: 1px * $i;
+		padding-left: 1px * $i !important;
 	}
 	.px-#{$i} {
-		padding-left: 1px * $i;
-		padding-right: 1px * $i;
+		padding-left: 1px * $i !important;
+		padding-right: 1px * $i !important;
 	}
 	$i: $i + 5;
 }

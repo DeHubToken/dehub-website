@@ -1,0 +1,178 @@
+/**
+ * Moralis integration with authentication handling.
+ */
+
+import * as ethers from '/custom/libs/ethers/ethers-5.1.esm.min.js';
+
+// Mainnet
+// const CHAIN_ID = '0x38'; // mainnet
+// Testnet
+const CHAIN_ID_HEX = '0x61';
+const CHAIN_ID_DEC = 97;
+const RPC_URL = 'https://data-seed-prebsc-2-s3.binance.org:8545/';
+
+Moralis.initialize('V0nRrGNuSWyuthhvcLDT3l6RSK4IfuIzX0uadjL6');
+Moralis.serverURL = 'https://hjsc4v566bn3.usemoralis.com:2053/server';
+Moralis.Web3.getSigningData = () =>
+	'Welcome to DeHub! To proceed securely please sign this connection.';
+
+let currProvider;
+export let authProvider = authenticateProvider();
+function authenticateProvider() {
+	const $doc = $(document);
+	const user = currUser();
+	if (user) {
+		const authProvider = new ethers.providers.Web3Provider(currProvider);
+		const id = authProvider.provider.chainId;
+		if (id !== CHAIN_ID_DEC && id !== CHAIN_ID_HEX) {
+			console.log('Unsupported chain!');
+			// User is loggedin, but wrong chain on users wallet. Handle this.
+			$doc.ready(() => $doc.trigger('chain:mismatch'));
+		} else {
+			console.log('Supported chain!');
+			// Moralis user exists and provider created.
+			// We can say authentication is complete. Listen to this event to update states.
+			$doc.ready(() => $doc.trigger('logged:in', [user, authProvider]));
+		}
+		return authProvider;
+	} else {
+		console.info('User has not been authenticated via Moralis yet.');
+		// Listen to this even to update states on log out.
+		$doc.ready(() => $doc.trigger('logged:out'));
+		return undefined;
+	}
+}
+
+export function currUser() {
+	if (currProvider) {
+		const user = Moralis.User.current();
+		console.log('User:', user);
+		return user;
+	} else {
+		return undefined;
+	}
+}
+
+export async function logIn(providerName) {
+	const $doc = $(document);
+	let user = currUser();
+	if (!user) {
+		// Show full screen loader
+		const props = ['Waiting', 'Please confirm with your wallet.'];
+		$doc.ready(() => $doc.trigger('fullScreenLoader:show', props));
+		try {
+			const params = { provider: providerName };
+			user = await Moralis.Web3.authenticate(params);
+			const web3 = await Moralis.Web3.activeWeb3Provider.activate();
+			currProvider = await web3.currentProvider;
+			authProvider = authenticateProvider();
+		} catch (error) {
+			console.log(error);
+			// Most likely user canceled signature.
+			// We just silence the error here for now. You will still see Metamask
+			// error in the console, but this is better than two unhandled errors :))
+		}
+	}
+	$doc.ready(() => $doc.trigger('fullScreenLoader:hide'));
+	return user;
+}
+
+export async function logOut() {
+	const $doc = $(document);
+	const props = ['Logging out', 'Good bye...'];
+	$doc.ready(() => $doc.trigger('fullScreenLoader:show', props));
+	await Moralis.User.logOut();
+	authProvider = undefined;
+	$doc.ready(() => $doc.trigger('fullScreenLoader:hide'));
+	$doc.ready(() => $doc.trigger('logged:out'));
+}
+
+/**
+ * Asks user to switch the chain if possible and if chain doesn't exist yet,
+ * tries to add it to Metamask. Emits events accordingly for listeners to react.
+ */
+export async function askToSwitchChain() {
+	console.log('Will ask to switch network!');
+	const $doc = $(document);
+	const props = ['Waiting', 'Please confirm network switch with your wallet.'];
+	$doc.ready(() => $doc.trigger('fullScreenLoader:show', props));
+
+	const prov = authProvider.provider;
+	try {
+		await prov.request({
+			method: 'wallet_switchEthereumChain',
+			params: [{ chainId: CHAIN_ID_HEX }],
+		});
+		// All good, can say authentication completed. Metamask docs recommend
+		// reloading here. I tried to reload dynamically by calling 'authenticateProvider'
+		// but for some reason window.ethereum does not update in time.
+		// Reload will happen on chain change listener bellow.
+	} catch (switchError) {
+		// This error code indicates that the chain has not been added to MetaMask.
+		if (switchError.code === 4902) {
+			try {
+				await prov.request({
+					method: 'wallet_addEthereumChain',
+					params: [{ chainId: CHAIN_ID_HEX, rpcUrl: RPC_URL }],
+				});
+			} catch (addError) {
+				// TODO: handle "add" error by showing error alert
+				$doc.ready(() => $doc.trigger('chain:mismatch'));
+				$doc.ready(() => $doc.trigger('error:chain:add', [addError]));
+			}
+		}
+		// TODO: handle other "switch" errors by showing error alert
+		$doc.ready(() => $doc.trigger('error:chain:switch', [switchError]));
+	}
+	$doc.ready(() => $doc.trigger('fullScreenLoader:hide'));
+}
+
+export function isChainCorrect() {
+	const id = authProvider.provider.chainId;
+	return id === CHAIN_ID_HEX || id === CHAIN_ID_DEC;
+}
+
+export async function linkAccount(account) {
+	console.log('Linking account: ', account);
+	const $doc = $(document);
+	const props = ['Waiting', 'Please confirm account linking with your wallet.'];
+	$doc.ready(() => $doc.trigger('fullScreenLoader:show', props));
+	try {
+		const user = await Moralis.Web3.link(account);
+		authProvider = authenticateProvider();
+		$doc.ready(() => $doc.trigger('logged:in', [user, authProvider]));
+	} catch (error) {
+		console.log(error);
+		logOut();
+	}
+	$doc.ready(() => $doc.trigger('fullScreenLoader:hide'));
+}
+
+/* -------------------------------- Listeners ------------------------------- */
+
+Moralis.Web3.onAccountsChanged(async (accounts) => {
+	const user = currUser();
+	if (user) {
+		// window.location.reload();
+		const $doc = $(document);
+		const acc = accounts[0];
+		const isLinked = user.attributes.accounts.some((i) => i === acc);
+		console.log(acc, user.attributes.accounts, isLinked);
+		if (accounts.length > 0) {
+			if (!isLinked) {
+				$doc.ready(() => $doc.trigger('account:changed:new', [acc]));
+			} else {
+				authProvider = authenticateProvider();
+				$doc.ready(() => $doc.trigger('account:changed:old'));
+			}
+		} else {
+			// No accounts returned means the last account has been disconnected from the dApp
+			console.log('All accounts disconnected, logging out.');
+			logOut();
+		}
+	}
+});
+
+Moralis.Web3.onChainChanged(async () => {
+	window.location.reload();
+});

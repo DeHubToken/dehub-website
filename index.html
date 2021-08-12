@@ -78,6 +78,10 @@
 		<script src="https://unpkg.com/screen-size-detector@latest/dist/screen-size-detector.min.js"></script>
 		<script src="https://kit.fontawesome.com/1481019c19.js"
 			crossorigin="anonymous"></script>
+		<!-- Moralis SDK code -->
+		<script src="https://github.com/WalletConnect/walletconnect-monorepo/releases/download/1.4.1/web3-provider.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+		<script src="https://unpkg.com/moralis/dist/moralis.js"></script>
 		<!-- Global site tag (gtag.js) - Google Analytics -->
 		<script async
 			src="https://www.googletagmanager.com/gtag/js?id=G-10LTL8GSGR"></script>
@@ -123,7 +127,7 @@
 				<div>
 					<a href="#features"
 						class="f-heading f-22 link color-main mb-20">
-						Project Features
+						Features
 					</a>
 				</div>
 				<div>
@@ -135,7 +139,7 @@
 				<div>
 					<a href="#partners"
 						class="f-heading f-22 link color-main mb-20">
-						Our Partners
+						Partners
 					</a>
 				</div>
 				<div>
@@ -152,6 +156,13 @@
 					</a>
 				</div>
 				<div>
+					<a href="#presale"
+						target="_blank"
+						class="f-heading f-22 link color-main mb-20">
+						Presale
+					</a>
+				</div>
+				<div>
 					<span class="f-heading f-18 color-main mb-20">
 						dApps:
 					</span>
@@ -159,11 +170,12 @@
 				<div class="dropdown-divider op-1">
 				</div>
 				<div class="pl-20 pt-15 bg-gradient-2 radius10 mt-10">
-					<a href="#"
-						class="link color-main mb-15">
+					<a href="/claim"
+						target="_blank"
+						class="link color-main mb-15 claim">
 						<i class="fad fa-gift color-main"></i>
 						&nbsp;
-						<span class="comingSoon">Claim BNB Rewards</span>
+						<span>Claim BNB Rewards</span>
 					</a>
 				</div>
 				<div class="pl-20 pt-15 bg-gradient-2 radius10 mt-10">
@@ -209,7 +221,7 @@
 		<header class="pt-160 pb-60 header_5"
 			data-bg-src="false"
 			data-bg-src-2x="false">
-			<nav class="header_menu_5 pt-35 pb-35">
+			<nav class="pt-35 pb-35">
 				<div class="container px-xl-0">
 					<div class="row align-items-center">
 						<div class="col-lg-3">
@@ -250,6 +262,7 @@
 									class="link color-main fab fa-reddit-alien mx-5">
 								</a> -->
 							</div>
+							<!-- ----------------------- Connect with wallet end ----------------------- -->
 							<div class="w-full d-flex justify-content-end">
 								<a href="#intro"
 									class="nav-item link color-main mx-15">
@@ -257,7 +270,7 @@
 								</a>
 								<a href="#features"
 									class="nav-item link color-main mx-15">
-									Project Features
+									Features
 								</a>
 								<a href="#dehub"
 									class="nav-item link color-main mx-15">
@@ -265,7 +278,7 @@
 								</a>
 								<a href="#partners"
 									class="nav-item link color-main mx-15">
-									Our Partners
+									Partners
 								</a>
 								<a href="#team"
 									class="nav-item link color-main mx-15">
@@ -275,6 +288,11 @@
 									target="_blank"
 									class="nav-item link color-main mx-15">
 									Contract
+								</a>
+								<a href="#presale"
+									target="_blank"
+									class="nav-item link color-main mx-15">
+									Presale
 								</a>
 								<div class="nav-item dropdown">
 									<a class="link color-main mx-15 dropdown-toggle"
@@ -288,15 +306,17 @@
 									</a>
 									<div class="dropdown-menu bg-gray-1 pt-20 pb-20 mt-10 radius4"
 										aria-labelledby="dAppsDropdown">
-										<a href="#"
-											class="dropdown-item btn glass-1 mb-10 text-left">
+										<a href="/claim"
+											target="_blank"
+											class="dropdown-item btn glass-1 mb-10 text-left claim">
 											<span></span>
 											<span></span>
 											<span></span>
 											<span></span>
 											<i class="fad fa-gift color-main"></i>
 											&nbsp;
-											<span class="comingSoon">Claim BNB Rewards</span></a>
+											<span class="nonEmpty">Claim BNB Rewards</span>
+										</a>
 										<a href="#"
 											class="dropdown-item btn glass-1 mb-10 text-left">
 											<span></span>
@@ -408,7 +428,7 @@
 								<span></span>
 								AUDIT</a>
 							<a href="#presale"
-								class="btn glass-1 mr-10 mb-15">
+								class="btn glass-1 shadow mr-10 mb-15">
 								<span></span>
 								<span></span>
 								<span></span>
@@ -435,7 +455,7 @@
 						<img src="uploads/meta-cover.jpg"
 							srcset="uploads/meta-cover.jpg 2x"
 							alt=""
-							class="img-fluid radius10 solid-4px-border main">
+							class="img-fluid radius10 border-solid-4px main shadow">
 						<a href="https://youtu.be/0zx607Mzo-E?rel=0&amp;showinfo=0"
 							class="play red op-9"
 							data-fancybox="feature_24_fancybox">
@@ -940,10 +960,10 @@
 									<h4 class="mt-30 mb-10 color-heading text-adaptive">
 										<strong>BSC-BNB Address:</strong>
 									</h4>
-									<span class="presaleAddr hvr-grow d-none d-md-inline-block text-monospace f-18 bg-gradient-2 rounded-pill pt-10 pb-10 px-20">
+									<span class="clickToCopy hvr-grow d-none d-md-inline-block text-monospace f-18 bg-gradient-2 rounded-pill pt-10 pb-10 px-20">
 										0x8Bd1AF695521bd748BBeF763d0afAcA8d96244eB
 									</span>
-									<span class="presaleAddr hvr-grow d-md-none d-sm-inline-block text-monospace f-12 bg-gradient-2 rounded-pill pt-10 pb-10 px-20">
+									<span class="clickToCopy hvr-grow d-md-none d-sm-inline-block text-monospace f-12 bg-gradient-2 rounded-pill pt-10 pb-10 px-20">
 										0x8Bd1AF695521bd748BBeF763d0afAcA8d96244eB
 									</span>
 								</div>
@@ -1143,7 +1163,7 @@
 							data-aos-delay="250">
 							<img src="uploads/malik-avatar.jpg"
 								alt=""
-								class="rounded-circle img-fluid w-170 h-170 solid-4px-border"
+								class="rounded-circle img-fluid w-170 h-170 border-solid-4px"
 								srcset="uploads/malik-avatar.jpg 2x">
 							<div class="mt-20 mb-10 f-22 title">
 								Malik Jan
@@ -1161,7 +1181,7 @@
 							data-aos-delay="250">
 							<img src="uploads/ahmad-avatar.jpg"
 								alt=""
-								class="rounded-circle img-fluid w-170 h-170 solid-4px-border"
+								class="rounded-circle img-fluid w-170 h-170 border-solid-4px"
 								srcset="uploads/ahmad-avatar.jpg 2x">
 							<div class="mt-20 mb-10 f-22 title">
 								Ahmad Banna
@@ -1179,7 +1199,7 @@
 							<img src="uploads/rani-avatar.jpg"
 								srcset="uploads/rani-avatar.jpg 2x"
 								alt=""
-								class="rounded-circle img-fluid w-170 h-170 solid-4px-border">
+								class="rounded-circle img-fluid w-170 h-170 border-solid-4px">
 							<div class="mt-20 mb-10 f-22 title">
 								Rani Mazen
 							</div>
@@ -1196,7 +1216,7 @@
 							<img src="uploads/aleksandr-avatar.jpg"
 								srcset="uploads/aleksandr-avatar.jpg 2x"
 								alt=""
-								class="rounded-circle img-fluid w-170 h-170 solid-4px-border">
+								class="rounded-circle img-fluid w-170 h-170 border-solid-4px">
 							<div class="mt-20 mb-10 f-22 title">
 								Aleksandr Pasevin
 							</div>
@@ -1213,7 +1233,7 @@
 							<img src="uploads/diana-avatar.jpg"
 								srcset="uploads/diana-avatar.jpg 2x"
 								alt=""
-								class="rounded-circle img-fluid w-170 h-170 solid-4px-border">
+								class="rounded-circle img-fluid w-170 h-170 border-solid-4px">
 							<div class="mt-20 mb-10 f-22 title">
 								Diana Yaman
 							</div>
@@ -1231,7 +1251,7 @@
 							<img src="uploads/jasmine-avatar.jpg"
 								srcset="uploads/jasmine-avatar.jpg 2x"
 								alt=""
-								class="rounded-circle img-fluid w-170 h-170 solid-4px-border">
+								class="rounded-circle img-fluid w-170 h-170 border-solid-4px">
 							<div class="mt-20 mb-10 f-22 title">
 								Jasmine Corpuz
 							</div>
@@ -1249,7 +1269,7 @@
 							<img src="uploads/mike-avatar.jpg"
 								srcset="uploads/mike-avatar.jpg 2x"
 								alt=""
-								class="rounded-circle img-fluid w-170 h-170 solid-4px-border">
+								class="rounded-circle img-fluid w-170 h-170 border-solid-4px">
 							<div class="mt-20 mb-10 f-22 title">
 								Mike Hales
 							</div>
@@ -1267,7 +1287,7 @@
 							<img src="uploads/indi-avatar.jpg"
 								srcset="uploads/indi-avatar.jpg 2x"
 								alt=""
-								class="rounded-circle img-fluid w-170 h-170 solid-4px-border">
+								class="rounded-circle img-fluid w-170 h-170 border-solid-4px">
 							<div class="mt-20 mb-10 f-22 title">
 								Indi Jay Cammish
 							</div>
@@ -1285,7 +1305,7 @@
 							<img src="uploads/angel-avatar.jpg"
 								srcset="uploads/angel-avatar.jpg 2x"
 								alt=""
-								class="rounded-circle img-fluid w-170 h-170 solid-4px-border">
+								class="rounded-circle img-fluid w-170 h-170 border-solid-4px">
 							<div class="mt-20 mb-10 f-22 title">
 								Angel Matamoros
 							</div>
@@ -1323,11 +1343,10 @@
 					<div class="mt-20 col-12">
 						<div class="color-heading text-adaptive">
 							© 2021 DeHub.<br>
-							DeHub and the team do not provide financial guidance or advice.<br>
-							Due to local regulations, citizens of the USA are not entitled to take part in the pre-sale.<br>
-							Always do your research prior to purchasing any digital assets or commodities.<br>
-							DeHub tokens hold no monetary value nor do they serve as any form of investment.<br>
-							There are no guarantees of the monetary value and the figures will solely depend on the supply and demand of the DeHub tokens on any given day.
+							<a href="#"
+								class="link color-white underline"
+								data-toggle="modal"
+								data-target="#disclaimerModal">Disclaimer.</a>
 						</div>
 					</div>
 				</div>
@@ -1335,26 +1354,145 @@
 		</footer>
 		</div>
 
+		<!-- ---------------------------- Modals Start ----------------------------- -->
+
+		<div class="modal fade"
+			id="disclaimerModal"
+			tabindex="-1"
+			aria-labelledby="disclaimerModal"
+			aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered modal-lg">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title"
+							id="disclaimerModalLabel">Disclaimer</h5>
+					</div>
+					<div class="modal-body">
+						<p class="small">
+							Neither DeHub, the team, nor this website under any circumstances
+							provide financial guidance nor advice of any nature.
+							Always do your own research prior to purchasing any digital assets or commodities.
+							<br><br>
+							Any form of DeHub token sale is for the purpose of generating liquidity
+							to enable traders to buy and sell tokens. All presales and private sales have
+							been open to members of our communities and our public sales are barrier-free.
+							<br><br>
+							All pre-mined tokens are technically already “burnt”, and the ecosystem is designed to
+							be self-sufficient and empowering to its users; it thereby does not rely on a central
+							point of control or business operation. DeHub tokens hold no monetary value, nor do
+							they serve as any form of investment vehicle.
+							<br><br>
+							You are not here to fly to the moon; you are here to change the earth.
+							By purchasing DeHub tokens you acquire a piece of a decentralised network that
+							will forever operate on multiple blockchains that serve as utility and governance tokens.
+							<br>
+							These allow you to vote on renewals, cancellations and funding of original productions,
+							and licensed motion pictures. In addition, they grant voting rights to users on the results
+							of certain sporting events such as MMA and Boxing bouts hosted by the platform.
+							<br><br>
+							Furthermore, token holders will be able to review content, vote in awards for creators and artists,
+							access games, and wager bets and much more. There are no guarantees of the value of the
+							tokens and the team are not, and will never be, liable for any losses incurred by any
+							buying or selling of tokens.
+							<br><br>
+							You must understand what you are doing in the new digital world of finance and every step
+							you take is taken at your own risk with trust in your own judgment and actions.
+							<br><br>
+							DeHub tokens are backed by the liquidity we, the community provide therefore the price action
+							is solely dependent on the supply and demand of the DeHub tokens (elasticity) on any given day.
+							<br><br>
+							Any mentions of price speculation by any members of the community or team should be deemed as
+							purely commentary on day-to-day financial affairs.
+							<br><br>
+							DeHub tokens will be very elastic in price given the nature of our economy, so if these
+							terms confuse you or you are unsure of whether you understand what you are reading,
+							we advise you to take your time to re-read the website fully and contact a member
+							of the team for assistance.
+							<br><br>
+							Although DeHub is operating as a decentralised autonomous organisation (DAO) with no official
+							headquarters or central office, our community leaders are registering in every single country
+							we start to expand in laying down official ground teams via a decentralised network of token
+							holders ensuring maximum transparency for stakeholders and motivation for workers.
+							<br><br>
+							Southeast Asia, Africa and the Middle East are our main areas of operation however we aim
+							to have a DeHub in every major city across the world by the 2040s.
+							<br><br>
+							<strong>
+								DeHub will never ask for your keys or hold your funds. Not your keys not your crypto.
+							</strong>
+							<br><br>
+							Citizens of the USA or any other country or jurisdiction without clear regulation
+							regarding token sales are advised to contact their local government or council
+							offices for advice before partaking in any digital token sales or trading.
+						</p>
+					</div>
+					<div class="modal-footer connect-help">
+						<div class="small d-block">Click to confirm you understand</div>
+						<a id="disclaimerModalConfirm"
+							href="#"
+							class="btn glass-1 shadow mb-10 btn-block">
+							<span></span>
+							<span></span>
+							<span></span>
+							<span></span>
+							<span class="nonEmpty">I understand</span>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- ----------------------------- Modals End ------------------------------ -->
+
+		<!-- ---------------------- Full Screen Loader Start ----------------------- -->
+		<div id="full-screen-loader">
+			<table>
+				<tbody>
+					<tr>
+						<td class="align-middle text-center">
+							<div class="spinner-border text-light"
+								role="status">
+								<span class="sr-only">Loading...</span>
+							</div>
+							<div class="pt-20">
+								<img src="uploads/logo.svg"
+									alt="Logo"
+									class="img-fluid w-100">
+							</div>
+							<h4 class="full-screen-loader-title text-uppercase f-20 text-monospace pt-10">
+								Loading
+							</h4>
+							<span class='full-screen-loader-subtitle'></span>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<!-- ----------------------- Full Screen Loader End ------------------------ -->
+
+		<!-- ------------------------------- Scripts ------------------------------- -->
 		<!-- Bootstrap 4.5.2 JS -->
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
 		<!-- Fancybox 3 jQuery plugin JS (Open images and video in popup) -->
 		<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
-		<!-- Slick 1.8.1 jQuery plugin JS (Sliders) -->
-		<script type="text/javascript"
-			src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 		<!-- AOS jQuery plugin JS (Animations) -->
 		<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-		<!-- Maskedinput jQuery plugin JS (Masks for input fields) -->
-		<script src="js/jquery.maskedinput.min.js"></script>
 		<!-- Startup JS (Custom js for all blocks) -->
 		<script src="js/script.js"></script>
 		<!-- Custom JS outside designmodo -->
 		<script src="https://cdn.logwork.com/widget/countdown.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.7.2/d3.min.js"></script>
-		<script src="custom/js/d3pie.min.js"></script>
-		<script src="custom/js/script.js"></script>
+		<script src="custom/libs/d3pie/d3pie.min.js"></script>
 		<script type="module"
-			src="custom/js/particles.js"></script>
+			src="custom/js/script.js"></script>
+		<script src="custom/js/views/bootstrap-hacks.js"></script>
+		<!-- ---------------------- Blockchain gateway start ----------------------- -->
+		<script type="module"
+			src="custom/js/views/wallet-button.js"></script>
+		<!-- ----------------------- Blockchain gateway end ------------------------ -->
+		<script src="custom/js/views/pie.js"></script>
+		<script type="module"
+			src="custom/js/views/particles.js"></script>
 	</body>
 
 </html>

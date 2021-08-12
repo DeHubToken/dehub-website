@@ -1,0 +1,20 @@
+.popover-header {
+	background-color: $color_gray_1;
+	border-bottom: 1px solid $color_gray_2;
+}
+.popover {
+	background-color: $color_gray_1;
+	border: 1px solid rgba(0, 0, 0, 0.2);
+}
+.popover-body {
+	color: $color_white;
+}
+.bs-popover-auto[x-placement^='right'] > .arrow::after,
+.bs-popover-right > .arrow::after {
+	border-right-color: $color_gray_1;
+}
+
+.bs-popover-auto[x-placement^='top'] > .arrow::after,
+.bs-popover-top > .arrow::after {
+	border-top-color: $color_gray_1;
+}
