@@ -1,12 +1,6 @@
-.solid-2px-border {
-	border: 2px solid $action_2;
-}
-
-.solid-4px-border {
-	border: 4px solid $action_2;
-	&.main {
-		border-color: $color_main;
-	}
+// So you're wondering why you found this class...
+// Just use it to avoid things like: span:not([class]) affecting your elements
+.nonEmpty {
 }
 
 .t-2 {
