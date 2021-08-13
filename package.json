@@ -8,7 +8,9 @@
 		"sass:watch": "sass --watch scss/style.scss:css/style.css --no-source-map",
 		"sass:min": "sass scss/style.scss css/style.min.css --style compressed --no-source-map",
 		"sass:watch:min": "sass --watch scss/style.scss:css/style.min.css --style compressed --no-source-map",
-		"serve": "npx http-server"
+		"serve": "npx http-server",
+		"ngrok": "./ngrok http --region=eu --hostname=dehublocal.eu.ngrok.io 8080",
+		"dev": "concurrently --kill-others \"npm run sass:watch:min\" \"npm run serve\" \"npm run ngrok\""
 	},
 	"repository": {
 		"type": "git",
@@ -19,5 +21,8 @@
 	"bugs": {
 		"url": "https://github.com/pasevin/dehub-website/issues"
 	},
-	"homepage": "https://github.com/pasevin/dehub-website#readme"
+	"homepage": "https://github.com/pasevin/dehub-website#readme",
+	"devDependencies": {
+		"concurrently": "^6.2.1"
+	}
 }
