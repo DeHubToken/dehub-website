@@ -11,6 +11,8 @@ const CHAIN_ID_HEX = '0x61';
 const CHAIN_ID_DEC = 97;
 const RPC_URL = 'https://data-seed-prebsc-2-s3.binance.org:8545/';
 
+/* ---------------------------------- Init ---------------------------------- */
+
 Moralis.initialize('V0nRrGNuSWyuthhvcLDT3l6RSK4IfuIzX0uadjL6');
 Moralis.serverURL = 'https://hjsc4v566bn3.usemoralis.com:2053/server';
 Moralis.Web3.getSigningData = () =>
@@ -24,6 +26,8 @@ if (window.localStorage.getItem('chainChange')) {
 	window.localStorage.removeItem('chainChange');
 	await logIn();
 }
+
+/* --------------------------------- Methods -------------------------------- */
 
 function authenticateProvider() {
 	const $doc = $(document);
