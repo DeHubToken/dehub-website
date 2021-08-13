@@ -1,4 +1,5 @@
 import {
+	initAuth,
 	currUser,
 	logIn,
 	logOut,
@@ -8,6 +9,8 @@ import {
 	authProvider,
 } from '../controllers/auth.js';
 import { truncateAddress } from '../helpers.js';
+
+await initAuth();
 
 async function showConnectedWallet() {
 	const user = currUser();
