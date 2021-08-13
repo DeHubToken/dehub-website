@@ -18,6 +18,13 @@ Moralis.Web3.getSigningData = () =>
 
 let currProvider;
 export let authProvider = authenticateProvider();
+
+// First check if we haven't just reloaded the window for chain change.
+if (window.localStorage.getItem('chainChange')) {
+	window.localStorage.removeItem('chainChange');
+	await logIn();
+}
+
 function authenticateProvider() {
 	const $doc = $(document);
 	const user = currUser();
@@ -177,5 +184,8 @@ Moralis.Web3.onAccountsChanged(async (accounts) => {
 });
 
 Moralis.Web3.onChainChanged(async () => {
+	// This will let us know that chainChange has been called previously and initiate
+	// automatic re-authorization.
+	window.localStorage.setItem('chainChange', true);
 	window.location.reload();
 });
