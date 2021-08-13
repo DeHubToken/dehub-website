@@ -66,6 +66,9 @@ export async function logIn(providerName) {
 			const web3 = await Moralis.Web3.activeWeb3Provider.activate();
 			currProvider = await web3.currentProvider;
 			authProvider = authenticateProvider();
+			if (!isChainCorrect()) {
+				await askToSwitchChain();
+			}
 		} catch (error) {
 			console.log(error);
 			// Most likely user canceled signature.
