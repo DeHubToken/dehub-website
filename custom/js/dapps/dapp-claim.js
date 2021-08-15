@@ -17,6 +17,7 @@ const CONTRACT_ADDR = '0x6F2aabE11E78c6cd642689bC5896F1e4d84096aA';
 
 // Must wrap everything in async because of Safari...
 (async () => {
+	const $doc = $(document);
 	initCoinButton();
 
 	let isClaiming = false;
@@ -30,21 +31,21 @@ const CONTRACT_ADDR = '0x6F2aabE11E78c6cd642689bC5896F1e4d84096aA';
 		totalClaimed;
 
 	/* ----------------------------- Event listeners ---------------------------- */
-	$(document).on('logged:in', async (_, user, authProvider) => {
+	$doc.on('logged:in', async (_, user, authProvider) => {
 		console.log('[DAPP-CLAIM][EVENT]: logged:in');
 		await initDapp(authProvider);
 	});
 
-	$(document).on('logged:out', () => {
+	$doc.on('logged:out', async () => {
 		console.log('[DAPP-CLAIM][EVENT]: logged:out');
 		updateClaimButton();
-		showConnectWallet();
+		await showConnectWallet();
 	});
 
-	$(document).on('chain:mismatch', () => {
+	$doc.on('chain:mismatch', async () => {
 		console.log('[DAPP-CLAIM][EVENT]: chain:mismatch');
 		updateClaimButton();
-		showConnectWallet();
+		await showConnectWallet();
 	});
 
 	async function initDapp(authProvider) {

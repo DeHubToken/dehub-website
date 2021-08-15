@@ -1,4 +1,5 @@
 import {
+	initAuth,
 	currUser,
 	logIn,
 	logOut,
@@ -7,7 +8,14 @@ import {
 	linkAccount,
 	authProvider,
 } from '../controllers/auth.js';
-import { truncateAddress } from '../helpers.js';
+import { truncateAddress, isMobile } from '../helpers.js';
+
+const $doc = $(document);
+
+$doc.ready(async () => {
+	await initAuth();
+	prepareForDevice();
+});
 
 async function showConnectedWallet() {
 	const user = currUser();
@@ -36,8 +44,13 @@ function showDisconnectedWallet() {
 	$('.modal').modal('hide');
 }
 
+function prepareForDevice() {
+	if (isMobile()) {
+		$('#walletConnectModal').find(`[data-provider='metamask']`).parent().hide();
+	}
+}
+
 /* ----------------------------- Event listeners ---------------------------- */
-const $doc = $(document);
 $doc.on('logged:in', async (_, user, authProvider) => {
 	console.log('[WALLET-BUTTON][EVENT]: logged:in');
 	console.log(user);

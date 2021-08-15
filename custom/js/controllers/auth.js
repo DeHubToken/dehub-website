@@ -11,18 +11,38 @@ const CHAIN_ID_HEX = '0x61';
 const CHAIN_ID_DEC = 97;
 const RPC_URL = 'https://data-seed-prebsc-2-s3.binance.org:8545/';
 
+/* ---------------------------------- Init ---------------------------------- */
+
 Moralis.initialize('V0nRrGNuSWyuthhvcLDT3l6RSK4IfuIzX0uadjL6');
 Moralis.serverURL = 'https://hjsc4v566bn3.usemoralis.com:2053/server';
 Moralis.Web3.getSigningData = () =>
 	'Welcome to DeHub! To proceed securely please sign this connection.';
 
-let currProvider;
+const $doc = $(document);
+let isAuthInit;
+// Will store a web3 blockchain client provider (metamask, walletconnect etc.)
+// It's called unauth... cause it's just a provider which we will use to wrap for
+// later use with ethers.js once we authenticate with Moralis.
+let unauthProvider;
+// Will store web3 blockchain client provider as above, but wrapped for use with
+// ethers.js once authenticated by Moralis. Use this provider for interactions
+// with contracts.
 export let authProvider = authenticateProvider();
+
+/* --------------------------------- Methods -------------------------------- */
+
+/**
+ * Private method which initializes web3 provider by wrapping it for ethers.js
+ * I call this "authenticated provider" cause we only wrap this for use after
+ * Moralis authentication is successfull and we have a user and "unauthProvider"
+ * variable (meaning there's a blockchain wallet client present.).
+ * Prerequisites: user must be authenticated, and provider must be present.
+ * @returns ethers.js wrapped provider ready for interactions with contracts or undefined.
+ */
 function authenticateProvider() {
-	const $doc = $(document);
 	const user = currUser();
 	if (user) {
-		const authProvider = new ethers.providers.Web3Provider(currProvider);
+		const authProvider = new ethers.providers.Web3Provider(unauthProvider);
 		const id = authProvider.provider.chainId;
 		if (id !== CHAIN_ID_DEC && id !== CHAIN_ID_HEX) {
 			console.log('Unsupported chain!');
@@ -43,8 +63,29 @@ function authenticateProvider() {
 	}
 }
 
+/**
+ * Do your pre-moralis and other logic here. (E.x. read data from local storage)
+ * @returns Returns early if already init, to prevent duplicate calls.
+ */
+export async function initAuth() {
+	if (isAuthInit) return;
+	// Check if we haven't just reloaded the window for chain change.
+	if (window.localStorage.getItem('chainChange')) {
+		// If so, then clean up and login.
+		window.localStorage.removeItem('chainChange');
+		await logIn();
+	}
+	isAuthInit = true;
+}
+
+/**
+ * Returns Moralis authenticated user if possible.
+ * * Note: Before actually getting the user we should check if any web3 provider
+ * * exists at all, otherwise there is no point to go further.
+ * @returns User object or undefined.
+ */
 export function currUser() {
-	if (currProvider) {
+	if (unauthProvider) {
 		const user = Moralis.User.current();
 		console.log('User:', user);
 		return user;
@@ -53,8 +94,19 @@ export function currUser() {
 	}
 }
 
+/**
+ * Resolves the providerName from param or local storage and proceeds with login
+ * process using Moralis. Updates the web3 provider as well.
+ * @param {*} providerName (optional)
+ */
 export async function logIn(providerName) {
-	const $doc = $(document);
+	// Resolve providerName by checking if passed via property, or saves locally.
+	const savedProviderName = window.localStorage.getItem('providerName');
+	if (!providerName && !savedProviderName) throw 'Need a provider name!';
+	providerName = providerName || window.localStorage.getItem('providerName');
+	// Save so we can re-login on page refresh.
+	window.localStorage.setItem('providerName', providerName);
+	// Proceed with login...
 	let user = currUser();
 	if (!user) {
 		// Show full screen loader
@@ -64,8 +116,11 @@ export async function logIn(providerName) {
 			const params = { provider: providerName };
 			user = await Moralis.Web3.authenticate(params);
 			const web3 = await Moralis.Web3.activeWeb3Provider.activate();
-			currProvider = await web3.currentProvider;
+			unauthProvider = await web3.currentProvider;
 			authProvider = authenticateProvider();
+			if (!isChainCorrect()) {
+				await askToSwitchChain();
+			}
 		} catch (error) {
 			console.log(error);
 			// Most likely user canceled signature.
@@ -77,8 +132,10 @@ export async function logIn(providerName) {
 	return user;
 }
 
+/**
+ * Logout from Moralis, clear the authProvider wrapper and notify all listeners.
+ */
 export async function logOut() {
-	const $doc = $(document);
 	const props = ['Logging out', 'Good bye...'];
 	$doc.ready(() => $doc.trigger('fullScreenLoader:show', props));
 	await Moralis.User.logOut();
@@ -93,7 +150,6 @@ export async function logOut() {
  */
 export async function askToSwitchChain() {
 	console.log('Will ask to switch network!');
-	const $doc = $(document);
 	const props = ['Waiting', 'Please confirm network switch with your wallet.'];
 	$doc.ready(() => $doc.trigger('fullScreenLoader:show', props));
 
@@ -132,9 +188,14 @@ export function isChainCorrect() {
 	return id === CHAIN_ID_HEX || id === CHAIN_ID_DEC;
 }
 
+/**
+ * Allows to link an account to an existing Moralis user.
+ * Updates the authProvider as well.
+ * If user cancels linking, we just logout.
+ * @param {*} account new account to be linked.
+ */
 export async function linkAccount(account) {
 	console.log('Linking account: ', account);
-	const $doc = $(document);
 	const props = ['Waiting', 'Please confirm account linking with your wallet.'];
 	$doc.ready(() => $doc.trigger('fullScreenLoader:show', props));
 	try {
@@ -148,13 +209,20 @@ export async function linkAccount(account) {
 	$doc.ready(() => $doc.trigger('fullScreenLoader:hide'));
 }
 
+/**
+ * This will let us know that chainChange has been called previously and initiate
+ * automatic re-authorization.
+ */
+function reloadForChainChange() {
+	window.localStorage.setItem('chainChange', true);
+	window.location.reload();
+}
+
 /* -------------------------------- Listeners ------------------------------- */
 
 Moralis.Web3.onAccountsChanged(async (accounts) => {
 	const user = currUser();
 	if (user) {
-		// window.location.reload();
-		const $doc = $(document);
 		const acc = accounts[0];
 		const isLinked = user.attributes.accounts.some((i) => i === acc);
 		console.log(acc, user.attributes.accounts, isLinked);
@@ -174,5 +242,8 @@ Moralis.Web3.onAccountsChanged(async (accounts) => {
 });
 
 Moralis.Web3.onChainChanged(async () => {
-	window.location.reload();
+	// If in focus reload and re-login, if not then wait until in focus.
+	document.hasFocus()
+		? reloadForChainChange()
+		: $(window).focus(() => reloadForChainChange());
 });
