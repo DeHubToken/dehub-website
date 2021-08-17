@@ -30,7 +30,7 @@ let unauthProvider;
 // Will store web3 blockchain client provider as above, but wrapped for use with
 // ethers.js once authenticated by Moralis. Use this provider for interactions
 // with contracts.
-export let authProvider = authenticateProvider();
+export let authProvider;
 
 /* --------------------------------- Methods -------------------------------- */
 
@@ -72,6 +72,14 @@ function authenticateProvider() {
  */
 export async function initAuth() {
 	if (isAuthInit) return;
+	try {
+		await Moralis.Web3.enable();
+		const web3 = await Moralis.Web3.activeWeb3Provider.activate();
+		unauthProvider = await web3.currentProvider;
+		authProvider = authenticateProvider();
+	} catch (error) {
+		console.log(error);
+	}
 	// Check if we haven't just reloaded the window for chain change.
 	if (window.localStorage.getItem('chainChange')) {
 		// If so, then clean up and login.
