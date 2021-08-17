@@ -5,16 +5,19 @@
 import * as ethers from '/custom/libs/ethers/ethers-5.1.esm.min.js';
 
 // Mainnet
-// const CHAIN_ID = '0x38'; // mainnet
+const CHAIN_ID_HEX = '0x38';
+const CHAIN_ID_DEC = 56;
+const RPC_URL =
+	'https://speedy-nodes-nyc.moralis.io/6b2569937eb2e5cb5996d2dc/bsc/mainnet';
 // Testnet
-const CHAIN_ID_HEX = '0x61';
-const CHAIN_ID_DEC = 97;
-const RPC_URL = 'https://data-seed-prebsc-2-s3.binance.org:8545/';
+// const CHAIN_ID_HEX = '0x61';
+// const CHAIN_ID_DEC = 97;
+// const RPC_URL = 'https://data-seed-prebsc-2-s3.binance.org:8545/';
 
 /* ---------------------------------- Init ---------------------------------- */
 
-Moralis.initialize('V0nRrGNuSWyuthhvcLDT3l6RSK4IfuIzX0uadjL6');
-Moralis.serverURL = 'https://hjsc4v566bn3.usemoralis.com:2053/server';
+Moralis.initialize('QfgYJskOXrYJnSAiB3KZPMMesmlJB6JBqY3GOzHV');
+Moralis.serverURL = 'https://vamoxwojj7ht.moralisweb3.com:2053/server';
 Moralis.Web3.getSigningData = () =>
 	'Welcome to DeHub! To proceed securely please sign this connection.';
 
