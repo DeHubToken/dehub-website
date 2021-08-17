@@ -1,0 +1,161 @@
+import * as ethers from '/custom/libs/ethers/ethers-5.1.esm.min.js';
+import { currUser } from '../controllers/auth.js';
+
+const abiCon = [
+	'function balanceOf(address account) public view returns(uint256)',
+	'function approve(address spender, uint256 amount) external returns (bool)',
+];
+
+const abiSwap = [
+	'function isEnabled() public view returns(bool)',
+	'function swap(uint amount) external',
+];
+
+const abiPub = [
+	'function balanceOf(address account) public view returns(uint256)',
+];
+
+// TESTNET
+const CONVERTIBLE_CONTRACT_ADDR = '0x3b1fba25801271ada626643084fac6dcffabc680';
+const SWAP_CONTRACT_ADDR = '0x976d01469Ee9870717410ECD7B0E9e8620dA94B4';
+const PUBLIC_CONTRACT_ADDR = '0x7231f507a8878D684b9cDcb7550C0246977E0C55';
+
+// Must wrap everything in async because of Safari...
+(async () => {
+	const $doc = $(document);
+
+	let isSwapping = false;
+	let isApproving = false;
+	let signer, signerAddr, dhbCon, dhbSwap, dhbPub;
+	let isEnabled, balanceCon, balancePub;
+
+	/* ----------------------------- Event listeners ---------------------------- */
+	$doc.on('logged:in', async (_, user, authProvider) => {
+		console.log('[DAPP-SWAP][EVENT]: logged:in');
+		await initDapp(authProvider);
+	});
+
+	$doc.on('logged:out', async () => {
+		console.log('[DAPP-SWAP][EVENT]: logged:out');
+		updateSwapButton();
+		await showConnectWallet();
+	});
+
+	$doc.on('chain:mismatch', async () => {
+		console.log('[DAPP-SWAP][EVENT]: chain:mismatch');
+		updateSwapButton();
+		await showConnectWallet();
+	});
+
+	async function initDapp(authProvider) {
+		signer = authProvider.getSigner();
+		signerAddr = await signer.getAddress();
+		dhbCon = new ethers.Contract(CONVERTIBLE_CONTRACT_ADDR, abiCon, signer);
+		dhbSwap = new ethers.Contract(SWAP_CONTRACT_ADDR, abiSwap, signer);
+		dhbPub = new ethers.Contract(CONVERTIBLE_CONTRACT_ADDR, abiPub, signer);
+		await updateView();
+		updateSwapButton();
+		$('#swap-btn')
+			.off()
+			.on('click', () => claim());
+	}
+
+	async function updateData() {
+		isEnabled = await dhbSwap.isEnabled();
+		// hasClaimed = await dhb.hasAlreadyClaimed(signerAddr);
+		// cycleHours = ethers.utils.formatUnits(await dhb.claimCycleHours(), 0);
+		balanceCon = ethers.utils.formatUnits(
+			await dhbCon.balanceOf(signerAddr),
+			5
+		);
+		balancePub = ethers.utils.formatUnits(
+			await dhbPub.balanceOf(signerAddr),
+			5
+		);
+		// totalClaimable = ethers.utils.formatEther(
+		// 	await dhb.claimableDistribution()
+		// );
+		// claimableShare = ethers.utils.formatEther(
+		// 	await dhb.calcClaimableShare(signerAddr)
+		// );
+		// totalClaimed = ethers.utils.formatEther(await dhb.totalClaimed());
+		console.log(isEnabled);
+		// console.log(hasClaimed);
+		// console.log(cycleHours);
+		console.log(balanceCon);
+		console.log(balancePub);
+		// console.log(totalClaimable);
+		// console.log(claimableShare);
+		// console.log(totalClaimed);
+	}
+
+	/* ----------------------------------- UI ----------------------------------- */
+
+	async function updateView() {
+		if (currUser()) {
+			console.log('User exists.');
+			await showDapp();
+			await showLoading();
+			await updateData();
+			$('.current-balance-con').text(balanceCon);
+			$('.current-balance-pub').text(balancePub);
+			// Handle exceptions
+			if (!isEnabled) {
+				await showDisabledMessage();
+			} else {
+				await showInterface();
+			}
+		} else {
+			console.log('User does not exist.');
+			await showConnectWallet();
+		}
+	}
+
+	async function showDapp() {
+		await $('#interface, #disabled-msg').fadeOut('fast').promise();
+		await $('#dapp-connect-wallet-container').fadeOut('slow').promise();
+		await $('#airdrop-swap-dapp').fadeIn('slow').promise();
+	}
+
+	async function showConnectWallet() {
+		await $('#airdrop-swap-dapp').fadeOut('slow').promise();
+		await $('#dapp-connect-wallet-container').fadeIn('slow').promise();
+	}
+
+	async function showLoading(title, subtitle) {
+		const defaultTitle = 'Syncing with $DeHub Contract';
+		const defaultSubtitle = 'Please give it a second.';
+		$('.loader-title').text(title || defaultTitle);
+		$('.loader-subtitle').text(subtitle || defaultSubtitle);
+		await $('#swap-btn').fadeTo('slow', 0).promise();
+		await $('#interface, #disabled-msg').fadeOut('slow').promise();
+		await $('#loading-msg').fadeIn('slow').promise();
+	}
+
+	async function showInterface() {
+		await $('#swap-btn').fadeTo('slow', 1).promise();
+		await $('#loading-msg, #disabled-msg').fadeOut('fast').promise();
+		await $('#interface').fadeIn('slow').promise();
+	}
+
+	async function showDisabledMessage() {
+		await $('#swap-btn').fadeTo('slow', 0).promise();
+		await $('#loading-msg, #interface').fadeOut('slow').promise();
+		await $('#disabled-msg').fadeIn('slow').promise();
+	}
+
+	function canSwap() {
+		const can = currUser() && isEnabled && balanceCon !== '0.0';
+		console.log('Can claim:', can);
+		return can;
+	}
+
+	function updateSwapButton() {
+		const $swapBtn = $('#swap-btn');
+		if (canSwap()) {
+			$swapBtn.removeClass('disabled').removeAttr('style');
+		} else {
+			$swapBtn.addClass('disabled').removeAttr('style');
+		}
+	}
+})();
