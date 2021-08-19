@@ -255,3 +255,12 @@ Moralis.Web3.onChainChanged(async () => {
 		? reloadForChainChange()
 		: $(window).focus(() => reloadForChainChange());
 });
+
+// Hack to avoid trustwallet redirecting to a open in app website...
+// Ref: https://github.com/WalletConnect/walletconnect-monorepo/issues/552
+// Ref:
+$doc.on('visibilitychange', () => {
+	if (document.visibilityState === 'hidden') {
+		window.localStorage.removeItem('WALLETCONNECT_DEEPLINK_CHOICE');
+	}
+});
