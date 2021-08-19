@@ -56,7 +56,7 @@ const PUBLIC_CONTRACT_ADDR = '0x7231f507a8878D684b9cDcb7550C0246977E0C55';
 		signerAddr = await signer.getAddress();
 		dhbCon = new ethers.Contract(CONVERTIBLE_CONTRACT_ADDR, abiCon, signer);
 		dhbSwap = new ethers.Contract(SWAP_CONTRACT_ADDR, abiSwap, signer);
-		dhbPub = new ethers.Contract(CONVERTIBLE_CONTRACT_ADDR, abiPub, signer);
+		dhbPub = new ethers.Contract(PUBLIC_CONTRACT_ADDR, abiPub, signer);
 		await updateView();
 		updateSwapButton();
 		$('#swap-btn')
