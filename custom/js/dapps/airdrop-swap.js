@@ -4,6 +4,7 @@ import { currUser } from '../controllers/auth.js';
 const abiCon = [
 	'function balanceOf(address account) public view returns(uint256)',
 	'function approve(address spender, uint256 amount) external returns (bool)',
+	'function allowance(address, address) public view returns(uint256)',
 ];
 
 const abiSwap = [
@@ -27,11 +28,12 @@ const PUBLIC_CONTRACT_ADDR = '0x7231f507a8878D684b9cDcb7550C0246977E0C55';
 // Must wrap everything in async because of Safari...
 (async () => {
 	const $doc = $(document);
+	const $actionBtn = $('#action-btn');
 
 	let isSwapping = false;
 	let isApproving = false;
 	let signer, signerAddr, dhbCon, dhbSwap, dhbPub;
-	let isEnabled, balanceCon, balancePub;
+	let isEnabled, balanceCon, balancePub, allowanceCon;
 
 	/* ----------------------------- Event listeners ---------------------------- */
 	$doc.on('logged:in', async (_, user, authProvider) => {
@@ -41,27 +43,27 @@ const PUBLIC_CONTRACT_ADDR = '0x7231f507a8878D684b9cDcb7550C0246977E0C55';
 
 	$doc.on('logged:out', async () => {
 		console.log('[DAPP-SWAP][EVENT]: logged:out');
-		updateSwapButton();
+		updateActionButton();
 		await showConnectWallet();
 	});
 
 	$doc.on('chain:mismatch', async () => {
 		console.log('[DAPP-SWAP][EVENT]: chain:mismatch');
-		updateSwapButton();
+		updateActionButton();
 		await showConnectWallet();
 	});
 
 	async function initDapp(authProvider) {
 		signer = authProvider.getSigner();
 		signerAddr = await signer.getAddress();
+		// Contracts
 		dhbCon = new ethers.Contract(CONVERTIBLE_CONTRACT_ADDR, abiCon, signer);
 		dhbSwap = new ethers.Contract(SWAP_CONTRACT_ADDR, abiSwap, signer);
 		dhbPub = new ethers.Contract(PUBLIC_CONTRACT_ADDR, abiPub, signer);
+		// Render
 		await updateView();
-		updateSwapButton();
-		$('#swap-btn')
-			.off()
-			.on('click', () => claim());
+		updateActionButton();
+		$actionBtn.off().on('click', () => claim());
 	}
 
 	async function updateData() {
@@ -74,6 +76,10 @@ const PUBLIC_CONTRACT_ADDR = '0x7231f507a8878D684b9cDcb7550C0246977E0C55';
 		);
 		balancePub = ethers.utils.formatUnits(
 			await dhbPub.balanceOf(signerAddr),
+			5
+		);
+		allowanceCon = ethers.utils.formatUnits(
+			await dhbCon.allowance(signerAddr, dhbSwap.address),
 			5
 		);
 		// totalClaimable = ethers.utils.formatEther(
@@ -131,35 +137,45 @@ const PUBLIC_CONTRACT_ADDR = '0x7231f507a8878D684b9cDcb7550C0246977E0C55';
 		const defaultSubtitle = 'Please give it a second.';
 		$('.loader-title').text(title || defaultTitle);
 		$('.loader-subtitle').text(subtitle || defaultSubtitle);
-		await $('#swap-btn').fadeTo('slow', 0).promise();
+		await $actionBtn.fadeTo('slow', 0).promise();
 		await $('#interface, #disabled-msg').fadeOut('slow').promise();
 		await $('#loading-msg').fadeIn('slow').promise();
 	}
 
 	async function showInterface() {
-		await $('#swap-btn').fadeTo('slow', 1).promise();
+		await $actionBtn.fadeTo('slow', 1).promise();
 		await $('#loading-msg, #disabled-msg').fadeOut('fast').promise();
 		await $('#interface').fadeIn('slow').promise();
 	}
 
 	async function showDisabledMessage() {
-		await $('#swap-btn').fadeTo('slow', 0).promise();
+		await $actionBtn.fadeTo('slow', 0).promise();
 		await $('#loading-msg, #interface').fadeOut('slow').promise();
 		await $('#disabled-msg').fadeIn('slow').promise();
 	}
 
-	function canSwap() {
+	function canApprove() {
 		const can = currUser() && isEnabled && balanceCon !== '0.0';
-		console.log('Can claim:', can);
+		console.log('Can approve:', can);
 		return can;
 	}
 
-	function updateSwapButton() {
-		const $swapBtn = $('#swap-btn');
+	async function canSwap() {
+		// Only if approved
+		const can =
+			currUser() && isEnabled && balanceCon !== '0.0' && allowanceCon !== '0.0';
+		console.log('Can swap:', can);
+		return can;
+	}
+
+	function updateActionButton() {
 		if (canSwap()) {
-			$swapBtn.removeClass('disabled').removeAttr('style');
-		} else {
-			$swapBtn.addClass('disabled').removeAttr('style');
+			$actionBtn.find('.nonEmpty').text('Swap');
+
+			// $swapBtn.removeClass('disabled').removeAttr('style');
+		} else if (canApprove()) {
+			$actionBtn.find('.nonEmpty').text('Approve');
+			// $swapBtn.addClass('disabled').removeAttr('style');
 		}
 	}
 })();
