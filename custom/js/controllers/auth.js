@@ -115,7 +115,10 @@ export async function logIn(providerName) {
 		const props = ['Waiting', 'Please confirm with your wallet.'];
 		$doc.ready(() => $doc.trigger('fullScreenLoader:show', props));
 		try {
-			const params = { provider: providerName };
+			const params = {
+				provider: providerName,
+				chainId: constants.CHAIN_ID_DEC,
+			};
 			user = await Moralis.Web3.authenticate(params);
 			const web3 = await Moralis.Web3.activeWeb3Provider.activate();
 			unauthProvider = await web3.currentProvider;
