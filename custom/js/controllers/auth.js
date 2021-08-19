@@ -228,7 +228,6 @@ function reloadForChainChange() {
 /* -------------------------------- Listeners ------------------------------- */
 
 Moralis.Web3.onAccountsChanged(async (accounts) => {
-	console.log('@@@@@@@@@@@@@@@');
 	const user = currUser();
 	if (user) {
 		const acc = accounts[0];
