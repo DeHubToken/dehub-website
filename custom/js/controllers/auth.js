@@ -7,8 +7,8 @@ import { constants } from '../constants.js';
 
 /* ---------------------------------- Init ---------------------------------- */
 
-Moralis.initialize('QfgYJskOXrYJnSAiB3KZPMMesmlJB6JBqY3GOzHV');
-Moralis.serverURL = 'https://vamoxwojj7ht.moralisweb3.com:2053/server';
+Moralis.initialize(constants.MORALIS_ID);
+Moralis.serverURL = constants.MORALIS_SERVER;
 Moralis.Web3.getSigningData = () =>
 	'Welcome to DeHub! To proceed securely please sign this connection.';
 
