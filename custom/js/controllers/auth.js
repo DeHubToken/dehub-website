@@ -63,19 +63,24 @@ function authenticateProvider() {
  */
 export async function initAuth() {
 	if (isAuthInit) return;
-	try {
-		await Moralis.Web3.enable();
-		const web3 = await Moralis.Web3.activeWeb3Provider.activate();
-		unauthProvider = await web3.currentProvider;
-		authProvider = authenticateProvider();
-	} catch (error) {
-		console.log(error);
-	}
-	// Check if we haven't just reloaded the window for chain change.
-	if (window.localStorage.getItem('chainChange')) {
-		// If so, then clean up and login.
-		window.localStorage.removeItem('chainChange');
-		await logIn();
+	if (Moralis.User.current()) {
+		console.log('User exists. Authenticate provider.');
+		try {
+			await Moralis.Web3.enable();
+			const web3 = await Moralis.Web3.activeWeb3Provider.activate();
+			unauthProvider = await web3.currentProvider;
+			authProvider = authenticateProvider();
+		} catch (error) {
+			console.log(error);
+		}
+		// Check if we haven't just reloaded the window for chain change.
+		if (window.localStorage.getItem('chainChange')) {
+			// If so, then clean up and login.
+			window.localStorage.removeItem('chainChange');
+			await logIn();
+		}
+	} else {
+		console.log('User does not exist. Pass...');
 	}
 	isAuthInit = true;
 }
