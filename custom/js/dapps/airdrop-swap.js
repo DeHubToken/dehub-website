@@ -129,11 +129,13 @@ const PUBLIC_CONTRACT_ADDR = '0x7231f507a8878D684b9cDcb7550C0246977E0C55';
 	}
 
 	async function showInterface() {
-		await $('#loading-msg, #disabled-msg').fadeOut('fast').promise();
-		await $('#interface').fadeIn('slow').promise();
 		if (didSwap()) {
 			await $swapSuccessMsg.fadeTo('fast', 1).promise();
+		} else {
+			await $swapSuccessMsg.fadeTo('fast', 0).promise();
 		}
+		await $('#loading-msg, #disabled-msg').fadeOut('fast').promise();
+		await $('#interface').fadeIn('slow').promise();
 	}
 
 	async function showDisabledMessage() {
