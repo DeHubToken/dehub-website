@@ -159,7 +159,7 @@ const PUBLIC_CONTRACT_ADDR = '0x7231f507a8878D684b9cDcb7550C0246977E0C55';
 		return can;
 	}
 
-	async function canSwap() {
+	function canSwap() {
 		// Only if approved
 		const can =
 			currUser() && isEnabled && balanceCon !== '0.0' && allowanceCon !== '0.0';
@@ -168,7 +168,7 @@ const PUBLIC_CONTRACT_ADDR = '0x7231f507a8878D684b9cDcb7550C0246977E0C55';
 	}
 
 	async function updateActionButton() {
-		if (await canSwap()) {
+		if (canSwap()) {
 			$actionBtn.find('.nonEmpty').text('Swap');
 			await $actionBtn.fadeTo('slow', 1).promise();
 			$actionBtn.removeClass('disabled').removeAttr('style');
