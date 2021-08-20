@@ -29,6 +29,7 @@ const PUBLIC_CONTRACT_ADDR = '0x7231f507a8878D684b9cDcb7550C0246977E0C55';
 (async () => {
 	const $doc = $(document);
 	const $actionBtn = $('#action-btn');
+	$actionBtn.fadeTo(0, 0);
 
 	let isSwapping = false;
 	let isApproving = false;
@@ -43,13 +44,13 @@ const PUBLIC_CONTRACT_ADDR = '0x7231f507a8878D684b9cDcb7550C0246977E0C55';
 
 	$doc.on('logged:out', async () => {
 		console.log('[DAPP-SWAP][EVENT]: logged:out');
-		updateActionButton();
+		await updateActionButton();
 		await showConnectWallet();
 	});
 
 	$doc.on('chain:mismatch', async () => {
 		console.log('[DAPP-SWAP][EVENT]: chain:mismatch');
-		updateActionButton();
+		await updateActionButton();
 		await showConnectWallet();
 	});
 
@@ -62,8 +63,7 @@ const PUBLIC_CONTRACT_ADDR = '0x7231f507a8878D684b9cDcb7550C0246977E0C55';
 		dhbPub = new ethers.Contract(PUBLIC_CONTRACT_ADDR, abiPub, signer);
 		// Render
 		await updateView();
-		updateActionButton();
-		$actionBtn.off().on('click', () => claim());
+		await updateActionButton();
 	}
 
 	async function updateData() {
@@ -143,7 +143,6 @@ const PUBLIC_CONTRACT_ADDR = '0x7231f507a8878D684b9cDcb7550C0246977E0C55';
 	}
 
 	async function showInterface() {
-		await $actionBtn.fadeTo('slow', 1).promise();
 		await $('#loading-msg, #disabled-msg').fadeOut('fast').promise();
 		await $('#interface').fadeIn('slow').promise();
 	}
@@ -168,14 +167,22 @@ const PUBLIC_CONTRACT_ADDR = '0x7231f507a8878D684b9cDcb7550C0246977E0C55';
 		return can;
 	}
 
-	function updateActionButton() {
-		if (canSwap()) {
+	async function updateActionButton() {
+		if (await canSwap()) {
 			$actionBtn.find('.nonEmpty').text('Swap');
-
-			// $swapBtn.removeClass('disabled').removeAttr('style');
+			await $actionBtn.fadeTo('slow', 1).promise();
+			$actionBtn.removeClass('disabled').removeAttr('style');
+			$actionBtn.off().on('click', () => swap());
 		} else if (canApprove()) {
-			$actionBtn.find('.nonEmpty').text('Approve');
-			// $swapBtn.addClass('disabled').removeAttr('style');
+			$actionBtn.find('.nonEmpty').text('Approve Swap');
+			await $actionBtn.fadeTo('slow', 1).promise();
+			$actionBtn.removeClass('disabled').removeAttr('style');
+			$actionBtn.off().on('click', () => approve());
+		} else {
+			await $actionBtn.fadeTo('slow', 0).promise();
+			$actionBtn.find('.nonEmpty').text('...');
+			$swapBtn.addClass('disabled').removeAttr('style');
+			$actionBtn.off();
 		}
 	}
 })();
