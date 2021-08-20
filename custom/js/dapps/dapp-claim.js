@@ -13,7 +13,8 @@ const abi = [
 	'function claimReward() external returns(uint256)',
 ];
 
-const CONTRACT_ADDR = '0x6F2aabE11E78c6cd642689bC5896F1e4d84096aA';
+// const CONTRACT_ADDR = '0x6F2aabE11E78c6cd642689bC5896F1e4d84096aA';
+const CONTRACT_ADDR = '0x66a7dCCb7F293f4D9bEC1918079282D497210e8f';
 
 // Must wrap everything in async because of Safari...
 (async () => {

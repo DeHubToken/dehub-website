@@ -3,11 +3,11 @@
 
 	<head>
 		<meta charset="utf-8">
-		<title>DeHub - Claim BNB Rewards</title>
+		<title>DeHub - Swap Airdrop</title>
 		<meta name="title"
-			content="DeHub - Claim BNB Rewards">
+			content="DeHub - Swap Airdrop">
 		<meta name="description"
-			content="Claim your BNB rewards here if you hold any $DeHub tokens.">
+			content="Swap your $DeHub airdrop tokens into public $DeHub tokens.">
 		<meta name="keywords"
 			content="crypto, blockchain, bsc, binance, binance smart chain, entertainment, gaming, games, video, streaming, VR, virtual reality, original series, tokens, hub, dehub, invest, metamask, gambling, casino, chess, cards, lottery, reward, BNB">
 		<meta name="robots"
@@ -25,9 +25,9 @@
 		<meta property="og:url"
 			content="https://dehub.net/">
 		<meta property="og:title"
-			content="DeHub - Claim BNB Rewards">
+			content="DeHub - Swap Airdrop">
 		<meta property="og:description"
-			content="Claim your BNB rewards here if you hold any $DeHub tokens.">
+			content="Swap your $DeHub airdrop tokens into public $DeHub tokens.">
 		<meta property="og:image"
 			content="https://dehub.net/uploads/meta-cover.jpg">
 
@@ -37,9 +37,9 @@
 		<meta property="twitter:url"
 			content="https://dehub.net/">
 		<meta property="twitter:title"
-			content="DeHub - Claim BNB Rewards">
+			content="DeHub - Swap Airdrop">
 		<meta property="twitter:description"
-			content="Claim your BNB rewards here if you hold any $DeHub tokens.">
+			content="Swap your $DeHub airdrop tokens into public $DeHub tokens.">
 		<meta property="twitter:image"
 			content="https://dehub.net/uploads/meta-cover.jpg">
 
@@ -310,8 +310,32 @@
 			</nav>
 		</header>
 
+		<section>
+			<div class="row pb-60 border-bottom border-translucent-1 px-5 text-left justify-content-center">
+				<div class="col-lg-7 col-xl-5">
+					<div class="px-20 pt-20 pb-30 radius10 mb-30 block bg-gradient-3"
+						data-aos="fade-up"
+						data-aos-delay="1000">
+						<div class="mb-20 f-22">
+							<i class="fad fa-info-circle align-middle f-40 action-2 mt-10"></i>
+							<span class="t-6">&nbsp; Instructions</span>
+						</div>
+						<div class="op-7 color-main pl-10">
+							Welcome, this will be a two simple step process. Before you can swap your airdropped $DeHub tokens, first you have to approve
+							the transaction by clicking on the button bellow. Make sure you are connected with the wallet containing your
+							airdropped $DeHub tokens first. <br><br>
+							Once you approve the transaction(give it a minute), you should be able to swap your airdropped $DeHub tokens. <br>
+							Click on the 'Swap' button bellow and confirm the transaction as usual. <br><br>
+							Once the transaction completes, add the official public $DeHub token address to your wallet:
+							<span class="text-monospace bold f-12">0xEbfFff1Ce706B4c2bA62192136BAC67cDAD251F6</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
 		<!-- Feature 24 -->
-		<section class="pt-100 pb-105 feature_24"
+		<section class="pb-105 feature_24"
 			data-bg-src="false"
 			data-bg-src-2x="false">
 			<div class="container px-xl-0">
@@ -322,17 +346,17 @@
 							data-aos-delay="1000">
 							<div class="card-header pt-20">
 								<h5>
-									Claim BNB Reward
+									Swap Airdrop Tokens
 								</h5>
 							</div>
-							<div class="card-body text-center pl-0 pr-0 pt-50 h-500">
+							<div class="card-body text-center pl-0 pr-0 pt-50 h-300">
 								<!-- ---------------------- Connect with wallet start ---------------------- -->
 								<div id="dapp-connect-wallet-container">
 									<div class="fa-3x pb-30">
 										<i class="fad fa-link"></i>
 									</div>
 									<h5>Connect to Blockchain</h5>
-									<span>You have to connect with your wallet before claiming rewards.</span>
+									<span>You have to connect with your wallet before you can swap.</span>
 									<div class="d-block mt-30">
 										<a href="#"
 											class="connect-wallet btn glass-1 shadow mb-10 text-left">
@@ -361,7 +385,7 @@
 									</div>
 								</div>
 								<!-- ----------------------- Connect with wallet end ----------------------- -->
-								<div id="claim-dapp"
+								<div id="airdrop-swap-dapp"
 									style="display: none;">
 									<!-- ------------------------------- Loader -------------------------------- -->
 									<div id="loading-msg"
@@ -372,96 +396,70 @@
 										<h5 class="loader-title">Loading...</h5>
 										<span class='loader-subtitle'>Loading...</span>
 									</div>
-									<!-- ---------------------------- Claimed wall ----------------------------- -->
-									<div id="claimed-msg"
-										class="px-20">
-										<div class="fa-3x pb-30">
-											<i class="fad fa-calendar-check"></i>
-										</div>
-										<h5>You have already claimed your share for this cycle.</h5>
-										<span>Please come back later, to claim again.</span>
-									</div>
 									<!-- ---------------------------- Disabled wall ---------------------------- -->
 									<div id="disabled-msg"
 										class="px-20">
 										<div class="fa-3x pb-30">
 											<i class="fad fa-snooze"></i>
 										</div>
-										<h5>Reward distribution has been disabled for now.</h5>
+										<h5>Airdrop swapping has been disabled for now.</h5>
 										<span>Please come back later, or get more information in our <a href="https://t.me/Dehubofficial"
 												class="link">Telegram group <i class="fal fa-external-link"></i></a></span>
 									</div>
 									<!-- --------------------------- dApp interface ---------------------------- -->
 									<div id="interface"
 										class="px-15">
-
-										<div class="container pb-50">
-											<div class="fa-3x pb-30">
-												<i class="fad fa-gift"></i>
-											</div>
-											<h5>Total BNB Claimed by Holders</h5>
-											<span class="total-claimed bold text-monospace">...</span>
-										</div>
-
 										<div class="row pb-10 border-bottom border-translucent-1 px-5 text-left">
 											<div class="col-sm-6 bold">
-												Your $DeHub balance:
+												Your airdrop balance:
 												<button class="color-main bg-transparent"
 													data-toggle="popover"
 													data-placement="top"
-													data-content="The more $DeHub tokens you hold in your wallet the bigger BNB share will be allocated for you each cycle.">
+													data-content="This is your current balance of the convertible $DeHub tokens. You will receive an equal amount of the Public $DeHub tokens.">
 													<i class="fad fa-info-circle"></i>
 												</button>
 											</div>
 											<div class="col-sm-6 text-sm-right pt-5 pt-xl-0 rounded-pill">
-												<span class="current-balance text-monospace">...</span>
+												<span class="current-balance-con text-monospace">...</span>
 											</div>
 										</div>
-
-										<div class="row pt-10 pb-10 border-bottom border-translucent-1 px-5 text-left">
+										<div class="row pb-10 border-bottom border-translucent-1 px-5 text-left">
 											<div class="col-sm-6 bold">
-												Total BNB reward pool:
+												Your new balance:
 												<button class="color-main bg-transparent"
 													data-toggle="popover"
 													data-placement="top"
-													data-content="Each cycle we take all the BNB accumulated from the transaction fees and unlock it for all holders to claim their fair share.">
+													data-content="This is your current balance of the new public $DeHub tokens.">
 													<i class="fad fa-info-circle"></i>
 												</button>
 											</div>
-											<div class="col-sm-6 text-sm-right pt-5 pt-xl-0">
-												<span class="total-claimable text-monospace">...</span>
+											<div class="col-sm-6 text-sm-right pt-5 pt-xl-0 rounded-pill">
+												<span class="current-balance-pub text-monospace bold">...</span>
 											</div>
 										</div>
-
-										<div class="row pt-10 px-5 text-left">
-											<div class="col-sm-6 bold">
-												Your BNB reward:
-												<button class="color-main bg-transparent"
-													data-toggle="popover"
-													data-placement="top"
-													data-content="The amount of the BNB you can claim during this cycle. You can claim only once per cycle, and each cycle we re-calculate the reward based on the $DeHub held in your wallet and the BNB pool accumulated from the fees.">
-													<i class="fad fa-info-circle"></i>
-												</button>
-											</div>
-											<div class="col-sm-6 text-sm-right pt-5 pt-xl-0">
-												<span class="claimable-share text-monospace">...</span>
+										<div id="swapSuccessMessage"
+											class="row pb-20 pt-20 border-bottom border-translucent-1 px-5 text-left">
+											<div class="col text-center">
+												<i class="fad fa-badge-check"></i>
+												&nbsp;Congrats! <br>
+												You have your public $DeHub tokens already.
 											</div>
 										</div>
 									</div>
 								</div>
 							</div>
 							<div class="card-footer text-right">
-								<button id="claim-btn"
-									class="tip-button btn shadow disabled">
-									<span class="tip-button__text">Claim</span>
-									<div class="coin-wrapper">
-										<div class="coin">
-											<div class="coin__middle"></div>
-											<div class="coin__back"></div>
-											<div class="coin__front"></div>
-										</div>
-									</div>
-								</button>
+								<a id="action-btn"
+									href="#"
+									class="btn glass-2 shadow mb-10 text-left disabled hide">
+									<span></span>
+									<span></span>
+									<span></span>
+									<span></span>
+									<span class="nonEmpty">
+										...
+									</span>
+								</a>
 							</div>
 						</div>
 					</div>
@@ -752,7 +750,7 @@
 			src="custom/js/views/wallet-button.js"></script>
 		<script async
 			type="module"
-			src="custom/js/dapps/dapp-claim.js"></script>
+			src="custom/js/dapps/airdrop-swap.js"></script>
 		<!-- ----------------------- Blockchain gateway end ------------------------ -->
 		<script type="module"
 			src="custom/js/views/particles.js"></script>
