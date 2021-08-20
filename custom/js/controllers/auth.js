@@ -3,21 +3,12 @@
  */
 
 import * as ethers from '/custom/libs/ethers/ethers-5.1.esm.min.js';
-
-// Mainnet
-const CHAIN_ID_HEX = '0x38';
-const CHAIN_ID_DEC = 56;
-const RPC_URL =
-	'https://speedy-nodes-nyc.moralis.io/6b2569937eb2e5cb5996d2dc/bsc/mainnet';
-// Testnet
-// const CHAIN_ID_HEX = '0x61';
-// const CHAIN_ID_DEC = 97;
-// const RPC_URL = 'https://data-seed-prebsc-2-s3.binance.org:8545/';
+import { constants } from '../constants.js';
 
 /* ---------------------------------- Init ---------------------------------- */
 
-Moralis.initialize('QfgYJskOXrYJnSAiB3KZPMMesmlJB6JBqY3GOzHV');
-Moralis.serverURL = 'https://vamoxwojj7ht.moralisweb3.com:2053/server';
+Moralis.initialize(constants.MORALIS_ID);
+Moralis.serverURL = constants.MORALIS_SERVER;
 Moralis.Web3.getSigningData = () =>
 	'Welcome to DeHub! To proceed securely please sign this connection.';
 
@@ -47,7 +38,7 @@ function authenticateProvider() {
 	if (user) {
 		const authProvider = new ethers.providers.Web3Provider(unauthProvider);
 		const id = authProvider.provider.chainId;
-		if (id !== CHAIN_ID_DEC && id !== CHAIN_ID_HEX) {
+		if (id !== constants.CHAIN_ID_DEC && id !== constants.CHAIN_ID_HEX) {
 			console.log('Unsupported chain!');
 			// User is loggedin, but wrong chain on users wallet. Handle this.
 			$doc.ready(() => $doc.trigger('chain:mismatch'));
@@ -72,19 +63,24 @@ function authenticateProvider() {
  */
 export async function initAuth() {
 	if (isAuthInit) return;
-	try {
-		await Moralis.Web3.enable();
-		const web3 = await Moralis.Web3.activeWeb3Provider.activate();
-		unauthProvider = await web3.currentProvider;
-		authProvider = authenticateProvider();
-	} catch (error) {
-		console.log(error);
-	}
-	// Check if we haven't just reloaded the window for chain change.
-	if (window.localStorage.getItem('chainChange')) {
-		// If so, then clean up and login.
-		window.localStorage.removeItem('chainChange');
-		await logIn();
+	if (Moralis.User.current()) {
+		console.log('User exists. Authenticate provider.');
+		try {
+			await Moralis.Web3.enable();
+			const web3 = await Moralis.Web3.activeWeb3Provider.activate();
+			unauthProvider = await web3.currentProvider;
+			authProvider = authenticateProvider();
+		} catch (error) {
+			console.log(error);
+		}
+		// Check if we haven't just reloaded the window for chain change.
+		if (window.localStorage.getItem('chainChange')) {
+			// If so, then clean up and login.
+			window.localStorage.removeItem('chainChange');
+			await logIn();
+		}
+	} else {
+		console.log('User does not exist. Pass...');
 	}
 	isAuthInit = true;
 }
@@ -124,7 +120,10 @@ export async function logIn(providerName) {
 		const props = ['Waiting', 'Please confirm with your wallet.'];
 		$doc.ready(() => $doc.trigger('fullScreenLoader:show', props));
 		try {
-			const params = { provider: providerName };
+			const params = {
+				provider: providerName,
+				chainId: constants.CHAIN_ID_DEC,
+			};
 			user = await Moralis.Web3.authenticate(params);
 			const web3 = await Moralis.Web3.activeWeb3Provider.activate();
 			unauthProvider = await web3.currentProvider;
@@ -168,7 +167,7 @@ export async function askToSwitchChain() {
 	try {
 		await prov.request({
 			method: 'wallet_switchEthereumChain',
-			params: [{ chainId: CHAIN_ID_HEX }],
+			params: [{ chainId: constants.CHAIN_ID_HEX }],
 		});
 		// All good, can say authentication completed. Metamask docs recommend
 		// reloading here. I tried to reload dynamically by calling 'authenticateProvider'
@@ -180,7 +179,9 @@ export async function askToSwitchChain() {
 			try {
 				await prov.request({
 					method: 'wallet_addEthereumChain',
-					params: [{ chainId: CHAIN_ID_HEX, rpcUrl: RPC_URL }],
+					params: [
+						{ chainId: constants.CHAIN_ID_HEX, rpcUrl: constants.RPC_URL },
+					],
 				});
 			} catch (addError) {
 				// TODO: handle "add" error by showing error alert
@@ -196,7 +197,7 @@ export async function askToSwitchChain() {
 
 export function isChainCorrect() {
 	const id = authProvider.provider.chainId;
-	return id === CHAIN_ID_HEX || id === CHAIN_ID_DEC;
+	return id === constants.CHAIN_ID_HEX || id === constants.CHAIN_ID_DEC;
 }
 
 /**
@@ -257,4 +258,13 @@ Moralis.Web3.onChainChanged(async () => {
 	document.hasFocus()
 		? reloadForChainChange()
 		: $(window).focus(() => reloadForChainChange());
+});
+
+// Hack to avoid trustwallet redirecting to a open in app website...
+// Ref: https://github.com/WalletConnect/walletconnect-monorepo/issues/552
+// Ref:
+$doc.on('visibilitychange', () => {
+	if (document.visibilityState === 'hidden') {
+		window.localStorage.removeItem('WALLETCONNECT_DEEPLINK_CHOICE');
+	}
 });
