@@ -29,10 +29,10 @@ const PUBLIC_CONTRACT_ADDR = '0x7231f507a8878D684b9cDcb7550C0246977E0C55';
 (async () => {
 	const $doc = $(document);
 	const $actionBtn = $('#action-btn');
+	const $swapSuccessMsg = $('#swapSuccessMessage');
 	$actionBtn.fadeTo(0, 0);
-
-	let isSwapping = false;
-	let isApproving = false;
+	$swapSuccessMsg.fadeTo(0, 0);
+	// Chain variables
 	let signer, signerAddr, dhbCon, dhbSwap, dhbPub;
 	let isEnabled, balanceCon, balancePub, allowanceCon;
 
@@ -67,8 +67,6 @@ const PUBLIC_CONTRACT_ADDR = '0x7231f507a8878D684b9cDcb7550C0246977E0C55';
 
 	async function updateData() {
 		isEnabled = await dhbSwap.isEnabled();
-		// hasClaimed = await dhb.hasAlreadyClaimed(signerAddr);
-		// cycleHours = ethers.utils.formatUnits(await dhb.claimCycleHours(), 0);
 		balanceCon = ethers.utils.formatUnits(
 			await dhbCon.balanceOf(signerAddr),
 			5
@@ -81,21 +79,9 @@ const PUBLIC_CONTRACT_ADDR = '0x7231f507a8878D684b9cDcb7550C0246977E0C55';
 			await dhbCon.allowance(signerAddr, dhbSwap.address),
 			5
 		);
-		// totalClaimable = ethers.utils.formatEther(
-		// 	await dhb.claimableDistribution()
-		// );
-		// claimableShare = ethers.utils.formatEther(
-		// 	await dhb.calcClaimableShare(signerAddr)
-		// );
-		// totalClaimed = ethers.utils.formatEther(await dhb.totalClaimed());
 		console.log(isEnabled);
-		// console.log(hasClaimed);
-		// console.log(cycleHours);
 		console.log(balanceCon);
 		console.log(balancePub);
-		// console.log(totalClaimable);
-		// console.log(claimableShare);
-		// console.log(totalClaimed);
 	}
 
 	/* ----------------------------------- UI ----------------------------------- */
@@ -109,7 +95,7 @@ const PUBLIC_CONTRACT_ADDR = '0x7231f507a8878D684b9cDcb7550C0246977E0C55';
 			$('.current-balance-con').text(balanceCon);
 			$('.current-balance-pub').text(balancePub);
 			await updateActionButton();
-			// Handle exceptions
+			// Handle exceptions and other states
 			if (!isEnabled) {
 				await showDisabledMessage();
 			} else {
@@ -145,12 +131,44 @@ const PUBLIC_CONTRACT_ADDR = '0x7231f507a8878D684b9cDcb7550C0246977E0C55';
 	async function showInterface() {
 		await $('#loading-msg, #disabled-msg').fadeOut('fast').promise();
 		await $('#interface').fadeIn('slow').promise();
+		if (didSwap()) {
+			await $swapSuccessMsg.fadeTo('fast', 1).promise();
+		}
 	}
 
 	async function showDisabledMessage() {
 		await $actionBtn.fadeTo('slow', 0).promise();
 		await $('#loading-msg, #interface').fadeOut('slow').promise();
 		await $('#disabled-msg').fadeIn('slow').promise();
+	}
+
+	async function initApproveSwapButton() {
+		$actionBtn.find('.nonEmpty').text('Approve Swap');
+		$actionBtn
+			.removeClass('disabled')
+			.removeClass('glass-1')
+			.addClass('glass-2')
+			.removeAttr('style');
+		await $actionBtn.fadeTo('slow', 1).promise();
+		$actionBtn.off().on('click', (e) => approve(e));
+	}
+
+	async function initSwapButton() {
+		$actionBtn.find('.nonEmpty').text('Swap');
+		$actionBtn
+			.removeClass('disabled')
+			.removeClass('glass-2')
+			.addClass('glass-1')
+			.removeAttr('style');
+		await $actionBtn.fadeTo('slow', 1).promise();
+		$actionBtn.off().on('click', (e) => swap(e));
+	}
+
+	async function killActionButton() {
+		await $actionBtn.fadeTo('slow', 0).promise();
+		$actionBtn.find('.nonEmpty').text('...');
+		$actionBtn.addClass('disabled');
+		$actionBtn.off();
 	}
 
 	function canApprove() {
@@ -167,30 +185,21 @@ const PUBLIC_CONTRACT_ADDR = '0x7231f507a8878D684b9cDcb7550C0246977E0C55';
 		return can;
 	}
 
+	function didSwap() {
+		// We assume this, if user has 0 convertible and some public.
+		const did =
+			currUser() && isEnabled && balanceCon === '0.0' && balancePub !== '0.0';
+		console.log('Did swap:', did);
+		return did;
+	}
+
 	async function updateActionButton() {
 		if (canSwap()) {
-			$actionBtn.find('.nonEmpty').text('Swap');
-			$actionBtn
-				.removeClass('disabled')
-				.removeClass('glass-2')
-				.addClass('glass-1')
-				.removeAttr('style');
-			await $actionBtn.fadeTo('slow', 1).promise();
-			$actionBtn.off().on('click', (e) => swap(e));
+			await initSwapButton();
 		} else if (canApprove()) {
-			$actionBtn.find('.nonEmpty').text('Approve Swap');
-			$actionBtn
-				.removeClass('disabled')
-				.removeClass('glass-1')
-				.addClass('glass-2')
-				.removeAttr('style');
-			await $actionBtn.fadeTo('slow', 1).promise();
-			$actionBtn.off().on('click', (e) => approve(e));
+			await initApproveSwapButton();
 		} else {
-			await $actionBtn.fadeTo('slow', 0).promise();
-			$actionBtn.find('.nonEmpty').text('...');
-			$actionBtn.addClass('disabled');
-			$actionBtn.off();
+			await killActionButton();
 		}
 	}
 
@@ -216,5 +225,19 @@ const PUBLIC_CONTRACT_ADDR = '0x7231f507a8878D684b9cDcb7550C0246977E0C55';
 	async function swap(e) {
 		e.preventDefault();
 		console.log('Swap.');
+		await showLoading('Swapping', 'Please confirm with your wallet.');
+		try {
+			const balanceConRaw = await dhbCon.balanceOf(signerAddr);
+			const tx = await dhbSwap.swap(balanceConRaw);
+			await showLoading(
+				'Swapping in progress',
+				'Please wait for swap to complete.'
+			);
+			await tx.wait();
+		} catch (error) {
+			// Most likely user rejected swap.
+			console.log(error);
+		}
+		await updateView();
 	}
 })();
