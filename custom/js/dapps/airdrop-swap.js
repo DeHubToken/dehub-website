@@ -63,7 +63,6 @@ const PUBLIC_CONTRACT_ADDR = '0x7231f507a8878D684b9cDcb7550C0246977E0C55';
 		dhbPub = new ethers.Contract(PUBLIC_CONTRACT_ADDR, abiPub, signer);
 		// Render
 		await updateView();
-		await updateActionButton();
 	}
 
 	async function updateData() {
@@ -109,6 +108,7 @@ const PUBLIC_CONTRACT_ADDR = '0x7231f507a8878D684b9cDcb7550C0246977E0C55';
 			await updateData();
 			$('.current-balance-con').text(balanceCon);
 			$('.current-balance-pub').text(balancePub);
+			await updateActionButton();
 			// Handle exceptions
 			if (!isEnabled) {
 				await showDisabledMessage();
@@ -170,19 +170,51 @@ const PUBLIC_CONTRACT_ADDR = '0x7231f507a8878D684b9cDcb7550C0246977E0C55';
 	async function updateActionButton() {
 		if (canSwap()) {
 			$actionBtn.find('.nonEmpty').text('Swap');
+			$actionBtn
+				.removeClass('disabled')
+				.removeClass('glass-2')
+				.addClass('glass-1')
+				.removeAttr('style');
 			await $actionBtn.fadeTo('slow', 1).promise();
-			$actionBtn.removeClass('disabled').removeAttr('style');
-			$actionBtn.off().on('click', () => swap());
+			$actionBtn.off().on('click', (e) => swap(e));
 		} else if (canApprove()) {
 			$actionBtn.find('.nonEmpty').text('Approve Swap');
+			$actionBtn
+				.removeClass('disabled')
+				.removeClass('glass-1')
+				.addClass('glass-2')
+				.removeAttr('style');
 			await $actionBtn.fadeTo('slow', 1).promise();
-			$actionBtn.removeClass('disabled').removeAttr('style');
-			$actionBtn.off().on('click', () => approve());
+			$actionBtn.off().on('click', (e) => approve(e));
 		} else {
 			await $actionBtn.fadeTo('slow', 0).promise();
 			$actionBtn.find('.nonEmpty').text('...');
 			$actionBtn.addClass('disabled');
 			$actionBtn.off();
 		}
+	}
+
+	async function approve(e) {
+		e.preventDefault();
+		console.log('Approve.');
+		await showLoading('Approving Swap', 'Please confirm with your wallet.');
+		try {
+			const balanceConRaw = await dhbCon.balanceOf(signerAddr);
+			const tx = await dhbCon.approve(dhbSwap.address, balanceConRaw);
+			await showLoading(
+				'Waiting for confirmation',
+				'Stay with us for a few seconds.'
+			);
+			await tx.wait();
+		} catch (error) {
+			// Most likely user rejected approval.
+			console.log(error);
+		}
+		await updateView();
+	}
+
+	async function swap(e) {
+		e.preventDefault();
+		console.log('Swap.');
 	}
 })();
