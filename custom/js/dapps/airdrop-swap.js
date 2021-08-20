@@ -16,7 +16,7 @@ const abiPub = [
 	'function balanceOf(address account) public view returns(uint256)',
 ];
 
-MAINNET;
+// MAINNET;
 const CONVERTIBLE_CONTRACT_ADDR = '0x66a7dCCb7F293f4D9bEC1918079282D497210e8f';
 const SWAP_CONTRACT_ADDR = '0x4d632662e1A2CF33Bb6d3BeA2fbc3C996E4b1291';
 const PUBLIC_CONTRACT_ADDR = '0xEbfFff1Ce706B4c2bA62192136BAC67cDAD251F6';
