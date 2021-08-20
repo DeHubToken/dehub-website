@@ -181,7 +181,7 @@ const PUBLIC_CONTRACT_ADDR = '0x7231f507a8878D684b9cDcb7550C0246977E0C55';
 		} else {
 			await $actionBtn.fadeTo('slow', 0).promise();
 			$actionBtn.find('.nonEmpty').text('...');
-			$swapBtn.addClass('disabled').removeAttr('style');
+			$actionBtn.addClass('disabled');
 			$actionBtn.off();
 		}
 	}
