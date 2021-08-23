@@ -1,5 +1,6 @@
 import * as ethers from '/custom/libs/ethers/ethers-5.1.esm.min.js';
 import { currUser } from '../controllers/auth.js';
+import { constants } from '../constants.js';
 
 const abiCon = [
 	'function balanceOf(address account) public view returns(uint256)',
@@ -16,14 +17,9 @@ const abiPub = [
 	'function balanceOf(address account) public view returns(uint256)',
 ];
 
-// MAINNET;
-const CONVERTIBLE_CONTRACT_ADDR = '0x66a7dCCb7F293f4D9bEC1918079282D497210e8f';
-const SWAP_CONTRACT_ADDR = '0x4d632662e1A2CF33Bb6d3BeA2fbc3C996E4b1291';
-const PUBLIC_CONTRACT_ADDR = '0xEbfFff1Ce706B4c2bA62192136BAC67cDAD251F6';
-// // TESTNET
-// const CONVERTIBLE_CONTRACT_ADDR = '0x3b1fba25801271ada626643084fac6dcffabc680';
-// const SWAP_CONTRACT_ADDR = '0x976d01469Ee9870717410ECD7B0E9e8620dA94B4';
-// const PUBLIC_CONTRACT_ADDR = '0x7231f507a8878D684b9cDcb7550C0246977E0C55';
+const CONVERTIBLE_CONTRACT_ADDR = constants.CONVERTIBLE_CONTRACT;
+const SWAP_CONTRACT_ADDR = constants.SWAP_CONTRACT;
+const PUBLIC_CONTRACT_ADDR = constants.PUBLIC_CONTRACT;
 
 // Must wrap everything in async because of Safari...
 (async () => {
