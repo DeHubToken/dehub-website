@@ -1,6 +1,7 @@
 import * as ethers from '/custom/libs/ethers/ethers-5.1.esm.min.js';
 import { currUser } from '../controllers/auth.js';
 import { initCoinButton } from '../views/coin-button.js';
+import { constants } from '../constants.js';
 
 const abi = [
 	'function isDistributionEnabled() public view returns(bool)',
@@ -13,8 +14,7 @@ const abi = [
 	'function claimReward() external returns(uint256)',
 ];
 
-// const CONTRACT_ADDR = '0x6F2aabE11E78c6cd642689bC5896F1e4d84096aA';
-const CONTRACT_ADDR = '0x66a7dCCb7F293f4D9bEC1918079282D497210e8f';
+const CONTRACT_ADDR = constants.PUBLIC_CONTRACT;
 
 // Must wrap everything in async because of Safari...
 (async () => {
@@ -182,12 +182,13 @@ const CONTRACT_ADDR = '0x66a7dCCb7F293f4D9bEC1918079282D497210e8f';
 					"Please confirm transaction if you haven't so far."
 				);
 			}, 1300);
-			// try {
-			// 	const tx = await dhb.claimReward();
-			// 	tx.await();
-			// 	console.log(tx);
-			// } catch (error) {}
-			// await updateView();
+			try {
+				const tx = await dhb.claimReward();
+				await tx.wait();
+			} catch (error) {
+				console.log(error);
+			}
+			await updateView();
 			isClaiming = false;
 		}
 	}
