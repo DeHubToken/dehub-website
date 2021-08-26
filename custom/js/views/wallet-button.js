@@ -93,7 +93,7 @@ $('.connect-wallet').on('click', async (e) => {
 	}
 });
 
-$('#walletConnectModal .btn').on('click', async (e) => {
+$('#walletConnectModal .modal-body .btn').on('click', async (e) => {
 	e.preventDefault();
 	const providerName = $(e.target).data('provider');
 	await logIn(providerName);
