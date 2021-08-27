@@ -7,6 +7,12 @@ $(() => {
 
 function initFooter(data) {
 	// Update DOM
-	document.querySelector('footer').innerHTML = data;
-	$('footer').addClass('pt-70 pb-65 text-center footer_2');
+	const $component = $('footer');
+	$component.html(data);
+	$component.addClass('pt-70 pb-65 text-center footer_2');
+	const options = $component.data('options');
+
+	if (options && options.disclaimer === false) {
+		$component.find('.disclaimer-link').remove();
+	}
 }

@@ -7,7 +7,8 @@ $(() => {
 
 function initDisclaimer(data) {
 	// Update DOM
-	document.querySelector('disclaimer').innerHTML = data;
+	const $component = $('disclaimer');
+	$component.html(data);
 
 	// Enable event listeners
 	const $disclaimerModal = $('#disclaimerModal');
