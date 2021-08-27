@@ -73,13 +73,27 @@
 		<!-- Startup CSS (Styles for all blocks) - Remove ".min" if you would edit a css code -->
 		<link href="css/style.min.css"
 			rel="stylesheet" />
-		<!-- --------------------------- Coin Button CSS --------------------------- -->
-		<link href="custom/css/coin-button.css"
-			rel="stylesheet" />
 		<!-- jQuery 3.5.1 -->
 		<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 		<script src="https://kit.fontawesome.com/1481019c19.js"
 			crossorigin="anonymous"></script>
+
+		<!-- Global site tag (gtag.js) - Google Analytics -->
+		<script async
+			src="https://www.googletagmanager.com/gtag/js?id=G-10LTL8GSGR"></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+
+			function gtag() {
+				dataLayer.push(arguments);
+			}
+			gtag('js', new Date());
+
+			gtag('config', 'G-10LTL8GSGR');
+		</script>
+
+		<!-- ----------------------------- Components ------------------------------ -->
+		<script src="/components/footer/index.js"></script>
 	</head>
 
 	<body class="bg-gradient-1">
@@ -425,37 +439,7 @@
 		</section>
 
 		<!-- Footer 2 -->
-		<footer class="pt-70 pb-65 text-center footer_2">
-			<div class="container px-xl-0">
-				<div class="row justify-content-center">
-					<div class="col-12 lh-40">
-						<a href="https://twitter.com/dehub_official"
-							class="link color-main mx-5">
-							<i class="fab fa-twitter"></i>
-						</a>
-						<a href="https://www.instagram.com/dehub_official/"
-							class="link color-main mx-5">
-							<i class="fab fa-instagram"></i>
-						</a>
-						<a href="https://t.me/Dehubofficial"
-							class="link color-main mx-5">
-							<i class="fab fa-telegram-plane"></i>
-						</a>
-						<a href="https://medium.com/@dehub.bsc"
-							target="_blank"
-							class="link color-main mx-5">
-							<i class="fab fa-medium-m"></i>
-						</a>
-					</div>
-					<div class="mt-20 col-12">
-						<div class="color-heading text-adaptive">
-							© 2021 DeHub.
-						</div>
-					</div>
-				</div>
-			</div>
-		</footer>
-		</div>
+		<footer data-options='{"disclaimer": false}'></footer>
 
 		<!-- ---------------------- Full Screen Loader Start ----------------------- -->
 		<div id="full-screen-loader">
