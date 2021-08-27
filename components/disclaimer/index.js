@@ -2,10 +2,10 @@ $(() => {
 	// Fetch template and update the DOM
 	fetch('./components/disclaimer/template.html')
 		.then((response) => response.text())
-		.then((data) => init(data));
+		.then((data) => initDisclaimer(data));
 });
 
-function init(data) {
+function initDisclaimer(data) {
 	// Update DOM
 	document.querySelector('disclaimer').innerHTML = data;
 
