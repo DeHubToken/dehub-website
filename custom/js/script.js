@@ -62,25 +62,4 @@ function MY_scripts() {
 		console.log('!!!!!!!!!');
 		window.open('/claim');
 	});
-
-	/* ---------------------------- Disclaimer modal ---------------------------- */
-	const $disclaimerModal = $('#disclaimerModal');
-	$(window).scroll(() => {
-		if ($(window).scrollTop() + $(window).height() == $(document).height()) {
-			const confirmed = window.localStorage.getItem('disclaimerConfirmed');
-			if (!confirmed) {
-				$disclaimerModal.modal();
-			}
-		}
-	});
-
-	$('#disclaimerModalConfirm').on('click', (e) => {
-		e.preventDefault();
-		window.localStorage.setItem('disclaimerConfirmed', true);
-		$disclaimerModal.modal('hide');
-	});
-
-	$disclaimerModal.on('hidden.bs.modal', (e) => {
-		$disclaimerModal.modal('dispose');
-	});
 }

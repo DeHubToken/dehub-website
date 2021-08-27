@@ -1,7 +1,32 @@
-fetch('./components/disclaimer/template.html')
-	.then((response) => {
-		return response.text();
-	})
-	.then((data) => {
-		document.querySelector('disclaimer').innerHTML = data;
+$(() => {
+	// Fetch template and update the DOM
+	fetch('./components/disclaimer/template.html')
+		.then((response) => response.text())
+		.then((data) => init(data));
+});
+
+function init(data) {
+	// Update DOM
+	document.querySelector('disclaimer').innerHTML = data;
+
+	// Enable event listeners
+	const $disclaimerModal = $('#disclaimerModal');
+	$(window).on('scroll', () => {
+		if ($(window).scrollTop() + $(window).height() == $(document).height()) {
+			const confirmed = window.localStorage.getItem('disclaimerConfirmed');
+			if (!confirmed) {
+				$disclaimerModal.modal();
+			}
+		}
 	});
+
+	$('#disclaimerModalConfirm').on('click', (e) => {
+		e.preventDefault();
+		window.localStorage.setItem('disclaimerConfirmed', true);
+		$disclaimerModal.modal('hide');
+	});
+
+	$disclaimerModal.on('hidden.bs.modal', (e) => {
+		$disclaimerModal.modal('dispose');
+	});
+}
