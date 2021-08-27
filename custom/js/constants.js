@@ -8,7 +8,7 @@ export const constants = {
 		'https://speedy-nodes-nyc.moralis.io/6b2569937eb2e5cb5996d2dc/bsc/mainnet',
 	CONVERTIBLE_CONTRACT: '0x66a7dCCb7F293f4D9bEC1918079282D497210e8f',
 	SWAP_CONTRACT: '0x4d632662e1A2CF33Bb6d3BeA2fbc3C996E4b1291',
-	PUBLIC_CONTRACT: '0xEbfFff1Ce706B4c2bA62192136BAC67cDAD251F6',
+	PUBLIC_CONTRACT: '0xFC206f429d55c71cb7294EfF40c6ADb20dC21508',
 	// Testnet----------------
 	// MORALIS_ID: 'LQazohFSg15yR5ZtaRVqZQysUbzDI9olJjNKUrlE',
 	// MORALIS_SERVER: 'https://3jucoi8srnps.moralisweb3.com:2053/server',
