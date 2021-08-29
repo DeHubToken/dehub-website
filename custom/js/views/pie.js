@@ -45,44 +45,24 @@ $(document).ready(() => {
 		data: {
 			content: [
 				{
+					label: 'Presale & LP',
+					value: 30,
+					color: '#972595',
+				},
+				{
+					label: 'Operations',
+					value: 10,
+					color: '#9C52D9',
+				},
+				{
 					label: 'Team',
 					value: 10,
-					color: '#62C8CE',
+					color: '#765DDE',
 				},
 				{
-					label: 'Airdrop',
-					value: 18,
-					color: '#449293',
-				},
-				{
-					label: 'Public & Private Sale',
-					value: 25,
-					color: '#3C1C44',
-				},
-				{
-					label: 'Liquidity Pool',
-					value: 15,
-					color: '#552660',
-				},
-				{
-					label: 'Burnt',
-					value: 2,
-					color: '#853895',
-				},
-				{
-					label: 'Marketing',
-					value: 10,
-					color: '#866C8F',
-				},
-				{
-					label: 'R&D',
-					value: 10,
-					color: '#B1CDCF',
-				},
-				{
-					label: 'Partnerships & Licensing',
-					value: 10,
-					color: '#8FCFD4',
+					label: 'Burned',
+					value: 50,
+					color: '#645ABD',
 				},
 			],
 		},
