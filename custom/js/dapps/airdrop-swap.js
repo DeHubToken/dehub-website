@@ -170,19 +170,16 @@ const PUBLIC_CONTRACT_ADDR = constants.PUBLIC_CONTRACT;
 	}
 
 	function canApprove() {
-		const can = currUser() && isEnabled && balanceCon !== '0.0';
+		const maxApprove = ethers.utils.formatUnits(800000000000000, 5);
+		const can = currUser() && isEnabled && balanceCon !== maxApprove;
 		console.log('Can approve:', can);
 		return can;
 	}
 
 	function canSwap() {
 		// Only if approved
-		const maxApprove = ethers.utils.formatUnits(800000000000000, 5);
 		const can =
-			currUser() &&
-			isEnabled &&
-			balanceCon !== '0.0' &&
-			allowanceCon !== maxApprove;
+			currUser() && isEnabled && balanceCon !== '0.0' && allowanceCon !== '0.0';
 		console.log('Can swap:', can);
 		return can;
 	}
