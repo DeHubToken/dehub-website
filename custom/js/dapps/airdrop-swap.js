@@ -177,8 +177,12 @@ const PUBLIC_CONTRACT_ADDR = constants.PUBLIC_CONTRACT;
 
 	function canSwap() {
 		// Only if approved
+		const maxApprove = ethers.utils.formatUnits(800000000000000, 5);
 		const can =
-			currUser() && isEnabled && balanceCon !== '0.0' && allowanceCon !== '0.0';
+			currUser() &&
+			isEnabled &&
+			balanceCon !== '0.0' &&
+			allowanceCon !== maxApprove;
 		console.log('Can swap:', can);
 		return can;
 	}
@@ -206,8 +210,9 @@ const PUBLIC_CONTRACT_ADDR = constants.PUBLIC_CONTRACT;
 		console.log('Approve.');
 		await showLoading('Approving Swap', 'Please confirm with your wallet.');
 		try {
-			const balanceConRaw = await dhbCon.balanceOf(signerAddr);
-			const tx = await dhbCon.approve(dhbSwap.address, balanceConRaw);
+			// const balanceConRaw = await dhbCon.balanceOf(signerAddr);
+			const maxApprove = 800000000000000;
+			const tx = await dhbCon.approve(dhbSwap.address, maxApprove);
 			await showLoading(
 				'Waiting for confirmation',
 				'Stay with us for a few seconds.'
