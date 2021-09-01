@@ -4,8 +4,7 @@ export const constants = {
 	MORALIS_SERVER: 'https://vamoxwojj7ht.moralisweb3.com:2053/server',
 	CHAIN_ID_HEX: '0x38',
 	CHAIN_ID_DEC: 56,
-	RPC_URL:
-		'https://speedy-nodes-nyc.moralis.io/6b2569937eb2e5cb5996d2dc/bsc/mainnet',
+	RPC_URL: 'https://bsc-dataseed.binance.org/',
 	CONVERTIBLE_CONTRACT: '0x66a7dCCb7F293f4D9bEC1918079282D497210e8f',
 	SWAP_CONTRACT: '0x0ba7a2310D66e20B829010ee59dF1208fE71BF3f',
 	PUBLIC_CONTRACT: '0xFC206f429d55c71cb7294EfF40c6ADb20dC21508',
