@@ -1,4 +1,4 @@
-import * as ethers from '/custom/libs/ethers/ethers-5.1.esm.min.js';
+import * as ethers from '/custom/libs/ethers/ethers-5.4.6.esm.min.js';
 import { currUser } from '../controllers/auth.js';
 import { constants } from '../constants.js';
 

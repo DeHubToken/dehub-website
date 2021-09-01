@@ -2,8 +2,9 @@
  * Moralis integration with authentication handling.
  */
 
-import * as ethers from '/custom/libs/ethers/ethers-5.1.esm.min.js';
+import * as ethers from '/custom/libs/ethers/ethers-5.4.6.esm.min.js';
 import { constants } from '../constants.js';
+import { iOS } from '../helpers.js';
 
 /* ---------------------------------- Init ---------------------------------- */
 
@@ -260,11 +261,10 @@ Moralis.Web3.onChainChanged(async () => {
 		: $(window).focus(() => reloadForChainChange());
 });
 
-// Hack to avoid trustwallet redirecting to a open in app website...
+// Hack to avoid trustwallet redirecting to a open in app website on iOS...
 // Ref: https://github.com/WalletConnect/walletconnect-monorepo/issues/552
-// Ref:
 $doc.on('visibilitychange', () => {
-	if (document.visibilityState === 'hidden') {
+	if (document.visibilityState === 'hidden' && iOS()) {
 		window.localStorage.removeItem('WALLETCONNECT_DEEPLINK_CHOICE');
 	}
 });
