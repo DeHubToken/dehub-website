@@ -351,7 +351,7 @@
 							</div>
 							<div class="card-body text-center pl-0 pr-0 pt-50 h-500">
 								<!-- ---------------------- Connect with wallet start ---------------------- -->
-								<!-- <div id="dapp-connect-wallet-container">
+								<div id="dapp-connect-wallet-container">
 									<div class="fa-3x pb-30">
 										<i class="fad fa-link"></i>
 									</div>
@@ -383,11 +383,98 @@
 											<i class="fad fa-sign-out"></i>
 										</button>
 									</div>
-								</div> -->
+								</div>
 								<!-- ----------------------- Connect with wallet end ----------------------- -->
-								<div>Please come back later 🙂</div>
+								<div id="claim-dapp"
+									style="display: none;">
+									<!-- ------------------------------- Loader -------------------------------- -->
+									<div id="loading-msg"
+										class="px-20">
+										<div class="fa-3x pb-30">
+											<i class="fad fa-circle-notch fa-spin"></i>
+										</div>
+										<h5 class="loader-title">Loading...</h5>
+										<span class='loader-subtitle'>Loading...</span>
+									</div>
+									<!-- ---------------------------- Claimed wall ----------------------------- -->
+									<div id="claimed-msg"
+										class="px-20">
+										<div class="fa-3x pb-30">
+											<i class="fad fa-calendar-check"></i>
+										</div>
+										<h5>You have already claimed your share for this cycle.</h5>
+										<span>Please come back later, to claim again.</span>
+									</div>
+									<!-- ---------------------------- Disabled wall ---------------------------- -->
+									<div id="disabled-msg"
+										class="px-20">
+										<div class="fa-3x pb-30">
+											<i class="fad fa-snooze"></i>
+										</div>
+										<h5>Reward distribution has been disabled for now.</h5>
+										<span>Please come back later, or get more information in our <a href="https://t.me/Dehubofficial"
+												class="link">Telegram group <i class="fal fa-external-link"></i></a></span>
+									</div>
+									<!-- --------------------------- dApp interface ---------------------------- -->
+									<div id="interface"
+										class="px-15">
+
+										<div class="container pb-50">
+											<div class="fa-3x pb-30">
+												<i class="fad fa-gift"></i>
+											</div>
+											<h5>Total BNB Claimed by Holders</h5>
+											<span class="total-claimed bold text-monospace">...</span>
+										</div>
+
+										<div class="row pb-10 border-bottom border-translucent-1 px-5 text-left">
+											<div class="col-sm-6 bold">
+												Your $DeHub balance:
+												<button class="color-main bg-transparent"
+													data-toggle="popover"
+													data-placement="top"
+													data-content="The more $DeHub tokens you hold in your wallet the bigger BNB share will be allocated for you each cycle.">
+													<i class="fad fa-info-circle"></i>
+												</button>
+											</div>
+											<div class="col-sm-6 text-sm-right pt-5 pt-xl-0 rounded-pill">
+												<span class="current-balance text-monospace">...</span>
+											</div>
+										</div>
+
+										<div class="row pt-10 pb-10 border-bottom border-translucent-1 px-5 text-left">
+											<div class="col-sm-6 bold">
+												Total BNB reward pool:
+												<button class="color-main bg-transparent"
+													data-toggle="popover"
+													data-placement="top"
+													data-content="Each cycle we take all the BNB accumulated from the transaction fees and unlock it for all holders to claim their fair share.">
+													<i class="fad fa-info-circle"></i>
+												</button>
+											</div>
+											<div class="col-sm-6 text-sm-right pt-5 pt-xl-0">
+												<span class="total-claimable text-monospace">...</span>
+											</div>
+										</div>
+
+										<div class="row pt-10 px-5 text-left">
+											<div class="col-sm-6 bold">
+												Your BNB reward:
+												<button class="color-main bg-transparent"
+													data-toggle="popover"
+													data-placement="top"
+													data-content="The amount of the BNB you can claim during this cycle. You can claim only once per cycle, and each cycle we re-calculate the reward based on the $DeHub held in your wallet and the BNB pool accumulated from the fees.">
+													<i class="fad fa-info-circle"></i>
+												</button>
+											</div>
+											<div class="col-sm-6 text-sm-right pt-5 pt-xl-0">
+												<span class="claimable-share text-monospace">...</span>
+											</div>
+										</div>
+									</div>
+								</div>
 							</div>
-							<!-- <div class="card-footer text-right">
+							<div class="card-footer text-right">
 								<button id="claim-btn"
 									class="tip-button btn shadow disabled">
 									<span class="tip-button__text">Claim</span>
@@ -399,7 +486,7 @@
 										</div>
 									</div>
 								</button>
-							</div> -->
+							</div>
 						</div>
 					</div>
 				</div>
