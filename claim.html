@@ -99,6 +99,7 @@
 		</script>
 
 		<!-- -------------------- Components (Order important) --------------------- -->
+		<script src="/components/drawer/index.js"></script>
 		<script src="/components/footer/index.js"></script>
 		<script src="components/social-bar/index.js"></script>
 		<script src="/components/disclaimer/index.js"></script>
@@ -107,105 +108,7 @@
 	<body class="bg-gradient-1">
 
 		<!-- Navigation Mobile type 1 -->
-		<a href="#"
-			class="open_menu radius_full">
-			<i class="fas fa-bars lh-40">
-			</i>
-		</a>
-		<div class="navigation_mobile type1 bg-gray-1">
-			<a href="#"
-				class="close_menu color-white">
-				<i class="fas fa-times">
-				</i>
-			</a>
-			<div class="px-40 pt-60 pb-60 inner">
-				<a href="/"
-					class="mb-30 link img_link">
-					<img src="uploads/logo.png"
-						alt="Logo"
-						class="img-fluid w-100">
-				</a>
-				<!-- ---------------------- Connect with wallet start ---------------------- -->
-				<div class="connect-wallet-widget d-inline-block mb-20">
-					<a href="#"
-						class="connect-wallet btn action-2 sm">
-						<i class="fad fa-wallet"></i>
-						&nbsp;
-						<span>Connect Wallet</span>
-					</a>
-					<div class="connected-wallet btn-group d-none"
-						role="group"
-						aria-label="Wallet Authentication">
-						<button type="button"
-							class="address-bar btn action-2 sm">
-							<img class="w-30 pr-10 pb-10"
-								src="uploads/metamask.svg">
-							<span class="label">Loading...</span>
-						</button>
-						<button type="button"
-							class="logout btn action-2 op-6 sm">
-							<i class="fad fa-sign-out"></i>
-						</button>
-					</div>
-				</div>
-				<!-- ----------------------- Connect with wallet end ----------------------- -->
-				<div>
-					<a href="index.html"
-						class="f-heading f-22 link color-main mb-20"
-						target="_blank">
-						Main Website&nbsp;<i class="fal fa-long-arrow-right pt-5"></i>
-					</a>
-				</div>
-				<div>
-					<span class="f-heading f-18 color-main mb-20">
-						dApps:
-					</span>
-				</div>
-				<div class="dropdown-divider op-1">
-				</div>
-				<div class="pl-20 pt-15 bg-gradient-2 radius10 mt-10">
-					<a href="/claim"
-						class="link color-main mb-15">
-						<i class="fad fa-gift color-main"></i>
-						&nbsp;
-						<span>Claim BNB Rewards</span>
-					</a>
-				</div>
-				<div class="pl-20 pt-15 bg-gradient-2 radius10 mt-10">
-					<a href="#"
-						class="link color-main mb-15">
-						<i class="fad fa-ticket color-main"></i>
-						&nbsp;
-						<span class="comingSoon">Lottery</span>
-					</a>
-				</div>
-				<div class="pl-20 pt-15 bg-gradient-2 radius10 mt-10">
-					<a href="#"
-						target="_blank"
-						class="link color-main mb-15 comingSoon">
-						<i class="fad fa-trophy-alt color-main"></i>
-						&nbsp;
-						<span class="comingSoon">Tournetopia</span>
-					</a>
-				</div>
-				<div class="pl-20 pt-15 bg-gradient-2 radius10 mt-10">
-					<a href="#"
-						target="_blank"
-						class="link color-main mb-15 comingSoon">
-						<i class="fad fa-tv-retro color-main"></i>
-						&nbsp;
-						<span class="comingSoon">Streaming</span>
-					</a>
-				</div>
-
-				<div class="socials mt-40">
-					<social-bar></social-bar>
-				</div>
-				<div class="mt-50 f-14 light color-white op-3 copy">
-					© 2021 DeHub. All rights reserved.
-				</div>
-			</div>
-		</div>
+		<drawer></drawer>
 		<!-- Header 5 -->
 		<header class="pt-160 pb-60 header_5"
 			data-bg-src="false"
