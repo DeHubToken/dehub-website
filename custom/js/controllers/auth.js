@@ -2,8 +2,9 @@
  * Moralis integration with authentication handling.
  */
 
-import * as ethers from '/custom/libs/ethers/ethers-5.1.esm.min.js';
+import * as ethers from '/custom/libs/ethers/ethers-5.4.6.esm.min.js';
 import { constants } from '../constants.js';
+import { iOS } from '../helpers.js';
 
 /* ---------------------------------- Init ---------------------------------- */
 
@@ -66,9 +67,18 @@ export async function initAuth() {
 	if (Moralis.User.current()) {
 		console.log('User exists. Authenticate provider.');
 		try {
-			await Moralis.Web3.enable();
+			// Resolve providerName by checking if saved locally.
+			const savedProviderName = window.localStorage.getItem('providerName');
+			const params = { chainId: constants.CHAIN_ID_DEC };
+			savedProviderName ? (params['provider'] = savedProviderName) : undefined;
+			// Once params are prepared, allow Moralis to enable the provider.
+			// If Walletconnect is used, Moralis will prepare it as expected using localstorage
+			// object created by walletconnect sdk.
+			await Moralis.Web3.enable(params);
 			const web3 = await Moralis.Web3.activeWeb3Provider.activate();
+			// Our web3 provider is ready, but it's not done yet...
 			unauthProvider = await web3.currentProvider;
+			// We will wrap it for use with ethers.js and trigger events.
 			authProvider = authenticateProvider();
 		} catch (error) {
 			console.log(error);
@@ -107,10 +117,10 @@ export function currUser() {
  * @param {*} providerName (optional)
  */
 export async function logIn(providerName) {
-	// Resolve providerName by checking if passed via property, or saves locally.
+	// Resolve providerName by checking if passed via property, or saved locally.
 	const savedProviderName = window.localStorage.getItem('providerName');
 	if (!providerName && !savedProviderName) throw 'Need a provider name!';
-	providerName = providerName || window.localStorage.getItem('providerName');
+	providerName = providerName || savedProviderName;
 	// Save so we can re-login on page refresh.
 	window.localStorage.setItem('providerName', providerName);
 	// Proceed with login...
@@ -260,11 +270,10 @@ Moralis.Web3.onChainChanged(async () => {
 		: $(window).focus(() => reloadForChainChange());
 });
 
-// Hack to avoid trustwallet redirecting to a open in app website...
+// Hack to avoid trustwallet redirecting to a open in app website on iOS...
 // Ref: https://github.com/WalletConnect/walletconnect-monorepo/issues/552
-// Ref:
 $doc.on('visibilitychange', () => {
-	if (document.visibilityState === 'hidden') {
+	if (document.visibilityState === 'hidden' && iOS()) {
 		window.localStorage.removeItem('WALLETCONNECT_DEEPLINK_CHOICE');
 	}
 });

@@ -81,9 +81,9 @@
 		<script src="https://kit.fontawesome.com/1481019c19.js"
 			crossorigin="anonymous"></script>
 		<!-- Moralis SDK code -->
-		<script src="https://github.com/WalletConnect/walletconnect-monorepo/releases/download/1.6.2/web3-provider.min.js"></script>
+		<script src="https://github.com/WalletConnect/walletconnect-monorepo/releases/download/1.6.5/web3-provider.min.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
-		<script src="https://unpkg.com/moralis@0.0.34/dist/moralis.js"></script>
+		<script src="https://unpkg.com/moralis@0.0.42/dist/moralis.js"></script>
 		<!-- Global site tag (gtag.js) - Google Analytics -->
 		<script async
 			src="https://www.googletagmanager.com/gtag/js?id=G-10LTL8GSGR"></script>
@@ -98,270 +98,20 @@
 			gtag('config', 'G-10LTL8GSGR');
 		</script>
 
-		<!-- ----------------------------- Components ------------------------------ -->
+		<!-- -------------------- Components (Order important) --------------------- -->
+		<script src="/components/header/index.js"></script>
+		<script src="/components/drawer/index.js"></script>
 		<script src="/components/footer/index.js"></script>
+		<script src="components/social-bar/index.js"></script>
 		<script src="/components/disclaimer/index.js"></script>
 	</head>
 
 	<body class="bg-gradient-1">
 
 		<!-- Navigation Mobile type 1 -->
-		<a href="#"
-			class="open_menu radius_full">
-			<i class="fas fa-bars lh-40">
-			</i>
-		</a>
-		<div class="navigation_mobile type1 bg-gray-1">
-			<a href="#"
-				class="close_menu color-white">
-				<i class="fas fa-times">
-				</i>
-			</a>
-			<div class="px-40 pt-60 pb-60 inner">
-				<a href="/"
-					class="mb-30 link img_link">
-					<img src="uploads/logo.png"
-						alt="Logo"
-						class="img-fluid w-100">
-				</a>
-				<!-- ---------------------- Connect with wallet start ---------------------- -->
-				<div class="connect-wallet-widget d-inline-block mb-20">
-					<a href="#"
-						class="connect-wallet btn action-2 sm">
-						<i class="fad fa-wallet"></i>
-						&nbsp;
-						<span>Connect Wallet</span>
-					</a>
-					<div class="connected-wallet btn-group d-none"
-						role="group"
-						aria-label="Wallet Authentication">
-						<button type="button"
-							class="address-bar btn action-2 sm">
-							<img class="w-30 pr-10 pb-10"
-								src="uploads/metamask.svg">
-							<span class="label">Loading...</span>
-						</button>
-						<button type="button"
-							class="logout btn action-2 op-6 sm">
-							<i class="fad fa-sign-out"></i>
-						</button>
-					</div>
-				</div>
-				<!-- ----------------------- Connect with wallet end ----------------------- -->
-				<div>
-					<a href="index.html"
-						class="f-heading f-22 link color-main mb-20"
-						target="_blank">
-						Main Website&nbsp;<i class="fal fa-long-arrow-right pt-5"></i>
-					</a>
-				</div>
-				<div>
-					<span class="f-heading f-18 color-main mb-20">
-						dApps:
-					</span>
-				</div>
-				<div class="dropdown-divider op-1">
-				</div>
-				<div class="pl-20 pt-15 bg-gradient-2 radius10 mt-10">
-					<a href="/claim"
-						class="link color-main mb-15">
-						<i class="fad fa-gift color-main"></i>
-						&nbsp;
-						<span>Claim BNB Rewards</span>
-					</a>
-				</div>
-				<div class="pl-20 pt-15 bg-gradient-2 radius10 mt-10">
-					<a href="#"
-						class="link color-main mb-15">
-						<i class="fad fa-ticket color-main"></i>
-						&nbsp;
-						<span class="comingSoon">Lottery</span>
-					</a>
-				</div>
-				<div class="pl-20 pt-15 bg-gradient-2 radius10 mt-10">
-					<a href="#"
-						target="_blank"
-						class="link color-main mb-15 comingSoon">
-						<i class="fad fa-trophy-alt color-main"></i>
-						&nbsp;
-						<span class="comingSoon">Tournetopia</span>
-					</a>
-				</div>
-				<div class="pl-20 pt-15 bg-gradient-2 radius10 mt-10">
-					<a href="#"
-						target="_blank"
-						class="link color-main mb-15 comingSoon">
-						<i class="fad fa-tv-retro color-main"></i>
-						&nbsp;
-						<span class="comingSoon">Streaming</span>
-					</a>
-				</div>
-
-				<div class="socials mt-40">
-					<a href="https://twitter.com/dehub_official"
-						class="link color-main fab fa-twitter mx-5">
-					</a>
-					<a href="https://www.instagram.com/dehub_official/"
-						class="link color-main fab fa-instagram mx-5">
-					</a>
-					<a href="https://t.me/Dehubofficial"
-						class="link color-main fab fa-telegram-plane mx-5">
-					</a>
-					<a href="https://medium.com/@dehub.bsc"
-						target="_blank"
-						class="link color-main fab fa-medium-m mx-5">
-					</a>
-					<!-- <a href="#"
-						class="link color-main fab fa-reddit-alien mx-5">
-					</a> -->
-				</div>
-				<div class="mt-50 f-14 light color-white op-3 copy">
-					© 2021 DeHub. All rights reserved.
-				</div>
-			</div>
-		</div>
+		<drawer></drawer>
 		<!-- Header 5 -->
-		<header class="pt-160 pb-60 header_5"
-			data-bg-src="false"
-			data-bg-src-2x="false">
-			<div class="container d-block d-xl-none text-center">
-				<a href="/"
-					class="link img_link mt-15">
-					<img src="uploads/logo.png"
-						alt="Logo"
-						class="w-200"
-						data-aos="fade-down"
-						data-aos-delay="500">
-				</a>
-				<div class="block pt-15 f-20"
-					data-aos="fade-in"
-					data-aos-delay="700">
-					The Decentralized Entertainment Hub
-				</div>
-			</div>
-			<nav class="header_menu_5 pt-35 pb-35">
-				<div class="container px-xl-0">
-					<div class="row align-items-center">
-						<div class="col-lg-3">
-							<a href="/"
-								class="link img_link mt-15">
-								<img src="uploads/logo.png"
-									alt="Logo"
-									class="w-200"
-									data-aos="fade-down"
-									data-aos-delay="500">
-							</a>
-						</div>
-						<div class="col-lg-9 justify-content-end align-items-center f-18 medium"
-							data-aos="fade-down"
-							data-aos-delay="500">
-							<div class="d-block float-right mx-10 mb-10">
-								<a href="https://twitter.com/dehub_official"
-									class="link color-main fab fa-twitter mx-5 align-middle">
-								</a>
-								<a href="https://www.instagram.com/dehub_official/"
-									class="link color-main fab fa-instagram mx-5 align-middle">
-								</a>
-								<a href="https://t.me/Dehubofficial"
-									class="link color-main fab fa-telegram-plane mx-5 align-middle">
-								</a>
-								<a href="https://medium.com/@dehub.bsc"
-									target="_blank"
-									class="link color-main fab fa-medium-m mx-5 align-middle">
-								</a>
-								<!-- <a href="#"
-									class="link color-main fab fa-reddit-alien mx-5">
-								</a> -->
-								<!-- ---------------------- Connect with wallet start ---------------------- -->
-								<div class="connect-wallet-widget d-inline-block">
-									<a href="#"
-										class="connect-wallet btn action-2 sm ml-20">
-										<i class="fad fa-wallet"></i>
-										&nbsp;
-										<span>Connect Wallet</span>
-									</a>
-									<div class="connected-wallet btn-group ml-20 d-none"
-										role="group"
-										aria-label="Wallet Authentication">
-										<button type="button"
-											class="address-bar btn action-2 sm">
-											<img class="w-30 pr-10 pb-10"
-												src="uploads/metamask.svg">
-											<span class="label">Loading...</span>
-										</button>
-										<button type="button"
-											class="logout btn action-2 op-6 sm">
-											<i class="fad fa-sign-out"></i>
-										</button>
-									</div>
-								</div>
-								<!-- ----------------------- Connect with wallet end ----------------------- -->
-							</div>
-							<div class="w-full d-flex justify-content-end">
-								<a href="index.html"
-									target="_blank"
-									class="nav-item link color-main mx-15">
-									Main Website
-								</a>
-								<div id="nav-dropdown"
-									class="nav-item dropdown">
-									<a class="link color-main mx-15 dropdown-toggle"
-										href="#"
-										id="dAppsDropdown"
-										role="button"
-										data-toggle="dropdown"
-										aria-haspopup="true"
-										aria-expanded="false">
-										dApps
-									</a>
-									<div id="dApps-dropdown"
-										class="dropdown-menu bg-gray-1 pt-20 pb-20 mt-10 radius4"
-										aria-labelledby="dAppsDropdown">
-										<a href="/claim"
-											class="dropdown-item btn glass-1 mb-10 text-left">
-											<span></span>
-											<span></span>
-											<span></span>
-											<span></span>
-											<i class="fad fa-gift color-main"></i>
-											&nbsp;
-											<span class="nonEmpty">Claim BNB Rewards</span>
-										</a>
-										<a href="#"
-											class="dropdown-item btn glass-1 mb-10 text-left">
-											<span></span>
-											<span></span>
-											<span></span>
-											<span></span>
-											<i class="fad fa-ticket color-main"></i>
-											&nbsp;
-											<span class="comingSoon">Lottery</span></a>
-										<a href="#"
-											class="dropdown-item btn glass-1 mb-10 text-left comingSoon">
-											<span></span>
-											<span></span>
-											<span></span>
-											<span></span>
-											<i class="fad fa-trophy-alt color-main"></i>
-											&nbsp;
-											<span class="nonEmpty">Tournetopia</span></a>
-										<a href="#"
-											class="dropdown-item btn glass-1 mb-10 text-left comingSoon">
-											<span></span>
-											<span></span>
-											<span></span>
-											<span></span>
-											<i class="fad fa-tv-retro color-main"></i>
-											&nbsp;
-											<span class="nonEmpty">Streaming</span></a>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</nav>
-		</header>
+		<header data-options='{"size": "small"}'></header>
 
 		<!-- Feature 24 -->
 		<section class="pt-100 pb-105 feature_24"
@@ -679,7 +429,7 @@
 		<!-- Custom JS outside designmodo -->
 		<script type="module"
 			src="custom/js/script.js"></script>
-		<script src="custom/js/views/bootstrap-hacks.js"></script>
+
 		<!-- ---------------------- Blockchain gateway start ----------------------- -->
 		<script async
 			type="module"

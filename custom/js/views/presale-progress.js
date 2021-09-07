@@ -1,4 +1,4 @@
-import * as ethers from '/custom/libs/ethers/ethers-5.1.esm.min.js';
+import * as ethers from '/custom/libs/ethers/ethers-5.4.6.esm.min.js';
 
 const $doc = $(document);
 const $raisedBnb = $('.raisedBnb');

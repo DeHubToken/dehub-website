@@ -28,35 +28,12 @@ $(document).ready(function () {
 function SF_scripts() {
 	$(window).resize(function () {
 		resizeVideo();
-		showMenuBtn();
 		setBackgrounds();
 	});
 
 	$(window).trigger('resize');
 
 	// open menu on mobile
-	function showMenuBtn() {
-		if ($(window).width() < 1199.98) {
-			$('.open_menu').addClass('d-block');
-			$('header nav').addClass('d-none');
-			$('.navigation_mobile').removeClass('opened');
-		} else {
-			$('.open_menu').removeClass('d-block');
-			$('header nav').removeClass('d-none');
-			$('.navigation_mobile').removeClass('opened');
-		}
-	}
-
-	$('.open_menu').click(function (event) {
-		event.preventDefault();
-		$('.navigation_mobile').addClass('opened');
-	});
-
-	$('.close_menu, header, section, footer, .navigation_mobile .inner a').click(
-		function (event) {
-			$('.navigation_mobile').removeClass('opened');
-		}
-	);
 
 	// Set background image from data-bg-src and data-bg-src-2x attributes
 	function setBackgrounds() {

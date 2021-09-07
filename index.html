@@ -74,9 +74,9 @@
 		<script src="https://kit.fontawesome.com/1481019c19.js"
 			crossorigin="anonymous"></script>
 		<!-- Moralis SDK code -->
-		<script src="https://github.com/WalletConnect/walletconnect-monorepo/releases/download/1.6.2/web3-provider.min.js"></script>
+		<script src="https://github.com/WalletConnect/walletconnect-monorepo/releases/download/1.6.5/web3-provider.min.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
-		<script src="https://unpkg.com/moralis@0.0.34/dist/moralis.js"></script>
+		<script src="https://unpkg.com/moralis@0.0.42/dist/moralis.js"></script>
 		<!-- Global site tag (gtag.js) - Google Analytics -->
 		<script async
 			src="https://www.googletagmanager.com/gtag/js?id=G-10LTL8GSGR"></script>
@@ -91,414 +91,20 @@
 			gtag('config', 'G-10LTL8GSGR');
 		</script>
 
-		<!-- ----------------------------- Components ------------------------------ -->
+		<!-- -------------------- Components (Order important) --------------------- -->
+		<script src="/components/header/index.js"></script>
+		<script src="/components/drawer/index.js"></script>
 		<script src="/components/footer/index.js"></script>
+		<script src="components/social-bar/index.js"></script>
 		<script src="/components/disclaimer/index.js"></script>
 	</head>
 
 	<body class="bg-gradient-1">
 
 		<!-- Navigation Mobile type 1 -->
-		<a href="#"
-			class="open_menu radius_full">
-			<i class="fas fa-bars lh-40">
-			</i>
-		</a>
-		<div class="navigation_mobile type1 bg-gray-1">
-			<a href="#"
-				class="close_menu color-white">
-				<i class="fas fa-times">
-				</i>
-			</a>
-			<div class="px-40 pt-60 pb-60 inner">
-				<a href="#"
-					class="mb-30 link img_link">
-					<img src="uploads/logo.png"
-						alt="Logo"
-						class="img-fluid w-100">
-				</a>
-				<!-- ---------------------- Connect with wallet start ---------------------- -->
-				<div class="connect-wallet-widget d-inline-block mb-20">
-					<a href="#"
-						class="connect-wallet btn action-2 sm">
-						<i class="fad fa-wallet"></i>
-						&nbsp;
-						<span>Connect Wallet</span>
-					</a>
-					<div class="connected-wallet btn-group d-none"
-						role="group"
-						aria-label="Wallet Authentication">
-						<button type="button"
-							class="address-bar btn action-2 sm">
-							<img class="w-30 pr-10 pb-10"
-								src="uploads/metamask.svg">
-							<span class="label">Loading...</span>
-						</button>
-						<button type="button"
-							class="logout btn action-2 op-6 sm">
-							<i class="fad fa-sign-out"></i>
-						</button>
-					</div>
-				</div>
-				<!-- ----------------------- Connect with wallet end ----------------------- -->
-				<div>
-					<a href="#intro"
-						class="f-heading f-22 link color-main mb-20">
-						Introduction
-					</a>
-				</div>
-				<div>
-					<a href="#features"
-						class="f-heading f-22 link color-main mb-20">
-						Features
-					</a>
-				</div>
-				<div>
-					<a href="#dehub"
-						class="f-heading f-22 link color-main mb-20">
-						$DEHUB
-					</a>
-				</div>
-				<div>
-					<a href="#partners"
-						class="f-heading f-22 link color-main mb-20">
-						Partners
-					</a>
-				</div>
-				<div>
-					<a href="#team"
-						class="f-heading f-22 link color-main mb-20">
-						The Team
-					</a>
-				</div>
-				<div>
-					<a href="https://bscscan.com/token/0xFC206f429d55c71cb7294EfF40c6ADb20dC21508"
-						target="_blank"
-						class="f-heading f-22 link color-main mb-20">
-						Contract
-					</a>
-				</div>
-				<!-- <div>
-					<a href="#presale"
-						class="f-heading f-22 link color-main mb-20">
-						Presale
-					</a>
-				</div> -->
-				<div>
-					<span class="f-heading f-18 color-main mb-20">
-						dApps:
-					</span>
-				</div>
-				<div class="dropdown-divider op-1">
-				</div>
-				<div class="pl-20 pt-15 bg-gradient-2 radius10 mt-10">
-					<a href="/swap"
-						target="_blank"
-						class="link color-main mb-15">
-						<i class="fad fa-exchange"></i>
-						&nbsp;
-						<span>Airdrop Swap</span>
-					</a>
-				</div>
-				<div class="pl-20 pt-15 bg-gradient-2 radius10 mt-10">
-					<a href="/claim"
-						target="_blank"
-						class="link color-main mb-15 claim">
-						<i class="fad fa-gift color-main"></i>
-						&nbsp;
-						<span>Claim BNB Rewards</span>
-					</a>
-				</div>
-				<div class="pl-20 pt-15 bg-gradient-2 radius10 mt-10">
-					<a href="#"
-						class="link color-main mb-15 comingSoon">
-						<i class="fad fa-ticket color-main"></i>
-						&nbsp;
-						<span class="comingSoon">Lottery</span>
-					</a>
-				</div>
-				<div class="pl-20 pt-15 bg-gradient-2 radius10 mt-10">
-					<a href="#"
-						target="_blank"
-						class="link color-main mb-15 comingSoon">
-						<i class="fad fa-trophy-alt color-main"></i>
-						&nbsp;
-						<span class="comingSoon">Tournetopia</span>
-					</a>
-				</div>
-				<div class="pl-20 pt-15 bg-gradient-2 radius10 mt-10">
-					<a href="#"
-						target="_blank"
-						class="link color-main mb-15 comingSoon">
-						<i class="fad fa-tv-retro color-main"></i>
-						&nbsp;
-						<span class="comingSoon">Streaming</span>
-					</a>
-				</div>
-
-				<div class="socials mt-40">
-					<a href="https://twitter.com/dehub_official"
-						target="_blank"
-						class="link color-main mx-5">
-						<i class="fab fa-twitter"></i>
-					</a>
-					<a href="https://www.instagram.com/dehub_official/"
-						target="_blank"
-						class="link color-main mx-5">
-						<i class="fab fa-instagram"></i>
-					</a>
-					<a href="https://t.me/Dehubofficial"
-						target="_blank"
-						class="link color-main mx-5">
-						<i class="fab fa-telegram-plane"></i>
-					</a>
-					<a href="https://medium.com/@dehub.bsc"
-						target="_blank"
-						class="link color-main mx-5">
-						<i class="fab fa-medium-m"></i>
-					</a>
-					<a href="https://github.com/DeHubToken/dehub-public-contract"
-						target="_blank"
-						class="link color-main mx-5">
-						<i class="fab fa-github"></i>
-					</a>
-					<!-- <a href="#"
-						class="link color-main fab fa-reddit-alien mx-5">
-					</a> -->
-				</div>
-				<div class="mt-50 f-14 light color-white op-3 copy">
-					© 2021 DeHub. All rights reserved.
-				</div>
-			</div>
-		</div>
+		<drawer></drawer>
 		<!-- Header 5 -->
-		<header class="pt-160 pb-60 header_5"
-			data-bg-src="false"
-			data-bg-src-2x="false">
-			<nav class="pt-35 pb-35">
-				<div class="container px-xl-0">
-					<div class="row align-items-center">
-						<div class="col-lg-3">
-							<a href="#"
-								class="link img_link mt-15">
-								<img src="uploads/logo.png"
-									alt="Logo"
-									class="w-200"
-									data-aos="fade-down"
-									data-aos-delay="500">
-							</a>
-						</div>
-						<div class="col-lg-9 justify-content-end align-items-center f-18 medium"
-							data-aos="fade-down"
-							data-aos-delay="500">
-							<div class="d-block float-right mx-10 mb-10">
-								<a href="https://twitter.com/dehub_official"
-									target="_blank"
-									class="link color-main mx-5">
-									<i class="fab fa-twitter"></i>
-								</a>
-								<a href="https://www.instagram.com/dehub_official/"
-									target="_blank"
-									class="link color-main mx-5">
-									<i class="fab fa-instagram"></i>
-								</a>
-								<a href="https://t.me/Dehubofficial"
-									target="_blank"
-									class="link color-main mx-5">
-									<i class="fab fa-telegram-plane"></i>
-								</a>
-								<a href="https://medium.com/@dehub.bsc"
-									target="_blank"
-									class="link color-main mx-5">
-									<i class="fab fa-medium-m"></i>
-								</a>
-								<a href="https://github.com/DeHubToken/dehub-public-contract"
-									target="_blank"
-									class="link color-main mx-5">
-									<i class="fab fa-github"></i>
-								</a>
-								<!-- <a href="#"
-									class="link color-main fab fa-reddit-alien mx-5">
-								</a> -->
-								<!-- ---------------------- Connect with wallet start ---------------------- -->
-								<div class="connect-wallet-widget d-inline-block">
-									<a href="#"
-										class="connect-wallet btn action-2 sm ml-20">
-										<i class="fad fa-wallet"></i>
-										&nbsp;
-										<span>Connect Wallet</span>
-									</a>
-									<div class="connected-wallet btn-group ml-20 d-none"
-										role="group"
-										aria-label="Wallet Authentication">
-										<button type="button"
-											class="address-bar btn action-2 sm">
-											<img class="w-30 pr-10 pb-10"
-												src="uploads/metamask.svg">
-											<span class="label">Loading...</span>
-										</button>
-										<button type="button"
-											class="logout btn action-2 op-6 sm">
-											<i class="fad fa-sign-out"></i>
-										</button>
-									</div>
-								</div>
-								<!-- ----------------------- Connect with wallet end ----------------------- -->
-							</div>
-							<!-- ----------------------- Connect with wallet end ----------------------- -->
-							<div class="w-full d-flex justify-content-end">
-								<a href="#intro"
-									class="nav-item link color-main mx-15">
-									Introduction
-								</a>
-								<a href="#features"
-									class="nav-item link color-main mx-15">
-									Features
-								</a>
-								<a href="#dehub"
-									class="nav-item link color-main mx-15">
-									$DEHUB
-								</a>
-								<a href="#partners"
-									class="nav-item link color-main mx-15">
-									Partners
-								</a>
-								<a href="#team"
-									class="nav-item link color-main mx-15">
-									The Team
-								</a>
-								<a href="https://bscscan.com/token/0xFC206f429d55c71cb7294EfF40c6ADb20dC21508"
-									target="_blank"
-									class="nav-item link color-main mx-15">
-									Contract
-								</a>
-								<!-- <a href="#presale"
-									class="nav-item link color-main mx-15">
-									Presale
-								</a> -->
-								<div class="nav-item dropdown">
-									<a class="link color-main mx-15 dropdown-toggle"
-										href="#"
-										id="dAppsDropdown"
-										role="button"
-										data-toggle="dropdown"
-										aria-haspopup="true"
-										aria-expanded="false">
-										dApps
-									</a>
-									<div class="dropdown-menu bg-gray-1 pt-20 pb-20 mt-10 radius4"
-										aria-labelledby="dAppsDropdown">
-										<a href="/swap"
-											target="_blank"
-											class="dropdown-item btn glass-1 mb-10 text-left">
-											<span></span>
-											<span></span>
-											<span></span>
-											<span></span>
-											<i class="fad fa-exchange"></i>
-											&nbsp;
-											<span class="nonEmpty">Airdrop Swap</span>
-										</a>
-										<a href="/claim"
-											target="_blank"
-											class="dropdown-item btn glass-1 mb-10 text-left claim">
-											<span></span>
-											<span></span>
-											<span></span>
-											<span></span>
-											<i class="fad fa-gift color-main"></i>
-											&nbsp;
-											<span class="nonEmpty">Claim BNB Rewards</span>
-										</a>
-										<a href="#"
-											class="dropdown-item btn glass-1 mb-10 text-left comingSoon">
-											<span></span>
-											<span></span>
-											<span></span>
-											<span></span>
-											<i class="fad fa-ticket color-main"></i>
-											&nbsp;
-											<span class="nonEmpty">Lottery</span></a>
-										<a href="#"
-											class="dropdown-item btn glass-1 mb-10 text-left comingSoon">
-											<span></span>
-											<span></span>
-											<span></span>
-											<span></span>
-											<i class="fad fa-trophy-alt color-main"></i>
-											&nbsp;
-											<span class="nonEmpty">Tournetopia</span></a>
-										<a href="#"
-											class="dropdown-item btn glass-1 mb-10 text-left comingSoon">
-											<span></span>
-											<span></span>
-											<span></span>
-											<span></span>
-											<i class="fad fa-tv-retro color-main"></i>
-											&nbsp;
-											<span class="nonEmpty">Streaming</span></a>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</nav>
-			<div class="text-center container px-xl-0">
-				<div class="row justify-content-center">
-					<div class="col-lg-8"
-						data-aos="zoom-in"
-						data-aos-delay="0">
-						<div class="mb-3 text-center d-xl-none">
-							<a href="#"
-								class="link img_link">
-								<img src="uploads/logo.png"
-									alt="Logo"
-									class="mw-110">
-							</a>
-						</div>
-						<h1>
-						</h1>
-					</div>
-					<div class="col-lg-10"
-						data-aos="zoom-in"
-						data-aos-delay="250">
-						<img src="uploads/ulogo.png"
-							alt=""
-							class="mx-auto mw-90 mt-40 mb-50">
-					</div>
-				</div>
-				<div class="row f-18 color-heading medium">
-					<div class="mt-30 col-lg-4 f-18 pt-10 pb-10 text-adaptive block"
-						data-aos="zoom-in"
-						data-aos-delay="0">
-						<div class="mx-auto mw-320"
-							data-aos="zoom-in"
-							data-aos-delay="500">
-							DECENTRALIZED
-						</div>
-					</div>
-					<div class="mt-30 col-lg-4 f-18 pt-10 pb-10 text-adaptive block block_with_border"
-						data-aos="zoom-in"
-						data-aos-delay="250">
-						<div class="mx-auto mw-320"
-							data-aos="zoom-in"
-							data-aos-delay="1000">
-							ENTERTAINMENT
-						</div>
-					</div>
-					<div class="mt-30 col-lg-4 f-18 pt-10 pb-10 text-adaptive block"
-						data-aos="zoom-in"
-						data-aos-delay="500">
-						<div class="mx-auto mw-320"
-							data-aos="zoom-in"
-							data-aos-delay="1500">
-							HUB
-						</div>
-					</div>
-				</div>
-			</div>
-		</header>
+		<header data-options='{"size": "big"}'></header>
 
 		<!-- Feature 24 -->
 		<section id="intro"
@@ -513,6 +119,21 @@
 						<h2 class="small">
 							The Decentralized Entertainment Hub
 						</h2>
+						<div class="mt-15 mb-20">
+							<span class="pr-10 small text-uppercase bold">Listed on: </span>
+							<a href="https://www.coingecko.com/en/coins/dehub"
+								target="_blank"
+								class="link img_link mr-5">
+								<img src="uploads/coingecko-logo.svg"
+									class="w-20">
+							</a>
+							<a href="https://coinmarketcap.com/currencies/dehub/"
+								target="_blank"
+								class="link img_link">
+								<img src="uploads/coinmarketcap-logo.svg"
+									class="w-20">
+							</a>
+						</div>
 						<div class="mt-15 mb-35 color-heading text-adaptive">
 							DeHub is blockchain's first entertainment aggregator and licensed
 							producer of original motion picture, exclusive Pay-Per-View events,
@@ -538,13 +159,22 @@
 								<span></span>
 								<span></span>
 								AUDIT</a>
-							<a href="#dxsale"
-								class="btn glass-1 shadow mr-10 mb-15 comingSoon">
+							<a href="https://poocoin.app/tokens/0xfc206f429d55c71cb7294eff40c6adb20dc21508"
+								target="_blank"
+								class="btn glass-2 mr-10 mb-15">
 								<span></span>
 								<span></span>
 								<span></span>
 								<span></span>
-								DXSALE</a>
+								CHART</a>
+							<a href="https://pancakeswap.finance/swap?outputCurrency=0xFC206f429d55c71cb7294EfF40c6ADb20dC21508"
+								target="_blank"
+								class="btn glass-1 shadow mr-10 mb-15">
+								<span></span>
+								<span></span>
+								<span></span>
+								<span></span>
+								BUY</a>
 						</div>
 					</div>
 					<div class="col-lg-5 col-md-8 mt-40 mt-lg-0">
@@ -845,7 +475,7 @@
 						<h2 class="small"
 							data-aos="zoom-in"
 							data-aos-delay="0">
-							Wallet Distribution
+							Token Distribution
 						</h2>
 						<div class="mt-25 mb-30 f-22 op-7 color-heading text-adaptive description"
 							data-aos="zoom-in"
@@ -862,11 +492,14 @@
 							data-aos="zoom-in"
 							data-aos-delay="0">
 							<div class="mb-20 f-14 semibold text-uppercase sp-20 title">
-								Operations wallets
+								Presale + Liquidity Pool
 							</div>
 							<div class="color-heading op-7 text-adaptive">
-								The DeHub Marketing, R&amp;D, Partnerships &amp; Licensing Wallets are considered as operations wallets used for funding ongoing marketing campaigns, project development and DeHub originals, partnerships and the salaries of in-house employees.
-								<br>Operations wallets cannot sell below their % allocation and only the reflections will be tradable.
+								30% of the total supply is allocated to presale and liquidity pool.
+								Private sale rate: 0.001$ / DeHub <br>
+								Launchpad rate: 0.00135$ / DeHub <br>
+								Listing rate: 0.0015$ / DeHub <br>
+								Note: LP locked for 3 years.
 							</div>
 						</div>
 					</div>
@@ -875,11 +508,12 @@
 							data-aos="zoom-in"
 							data-aos-delay="0">
 							<div class="mb-20 f-14 semibold text-uppercase sp-20 title">
-								Team wallet
+								Burned Wallet
 							</div>
 							<div class="color-heading op-7 text-adaptive">
-								The DeHub Team Wallet contains funds reserved for founders who initially funded and started the project.
-								<br>The team's wallet cannot sell below their % allocation and only the reflections will be tradable.
+								The DeHub Burned Wallet will receive its share from the 1% reflections in a process
+								that slowly removes tokens from circulation thus increasing the value of the
+								remaining tokens.
 							</div>
 						</div>
 					</div>
@@ -900,10 +534,12 @@
 							data-aos="zoom-in"
 							data-aos-delay="0">
 							<div class="mb-20 f-14 semibold text-uppercase sp-20 title">
-								Liquidity Pool (Pancakeswap listing)
+								Team Wallet
 							</div>
 							<div class="color-heading op-7 text-adaptive">
-								Pancakeswap listing will be at a rate of 1 BNB = 200,000 DeHub
+								The DeHub Team Wallet contains funds reserved for founders who initially funded
+								and started the project. No wallet can sell below their percentage allocation and only
+								the reflections will be tradable for the first 4 years.
 							</div>
 						</div>
 					</div>
@@ -912,26 +548,21 @@
 							data-aos="zoom-in"
 							data-aos-delay="0">
 							<div class="mb-20 f-14 semibold text-uppercase sp-20 title">
-								Private &amp; public presales
+								Operations & Marketing Wallet
 							</div>
 							<div class="color-heading op-7 text-adaptive">
-								A private sale will be hosted on our website at a rate of 1 BNB = 270,000 DeHub. <br>
-								A public presale will be hosted on a reputable launchpad at a rate of 1 BNB = 235,000 DeHub.
+								10% of the total supply will be allocated to fund the following:
+								1- Marketing: Ongoing marketing campaigns, influencers and
+								in-house marketing experts, social media moderators and designers.
+								2- Research & Development: Ongoing updates to the website and D’app including
+								a schedule of enhancements to the user experience via new features to be
+								launched on a monthly basis.
+								3- Partnerships and Licensing: Secure the biggest and best releases and rights
+								such as major MMA and Boxing events.
 							</div>
 						</div>
 					</div>
-					<div class="col-sm-5">
-						<div class="block mt-55"
-							data-aos="zoom-in"
-							data-aos-delay="0">
-							<div class="mb-20 f-14 semibold text-uppercase sp-20 title">
-								Burnt Wallet
-							</div>
-							<div class="color-heading op-7 text-adaptive">
-								The DeHub Burned Wallet will receive its share from the 1% reflections in a process that slowly removes tokens from circulation thus increasing the value of the remaining tokens.
-							</div>
-						</div>
-					</div>
+
 				</div>
 			</div>
 		</section>
@@ -1049,75 +680,6 @@
 				</div>
 			</div>
 		</section>
-		<!-- ---------------------------- DXsale Start ---------------------------- -->
-		<!-- <section id="dxsale"
-			class="pt-105 pb-130 feature_33">
-			<div class="container px-xl-0">
-				<div class="row">
-					<div class="col-md-12 col-xl-6">
-						<div class="row">
-							<div class="col">
-								<h2 class="small"
-									data-aos="fade-up"
-									data-aos-delay="0">
-									Dehub DxSale
-								</h2>
-								<div class="mt-25 mb-30 f-22 op-7 color-heading text-adaptive description"
-									data-aos="fade-up"
-									data-aos-delay="250">
-									<div>1 BNB = 235,000 $DeHub</div>
-									<div>Min contribution = 0.2 BNB</div>
-									<div>Max contribution = 150 BNB</div>
-									<div>Softcap = 4000 BNB</div>
-									<div>Hardcap = 7500 BNB</div>
-									<div class="mt-20">
-										<a href="https://dxsale.app/app/v2_9/defipresale?saleID=2721&chain=BSC"
-											target="_blank"
-											class="btn glass-1 shadow mr-10 mb-15">
-											<span></span>
-											<span></span>
-											<span></span>
-											<span></span>
-											GET ON DXSALE</a>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-12 col-xl-6">
-						<div class="px-20 pt-20 pb-30 radius10 mb-30 block bg-gradient-3"
-							data-aos="fade-up"
-							data-aos-delay="1000">
-							<div class="mb-20 f-22">
-								<i class="fad fa-stopwatch align-middle f-40 action-2 mt-10"></i>
-								<span class="t-6">&nbsp; DxSale Starts</span>
-							</div>
-							<div class="op-7 text-adaptive color-main pl-10">
-								<ul class="list-group">
-									<li class="list-group-item bg-transparent border-dark">
-										<a href="https://logwork.com/countdown-qraa"
-											class="countdown-timer"
-											data-style="circles"
-											data-timezone="Europe/London"
-											data-textcolor="#ffffff"
-											data-date="2021-08-20 23:00"
-											data-digitscolor="#ffffff"
-											data-unitscolor="#ffffff"
-											data-background="#1791a7">&nbsp</a>
-									</li>
-									<li class="list-group-item bg-transparent border-dark small">
-										Due to BNB volatility, the market cap on the listing is estimated
-										to be $4m with a 25% dilution. 35% of the supply is under the smart
-										contract to never go below the initial balance. This means that 35%
-										of our total supply is considered forever burnt. We will be adding
-										a small % into a stablecoin pool that we may increase as volatility does too.
-									</li>
-								</ul>
-							</div>
-						</div>
-					</div>
-		</section> -->
-		<!-- ----------------------------- DXsale End ----------------------------- -->
 		<!-- Team 4 -->
 		<section id="partners"
 			class="pt-105 pb-100 text-center team_4"
@@ -1412,6 +974,13 @@
 							</div>
 							<div class="f-14 semibold text-uppercase sp-20 color-heading">
 								Head of Design
+							</div>
+							<div class="mt-10">
+								<a href="https://twitter.com/DGY_design"
+									target="_blank"
+									class="link color-main">
+									<i class="fab fa-twitter"></i>
+								</a>
 							</div>
 						</div>
 					</div>
@@ -1721,12 +1290,11 @@
 		<!-- Startup JS (Custom js for all blocks) -->
 		<script src="js/script.js"></script>
 		<!-- Custom JS outside designmodo -->
-		<script src="https://cdn.logwork.com/widget/countdown.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.7.2/d3.min.js"></script>
 		<script src="custom/libs/d3pie/d3pie.min.js"></script>
 		<script type="module"
 			src="custom/js/script.js"></script>
-		<script src="custom/js/views/bootstrap-hacks.js"></script>
+
 		<!-- ---------------------- Blockchain gateway start ----------------------- -->
 		<script type="module"
 			src="custom/js/views/wallet-button.js"></script>

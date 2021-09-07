@@ -92,128 +92,19 @@
 			gtag('config', 'G-10LTL8GSGR');
 		</script>
 
-		<!-- ----------------------------- Components ------------------------------ -->
+		<!-- -------------------- Components (Order important) --------------------- -->
+		<script src="/components/header/index.js"></script>
+		<script src="/components/drawer/index.js"></script>
 		<script src="/components/footer/index.js"></script>
+		<script src="components/social-bar/index.js"></script>
 	</head>
 
 	<body class="bg-gradient-1">
 
 		<!-- Navigation Mobile type 1 -->
-		<a href="#"
-			class="open_menu radius_full">
-			<i class="fas fa-bars lh-40">
-			</i>
-		</a>
-		<div class="navigation_mobile type1 bg-gray-1">
-			<a href="#"
-				class="close_menu color-white">
-				<i class="fas fa-times">
-				</i>
-			</a>
-			<div class="px-40 pt-60 pb-60 inner">
-				<a href="/"
-					class="mb-30 link img_link">
-					<img src="uploads/logo.svg"
-						alt="Logo"
-						class="img-fluid w-100">
-				</a>
-				<div>
-					<a href="/index"
-						class="f-heading f-22 link color-main mb-20"
-						target="_blank">
-						<i class="far fa-long-arrow-left"></i>
-						&nbsp;Main Website
-					</a>
-				</div>
-				<div class="socials mt-40">
-					<a href="https://twitter.com/dehub_official"
-						class="link color-main fab fa-twitter mx-5">
-					</a>
-					<a href="https://www.instagram.com/dehub_official/"
-						class="link color-main fab fa-instagram mx-5">
-					</a>
-					<a href="https://t.me/Dehubofficial"
-						class="link color-main fab fa-telegram-plane mx-5">
-					</a>
-					<a href="https://medium.com/@dehub.bsc"
-						target="_blank"
-						class="link color-main fab fa-medium-m mx-5">
-					</a>
-					<!-- <a href="#"
-						class="link color-main fab fa-reddit-alien mx-5">
-					</a> -->
-				</div>
-				<div class="mt-50 f-14 light color-white op-3 copy">
-					© 2021 DeHub. All rights reserved.
-				</div>
-			</div>
-		</div>
+		<drawer></drawer>
 		<!-- Header 5 -->
-		<header class="pt-160 pb-60 header_5"
-			data-bg-src="false"
-			data-bg-src-2x="false">
-			<div class="container d-block d-xl-none text-center">
-				<a href="/"
-					class="link img_link mt-15">
-					<img src="uploads/logo.svg"
-						alt="Logo"
-						class="w-200"
-						data-aos="fade-down"
-						data-aos-delay="500">
-				</a>
-				<div class="block pt-15 f-20"
-					data-aos="fade-in"
-					data-aos-delay="700">
-					The Decentralized Entertainment Hub
-				</div>
-			</div>
-			<nav class="header_menu_5 pt-35 pb-35">
-				<div class="container px-xl-0">
-					<div class="row align-items-center">
-						<div class="col-lg-3">
-							<a href="/"
-								class="link img_link mt-15">
-								<img src="uploads/logo.svg"
-									alt="Logo"
-									class="w-200"
-									data-aos="fade-down"
-									data-aos-delay="500">
-							</a>
-						</div>
-						<div class="col-lg-9 justify-content-end align-items-center f-18 medium"
-							data-aos="fade-down"
-							data-aos-delay="500">
-							<div class="d-block float-right mx-10 mb-10">
-								<a href="https://twitter.com/dehub_official"
-									class="link color-main fab fa-twitter mx-5 align-middle">
-								</a>
-								<a href="https://www.instagram.com/dehub_official/"
-									class="link color-main fab fa-instagram mx-5 align-middle">
-								</a>
-								<a href="https://t.me/Dehubofficial"
-									class="link color-main fab fa-telegram-plane mx-5 align-middle">
-								</a>
-								<a href="https://medium.com/@dehub.bsc"
-									target="_blank"
-									class="link color-main fab fa-medium-m mx-5 align-middle">
-								</a>
-								<!-- <a href="#"
-									class="link color-main fab fa-reddit-alien mx-5">
-								</a> -->
-							</div>
-							<div class="w-full d-flex justify-content-end">
-								<a href="/index"
-									target="_blank"
-									class="nav-item link color-main mx-15">
-									<i class="far fa-long-arrow-left"></i>
-									&nbsp;Main Website
-								</a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</nav>
-		</header>
+		<header data-options='{"size": "small"}'></header>
 
 		<!-- Feature 24 -->
 		<section class="pt-100 pb-105 feature_24"
@@ -479,7 +370,7 @@
 		<!-- Custom JS outside designmodo -->
 		<script type="module"
 			src="custom/js/script.js"></script>
-		<script src="custom/js/views/bootstrap-hacks.js"></script>
+
 		<script type="module"
 			src="custom/js/views/particles.js"></script>
 	</body>
