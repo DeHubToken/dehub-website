@@ -93,6 +93,7 @@
 		</script>
 
 		<!-- -------------------- Components (Order important) --------------------- -->
+		<script src="/components/header/index.js"></script>
 		<script src="/components/drawer/index.js"></script>
 		<script src="/components/footer/index.js"></script>
 		<script src="components/social-bar/index.js"></script>
@@ -103,56 +104,7 @@
 		<!-- Navigation Mobile type 1 -->
 		<drawer></drawer>
 		<!-- Header 5 -->
-		<header class="pt-160 pb-60 header_5"
-			data-bg-src="false"
-			data-bg-src-2x="false">
-			<div class="container d-block d-xl-none text-center">
-				<a href="/"
-					class="link img_link mt-15">
-					<img src="uploads/logo.svg"
-						alt="Logo"
-						class="w-200"
-						data-aos="fade-down"
-						data-aos-delay="500">
-				</a>
-				<div class="block pt-15 f-20"
-					data-aos="fade-in"
-					data-aos-delay="700">
-					The Decentralized Entertainment Hub
-				</div>
-			</div>
-			<nav class="header_menu_5 pt-35 pb-35">
-				<div class="container px-xl-0">
-					<div class="row align-items-center">
-						<div class="col-lg-3">
-							<a href="/"
-								class="link img_link mt-15">
-								<img src="uploads/logo.svg"
-									alt="Logo"
-									class="w-200"
-									data-aos="fade-down"
-									data-aos-delay="500">
-							</a>
-						</div>
-						<div class="col-lg-9 justify-content-end align-items-center f-18 medium"
-							data-aos="fade-down"
-							data-aos-delay="500">
-							<div class="d-block float-right mx-10 mb-10">
-								<social-bar></social-bar>
-							</div>
-							<div class="w-full d-flex justify-content-end">
-								<a href="/index"
-									target="_blank"
-									class="nav-item link color-main mx-15">
-									<i class="far fa-long-arrow-left"></i>
-									&nbsp;Main Website
-								</a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</nav>
-		</header>
+		<header data-options='{"size": "small"}'></header>
 
 		<!-- Feature 24 -->
 		<section class="pt-100 pb-105 feature_24"
@@ -418,7 +370,7 @@
 		<!-- Custom JS outside designmodo -->
 		<script type="module"
 			src="custom/js/script.js"></script>
-		<script src="custom/js/views/bootstrap-hacks.js"></script>
+
 		<script type="module"
 			src="custom/js/views/particles.js"></script>
 	</body>

@@ -92,6 +92,7 @@
 		</script>
 
 		<!-- -------------------- Components (Order important) --------------------- -->
+		<script src="/components/header/index.js"></script>
 		<script src="/components/drawer/index.js"></script>
 		<script src="/components/footer/index.js"></script>
 		<script src="components/social-bar/index.js"></script>
@@ -103,206 +104,7 @@
 		<!-- Navigation Mobile type 1 -->
 		<drawer></drawer>
 		<!-- Header 5 -->
-		<header class="pt-160 pb-60 header_5"
-			data-bg-src="false"
-			data-bg-src-2x="false">
-			<nav class="pt-35 pb-35">
-				<div class="container px-xl-0">
-					<div class="row align-items-center">
-						<div class="col-lg-3">
-							<a href="#"
-								class="link img_link mt-15">
-								<img src="uploads/logo.png"
-									alt="Logo"
-									class="w-200"
-									data-aos="fade-down"
-									data-aos-delay="500">
-							</a>
-						</div>
-						<div class="col-lg-9 justify-content-end align-items-center f-18 medium"
-							data-aos="fade-down"
-							data-aos-delay="500">
-							<div class="d-block float-right mx-10 mb-10">
-								<social-bar></social-bar>
-								<!-- ---------------------- Connect with wallet start ---------------------- -->
-								<div class="connect-wallet-widget d-inline-block">
-									<a href="#"
-										class="connect-wallet btn action-2 sm ml-20">
-										<i class="fad fa-wallet"></i>
-										&nbsp;
-										<span>Connect Wallet</span>
-									</a>
-									<div class="connected-wallet btn-group ml-20 d-none"
-										role="group"
-										aria-label="Wallet Authentication">
-										<button type="button"
-											class="address-bar btn action-2 sm">
-											<img class="w-30 pr-10 pb-10"
-												src="uploads/metamask.svg">
-											<span class="label">Loading...</span>
-										</button>
-										<button type="button"
-											class="logout btn action-2 op-6 sm">
-											<i class="fad fa-sign-out"></i>
-										</button>
-									</div>
-								</div>
-								<!-- ----------------------- Connect with wallet end ----------------------- -->
-							</div>
-							<!-- ----------------------- Connect with wallet end ----------------------- -->
-							<div class="w-full d-flex justify-content-end">
-								<a href="#intro"
-									class="nav-item link color-main mx-15">
-									Introduction
-								</a>
-								<a href="#features"
-									class="nav-item link color-main mx-15">
-									Features
-								</a>
-								<a href="#dehub"
-									class="nav-item link color-main mx-15">
-									$DEHUB
-								</a>
-								<a href="#partners"
-									class="nav-item link color-main mx-15">
-									Partners
-								</a>
-								<a href="#team"
-									class="nav-item link color-main mx-15">
-									The Team
-								</a>
-								<a href="https://bscscan.com/token/0xFC206f429d55c71cb7294EfF40c6ADb20dC21508"
-									target="_blank"
-									class="nav-item link color-main mx-15">
-									Contract
-								</a>
-								<!-- <a href="#presale"
-									class="nav-item link color-main mx-15">
-									Presale
-								</a> -->
-								<div class="nav-item dropdown">
-									<a class="link color-main mx-15 dropdown-toggle"
-										href="#"
-										id="dAppsDropdown"
-										role="button"
-										data-toggle="dropdown"
-										aria-haspopup="true"
-										aria-expanded="false">
-										dApps
-									</a>
-									<div class="dropdown-menu bg-gray-1 pt-20 pb-20 mt-10 radius4"
-										aria-labelledby="dAppsDropdown">
-										<a href="/swap"
-											target="_blank"
-											class="dropdown-item btn glass-1 mb-10 text-left">
-											<span></span>
-											<span></span>
-											<span></span>
-											<span></span>
-											<i class="fad fa-exchange"></i>
-											&nbsp;
-											<span class="nonEmpty">Airdrop Swap</span>
-										</a>
-										<a href="/claim"
-											target="_blank"
-											class="dropdown-item btn glass-1 mb-10 text-left claim">
-											<span></span>
-											<span></span>
-											<span></span>
-											<span></span>
-											<i class="fad fa-gift color-main"></i>
-											&nbsp;
-											<span class="nonEmpty">Claim BNB Rewards</span>
-										</a>
-										<a href="#"
-											class="dropdown-item btn glass-1 mb-10 text-left comingSoon">
-											<span></span>
-											<span></span>
-											<span></span>
-											<span></span>
-											<i class="fad fa-ticket color-main"></i>
-											&nbsp;
-											<span class="nonEmpty">Lottery</span></a>
-										<a href="#"
-											class="dropdown-item btn glass-1 mb-10 text-left comingSoon">
-											<span></span>
-											<span></span>
-											<span></span>
-											<span></span>
-											<i class="fad fa-trophy-alt color-main"></i>
-											&nbsp;
-											<span class="nonEmpty">Tournetopia</span></a>
-										<a href="#"
-											class="dropdown-item btn glass-1 mb-10 text-left comingSoon">
-											<span></span>
-											<span></span>
-											<span></span>
-											<span></span>
-											<i class="fad fa-tv-retro color-main"></i>
-											&nbsp;
-											<span class="nonEmpty">Streaming</span></a>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</nav>
-			<div class="text-center container px-xl-0">
-				<div class="row justify-content-center">
-					<div class="col-lg-8"
-						data-aos="zoom-in"
-						data-aos-delay="0">
-						<div class="mb-3 text-center d-xl-none">
-							<a href="#"
-								class="link img_link">
-								<img src="uploads/logo.png"
-									alt="Logo"
-									class="mw-110">
-							</a>
-						</div>
-						<h1>
-						</h1>
-					</div>
-					<div class="col-lg-10"
-						data-aos="zoom-in"
-						data-aos-delay="250">
-						<img src="uploads/ulogo.png"
-							alt=""
-							class="mx-auto mw-90 mt-40 mb-50">
-					</div>
-				</div>
-				<div class="row f-18 color-heading medium">
-					<div class="mt-30 col-lg-4 f-18 pt-10 pb-10 text-adaptive block"
-						data-aos="zoom-in"
-						data-aos-delay="0">
-						<div class="mx-auto mw-320"
-							data-aos="zoom-in"
-							data-aos-delay="500">
-							DECENTRALIZED
-						</div>
-					</div>
-					<div class="mt-30 col-lg-4 f-18 pt-10 pb-10 text-adaptive block block_with_border"
-						data-aos="zoom-in"
-						data-aos-delay="250">
-						<div class="mx-auto mw-320"
-							data-aos="zoom-in"
-							data-aos-delay="1000">
-							ENTERTAINMENT
-						</div>
-					</div>
-					<div class="mt-30 col-lg-4 f-18 pt-10 pb-10 text-adaptive block"
-						data-aos="zoom-in"
-						data-aos-delay="500">
-						<div class="mx-auto mw-320"
-							data-aos="zoom-in"
-							data-aos-delay="1500">
-							HUB
-						</div>
-					</div>
-				</div>
-			</div>
-		</header>
+		<header data-options='{"size": "big"}'></header>
 
 		<!-- Feature 24 -->
 		<section id="intro"
@@ -1562,7 +1364,7 @@
 		<script src="custom/libs/d3pie/d3pie.min.js"></script>
 		<script type="module"
 			src="custom/js/script.js"></script>
-		<script src="custom/js/views/bootstrap-hacks.js"></script>
+		
 		<!-- ---------------------- Blockchain gateway start ----------------------- -->
 		<script type="module"
 			src="custom/js/views/wallet-button.js"></script>
