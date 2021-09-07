@@ -93,6 +93,7 @@
 		</script>
 
 		<!-- -------------------- Components (Order important) --------------------- -->
+		<script src="/components/drawer/index.js"></script>
 		<script src="/components/footer/index.js"></script>
 		<script src="components/social-bar/index.js"></script>
 	</head>
@@ -100,40 +101,7 @@
 	<body class="bg-gradient-1">
 
 		<!-- Navigation Mobile type 1 -->
-		<a href="#"
-			class="open_menu radius_full">
-			<i class="fas fa-bars lh-40">
-			</i>
-		</a>
-		<div class="navigation_mobile type1 bg-gray-1">
-			<a href="#"
-				class="close_menu color-white">
-				<i class="fas fa-times">
-				</i>
-			</a>
-			<div class="px-40 pt-60 pb-60 inner">
-				<a href="/"
-					class="mb-30 link img_link">
-					<img src="uploads/logo.svg"
-						alt="Logo"
-						class="img-fluid w-100">
-				</a>
-				<div>
-					<a href="/index"
-						class="f-heading f-22 link color-main mb-20"
-						target="_blank">
-						<i class="far fa-long-arrow-left"></i>
-						&nbsp;Main Website
-					</a>
-				</div>
-				<div class="socials mt-40">
-					<social-bar></social-bar>
-				</div>
-				<div class="mt-50 f-14 light color-white op-3 copy">
-					© 2021 DeHub. All rights reserved.
-				</div>
-			</div>
-		</div>
+		<drawer></drawer>
 		<!-- Header 5 -->
 		<header class="pt-160 pb-60 header_5"
 			data-bg-src="false"
