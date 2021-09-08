@@ -14,13 +14,13 @@ function initHeader(data) {
 	if (options) {
 		if (options.size === 'small') {
 			$component.find('.header-small-title').show();
-			$component.find('.header-big-title').hide();
+			$component.find('.header-big-title').remove();
 		} else if (options.size === 'big') {
 			$component.find('.header-big-title').show();
-			$component.find('.header-small-title').hide();
+			$component.find('.header-small-title').remove();
 		} else {
-			$component.find('.header-big-title').hide();
-			$component.find('.header-small-title').hide();
+			$component.find('.header-big-title').remove();
+			$component.find('.header-small-title').remove();
 		}
 	}
 
