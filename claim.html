@@ -99,6 +99,7 @@
 		</script>
 
 		<!-- -------------------- Components (Order important) --------------------- -->
+		<script src="/components/header/index.js"></script>
 		<script src="/components/drawer/index.js"></script>
 		<script src="/components/footer/index.js"></script>
 		<script src="components/social-bar/index.js"></script>
@@ -110,132 +111,7 @@
 		<!-- Navigation Mobile type 1 -->
 		<drawer></drawer>
 		<!-- Header 5 -->
-		<header class="pt-160 pb-60 header_5"
-			data-bg-src="false"
-			data-bg-src-2x="false">
-			<div class="container d-block d-xl-none text-center">
-				<a href="/"
-					class="link img_link mt-15">
-					<img src="uploads/logo.png"
-						alt="Logo"
-						class="w-200"
-						data-aos="fade-down"
-						data-aos-delay="500">
-				</a>
-				<div class="block pt-15 f-20"
-					data-aos="fade-in"
-					data-aos-delay="700">
-					The Decentralized Entertainment Hub
-				</div>
-			</div>
-			<nav class="header_menu_5 pt-35 pb-35">
-				<div class="container px-xl-0">
-					<div class="row align-items-center">
-						<div class="col-lg-3">
-							<a href="/"
-								class="link img_link mt-15">
-								<img src="uploads/logo.png"
-									alt="Logo"
-									class="w-200"
-									data-aos="fade-down"
-									data-aos-delay="500">
-							</a>
-						</div>
-						<div class="col-lg-9 justify-content-end align-items-center f-18 medium"
-							data-aos="fade-down"
-							data-aos-delay="500">
-							<div class="d-block float-right mx-10 mb-10">
-								<social-bar></social-bar>
-								<!-- ---------------------- Connect with wallet start ---------------------- -->
-								<div class="connect-wallet-widget d-inline-block">
-									<a href="#"
-										class="connect-wallet btn action-2 sm ml-20">
-										<i class="fad fa-wallet"></i>
-										&nbsp;
-										<span>Connect Wallet</span>
-									</a>
-									<div class="connected-wallet btn-group ml-20 d-none"
-										role="group"
-										aria-label="Wallet Authentication">
-										<button type="button"
-											class="address-bar btn action-2 sm">
-											<img class="w-30 pr-10 pb-10"
-												src="uploads/metamask.svg">
-											<span class="label">Loading...</span>
-										</button>
-										<button type="button"
-											class="logout btn action-2 op-6 sm">
-											<i class="fad fa-sign-out"></i>
-										</button>
-									</div>
-								</div>
-								<!-- ----------------------- Connect with wallet end ----------------------- -->
-							</div>
-							<div class="w-full d-flex justify-content-end">
-								<a href="index.html"
-									target="_blank"
-									class="nav-item link color-main mx-15">
-									Main Website
-								</a>
-								<div id="nav-dropdown"
-									class="nav-item dropdown">
-									<a class="link color-main mx-15 dropdown-toggle"
-										href="#"
-										id="dAppsDropdown"
-										role="button"
-										data-toggle="dropdown"
-										aria-haspopup="true"
-										aria-expanded="false">
-										dApps
-									</a>
-									<div id="dApps-dropdown"
-										class="dropdown-menu bg-gray-1 pt-20 pb-20 mt-10 radius4"
-										aria-labelledby="dAppsDropdown">
-										<a href="/claim"
-											class="dropdown-item btn glass-1 mb-10 text-left">
-											<span></span>
-											<span></span>
-											<span></span>
-											<span></span>
-											<i class="fad fa-gift color-main"></i>
-											&nbsp;
-											<span class="nonEmpty">Claim BNB Rewards</span>
-										</a>
-										<a href="#"
-											class="dropdown-item btn glass-1 mb-10 text-left">
-											<span></span>
-											<span></span>
-											<span></span>
-											<span></span>
-											<i class="fad fa-ticket color-main"></i>
-											&nbsp;
-											<span class="comingSoon">Lottery</span></a>
-										<a href="#"
-											class="dropdown-item btn glass-1 mb-10 text-left comingSoon">
-											<span></span>
-											<span></span>
-											<span></span>
-											<span></span>
-											<i class="fad fa-trophy-alt color-main"></i>
-											&nbsp;
-											<span class="nonEmpty">Tournetopia</span></a>
-										<a href="#"
-											class="dropdown-item btn glass-1 mb-10 text-left comingSoon">
-											<span></span>
-											<span></span>
-											<span></span>
-											<span></span>
-											<i class="fad fa-tv-retro color-main"></i>
-											&nbsp;
-											<span class="nonEmpty">Streaming</span></a>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</nav>
-		</header>
+		<header data-options='{"size": "small"}'></header>
 
 		<!-- Feature 24 -->
 		<section class="pt-100 pb-105 feature_24"
@@ -553,7 +429,7 @@
 		<!-- Custom JS outside designmodo -->
 		<script type="module"
 			src="custom/js/script.js"></script>
-		<script src="custom/js/views/bootstrap-hacks.js"></script>
+
 		<!-- ---------------------- Blockchain gateway start ----------------------- -->
 		<script async
 			type="module"
