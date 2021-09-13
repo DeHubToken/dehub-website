@@ -12,9 +12,10 @@ import { truncateAddress, isMobile } from '../helpers.js';
 
 const $doc = $(document);
 
-$doc.ready(async () => {
+$(async () => {
 	await initAuth();
 	prepareForDevice();
+	initClickEvents();
 });
 
 async function showConnectedWallet() {
@@ -79,35 +80,37 @@ $doc.on('account:changed:old', () => {
 	// showConnectedWallet();
 });
 
-$('.connect-wallet').on('click', async (e) => {
-	e.preventDefault();
-	const user = currUser();
-	if (user) {
-		if (isChainCorrect()) {
-			await showConnectedWallet();
+function initClickEvents() {
+	$('.connect-wallet').on('click', async (e) => {
+		e.preventDefault();
+		const user = currUser();
+		if (user) {
+			if (isChainCorrect()) {
+				await showConnectedWallet();
+			} else {
+				await askToSwitchChain();
+			}
 		} else {
-			await askToSwitchChain();
+			$('#walletConnectModal').modal();
 		}
-	} else {
-		$('#walletConnectModal').modal();
-	}
-});
+	});
 
-$('#walletConnectModal .modal-body .btn').on('click', async (e) => {
-	e.preventDefault();
-	const providerName = $(e.target).data('provider');
-	await logIn(providerName);
-});
+	$('#walletConnectModal .modal-body .btn').on('click', async (e) => {
+		e.preventDefault();
+		const providerName = $(e.target).data('provider');
+		await logIn(providerName);
+	});
 
-$('.logout').on('click', async (e) => {
-	e.preventDefault();
-	await logOut();
-});
+	$('.logout').on('click', async (e) => {
+		e.preventDefault();
+		await logOut();
+	});
 
-$('#accountLinkModal .accountLink').on('click', async (e) => {
-	e.preventDefault();
-	const acc = $(e.target).data('account');
-	linkAccount(acc);
-});
+	$('#accountLinkModal .accountLink').on('click', async (e) => {
+		e.preventDefault();
+		const acc = $(e.target).data('account');
+		linkAccount(acc);
+	});
+}
 
 /* -------------------------------- Listeners ------------------------------- */
