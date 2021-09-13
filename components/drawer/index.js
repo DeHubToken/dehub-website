@@ -1,9 +1,7 @@
-$(() => {
-	// Fetch template and update the DOM
-	fetch('./components/drawer/template.html')
-		.then((response) => response.text())
-		.then((data) => initDrawer(data));
-});
+// Fetch template and update the DOM
+fetch('./components/drawer/template.html')
+	.then((response) => response.text())
+	.then((data) => initDrawer(data));
 
 function initDrawer(data) {
 	// Update DOM

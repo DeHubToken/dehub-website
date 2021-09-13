@@ -3,18 +3,22 @@ import { currUser } from '../controllers/auth.js';
 import { initCoinButton } from '../views/coin-button.js';
 import { constants } from '../constants.js';
 
-const abi = [
+const abiRewards = [
 	'function isDistributionEnabled() public view returns(bool)',
 	'function hasAlreadyClaimed(address holderAddr) public view returns(bool)',
-	'function balanceOf(address account) public view returns(uint256)',
 	'function claimCycleHours() public view returns(uint256)',
 	'function claimableDistribution() public view returns(uint256)',
-	'function calcClaimableShare(address holderAddr) public view returns(uint256)',
+	'function calcCurrentClaimableShare(address holderAddr) public view returns(uint256)',
 	'function totalClaimed() public view returns(uint256)',
 	'function claimReward() external returns(uint256)',
 ];
 
-const CONTRACT_ADDR = constants.PUBLIC_CONTRACT;
+const abiMain = [
+	'function balanceOf(address account) public view returns(uint256)',
+];
+
+const REWARDS_CONTRACT_ADDR = constants.REWARDS_CONTRACT;
+const MAIN_CONTRACT_ADDR = constants.PUBLIC_CONTRACT;
 
 // Must wrap everything in async because of Safari...
 (async () => {
@@ -22,7 +26,7 @@ const CONTRACT_ADDR = constants.PUBLIC_CONTRACT;
 	initCoinButton();
 
 	let isClaiming = false;
-	let signer, signerAddr, dhb;
+	let signer, signerAddr, dhbRew, dhb;
 	let isEnabled,
 		hasClaimed,
 		cycleHours,
@@ -52,7 +56,8 @@ const CONTRACT_ADDR = constants.PUBLIC_CONTRACT;
 	async function initDapp(authProvider) {
 		signer = authProvider.getSigner();
 		signerAddr = await signer.getAddress();
-		dhb = new ethers.Contract(CONTRACT_ADDR, abi, signer);
+		dhbRew = new ethers.Contract(REWARDS_CONTRACT_ADDR, abiRewards, signer);
+		dhb = new ethers.Contract(MAIN_CONTRACT_ADDR, abiMain, signer);
 		await updateView();
 		updateClaimButton();
 		$('#claim-btn')
@@ -61,25 +66,25 @@ const CONTRACT_ADDR = constants.PUBLIC_CONTRACT;
 	}
 
 	async function updateData() {
-		isEnabled = await dhb.isDistributionEnabled();
-		hasClaimed = await dhb.hasAlreadyClaimed(signerAddr);
-		cycleHours = ethers.utils.formatUnits(await dhb.claimCycleHours(), 0);
+		isEnabled = await dhbRew.isDistributionEnabled();
+		hasClaimed = await dhbRew.hasAlreadyClaimed(signerAddr);
+		cycleHours = ethers.utils.formatUnits(await dhbRew.claimCycleHours(), 0);
 		balance = ethers.utils.formatUnits(await dhb.balanceOf(signerAddr), 5);
 		totalClaimable = ethers.utils.formatEther(
-			await dhb.claimableDistribution()
+			await dhbRew.claimableDistribution()
 		);
 		claimableShare = ethers.utils.formatEther(
-			await dhb.calcClaimableShare(signerAddr)
+			await dhbRew.calcCurrentClaimableShare(signerAddr)
 		);
-		totalClaimed = ethers.utils.formatEther(await dhb.totalClaimed());
+		totalClaimed = ethers.utils.formatEther(await dhbRew.totalClaimed());
 
-		console.log(isEnabled);
-		console.log(hasClaimed);
-		console.log(cycleHours);
-		console.log(balance);
-		console.log(totalClaimable);
-		console.log(claimableShare);
-		console.log(totalClaimed);
+		console.log('isEnabled', isEnabled);
+		console.log('hasClaimed', hasClaimed);
+		console.log('cycleHours', cycleHours);
+		console.log('balance', balance);
+		console.log('totalClaimable', totalClaimable);
+		console.log('claimableShare', claimableShare);
+		console.log('totalClaimed', totalClaimed);
 	}
 
 	/* ----------------------------------- UI ----------------------------------- */
@@ -183,7 +188,7 @@ const CONTRACT_ADDR = constants.PUBLIC_CONTRACT;
 				);
 			}, 1300);
 			try {
-				const tx = await dhb.claimReward();
+				const tx = await dhbRew.claimReward();
 				await tx.wait();
 			} catch (error) {
 				console.log(error);

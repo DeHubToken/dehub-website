@@ -1,9 +1,7 @@
-$(() => {
-	// Fetch template and update the DOM
-	fetch('./components/disclaimer/template.html')
-		.then((response) => response.text())
-		.then((data) => initDisclaimer(data));
-});
+// Fetch template and update the DOM
+fetch('./components/disclaimer/template.html')
+	.then((response) => response.text())
+	.then((data) => initDisclaimer(data));
 
 function initDisclaimer(data) {
 	// Update DOM
