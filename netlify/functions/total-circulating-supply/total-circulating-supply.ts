@@ -7,8 +7,8 @@ const API_ENDPOINT =
 export const handler: Handler = async (event, context) => {
 	try {
 		const response = await fetch(API_ENDPOINT);
-		const data = await response['result'].text();
-		return { statusCode: 200, body: data };
+		const data = await response.json();
+		return { statusCode: 200, body: data['result'] };
 	} catch (error) {
 		console.log(error);
 		return {
