@@ -1,3 +1,6 @@
 /dehub-website.code-workspace
 .DS_Store
 node_modules
+
+# Local Netlify folder
+.netlify
