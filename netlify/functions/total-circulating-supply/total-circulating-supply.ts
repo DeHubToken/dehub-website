@@ -7,8 +7,9 @@ const API_ENDPOINT =
 export const handler: Handler = async (event, context) => {
 	try {
 		const response = await fetch(API_ENDPOINT);
-		const data = await response.json();
-		return { statusCode: 200, body: data['result'] };
+
+		const { result: totalCirculatingSupply } = (await response.json()) as any;
+		return { statusCode: 200, body: totalCirculatingSupply };
 	} catch (error) {
 		console.log(error);
 		return {
