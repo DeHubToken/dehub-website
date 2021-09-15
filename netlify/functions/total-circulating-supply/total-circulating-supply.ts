@@ -9,7 +9,7 @@ export const handler: Handler = async (event, context) => {
 		const response = await fetch(API_ENDPOINT);
 
 		const { result: totalCirculatingSupply } = (await response.json()) as any;
-		return { statusCode: 200, body: totalCirculatingSupply };
+		return { statusCode: 200, body: JSON.stringify(totalCirculatingSupply) };
 	} catch (error) {
 		console.log(error);
 		return {
