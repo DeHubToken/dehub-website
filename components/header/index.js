@@ -1,5 +1,5 @@
 // Fetch template and update the DOM
-fetch('./components/header/template.html')
+fetch('/components/header/template.html')
 	.then((response) => response.text())
 	.then((data) => initHeader(data));
 

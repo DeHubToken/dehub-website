@@ -1,5 +1,5 @@
 // Fetch template and update the DOM
-fetch('./components/drawer/template.html')
+fetch('/components/drawer/template.html')
 	.then((response) => response.text())
 	.then((data) => initDrawer(data));
 

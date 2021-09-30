@@ -7,10 +7,12 @@ const abiRewards = [
 	'function isDistributionEnabled() public view returns(bool)',
 	'function hasAlreadyClaimed(address holderAddr) public view returns(bool)',
 	'function claimCycleHours() public view returns(uint256)',
+	'function nextCycleResetTimestamp() public view returns(uint256)',
 	'function claimableDistribution() public view returns(uint256)',
 	'function calcCurrentClaimableShare(address holderAddr) public view returns(uint256)',
 	'function totalClaimed() public view returns(uint256)',
 	'function claimReward() external returns(uint256)',
+	'function dehubToken() public view returns(address)',
 ];
 
 const abiMain = [
@@ -18,7 +20,6 @@ const abiMain = [
 ];
 
 const REWARDS_CONTRACT_ADDR = constants.REWARDS_CONTRACT;
-const MAIN_CONTRACT_ADDR = constants.PUBLIC_CONTRACT;
 
 // Must wrap everything in async because of Safari...
 (async () => {
@@ -33,7 +34,9 @@ const MAIN_CONTRACT_ADDR = constants.PUBLIC_CONTRACT;
 		balance,
 		totalClaimable,
 		claimableShare,
-		totalClaimed;
+		totalClaimed,
+		nextCycle,
+		mainContractAddr;
 
 	/* ----------------------------- Event listeners ---------------------------- */
 	$doc.on('logged:in', async (_, user, authProvider) => {
@@ -57,7 +60,8 @@ const MAIN_CONTRACT_ADDR = constants.PUBLIC_CONTRACT;
 		signer = authProvider.getSigner();
 		signerAddr = await signer.getAddress();
 		dhbRew = new ethers.Contract(REWARDS_CONTRACT_ADDR, abiRewards, signer);
-		dhb = new ethers.Contract(MAIN_CONTRACT_ADDR, abiMain, signer);
+		mainContractAddr = await dhbRew.dehubToken();
+		dhb = new ethers.Contract(mainContractAddr, abiMain, signer);
 		await updateView();
 		updateClaimButton();
 		$('#claim-btn')
@@ -69,6 +73,7 @@ const MAIN_CONTRACT_ADDR = constants.PUBLIC_CONTRACT;
 		isEnabled = await dhbRew.isDistributionEnabled();
 		hasClaimed = await dhbRew.hasAlreadyClaimed(signerAddr);
 		cycleHours = ethers.utils.formatUnits(await dhbRew.claimCycleHours(), 0);
+		nextCycle = (await dhbRew.nextCycleResetTimestamp()).toNumber();
 		balance = ethers.utils.formatUnits(await dhb.balanceOf(signerAddr), 5);
 		totalClaimable = ethers.utils.formatEther(
 			await dhbRew.claimableDistribution()
@@ -81,6 +86,7 @@ const MAIN_CONTRACT_ADDR = constants.PUBLIC_CONTRACT;
 		console.log('isEnabled', isEnabled);
 		console.log('hasClaimed', hasClaimed);
 		console.log('cycleHours', cycleHours);
+		console.log('nextCycle', nextCycle);
 		console.log('balance', balance);
 		console.log('totalClaimable', totalClaimable);
 		console.log('claimableShare', claimableShare);
@@ -99,6 +105,7 @@ const MAIN_CONTRACT_ADDR = constants.PUBLIC_CONTRACT;
 			$('.total-claimable').text(totalClaimable);
 			$('.claimable-share').text(claimableShare);
 			$('.total-claimed').text(totalClaimed);
+
 			// Handle exceptions
 			if (!isEnabled) {
 				await showDisabledMessage();
