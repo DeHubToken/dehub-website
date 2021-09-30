@@ -46,17 +46,17 @@ $(document).ready(() => {
 			content: [
 				{
 					label: 'Presale & LP',
-					value: 30,
+					value: 34,
 					color: '#972595',
 				},
 				{
 					label: 'Operations',
-					value: 10,
+					value: 8,
 					color: '#9C52D9',
 				},
 				{
 					label: 'Team',
-					value: 10,
+					value: 8,
 					color: '#765DDE',
 				},
 				{
