@@ -10,7 +10,8 @@
 		"sass:watch:min": "sass --watch scss/style.scss:css/style.min.css --style compressed --no-source-map",
 		"serve": "npx http-server",
 		"ngrok": "./ngrok http --region=eu --hostname=dehublocal.eu.ngrok.io 8080",
-		"dev": "concurrently --kill-others \"npm run sass:watch:min\" \"npm run serve\" \"npm run ngrok\""
+		"dev": "concurrently --kill-others \"npm run sass:watch:min\" \"npm run serve\"",
+		"dev:ngrok": "concurrently --kill-others \"npm run sass:watch:min\" \"npm run serve\" \"npm run ngrok\""
 	},
 	"repository": {
 		"type": "git",
