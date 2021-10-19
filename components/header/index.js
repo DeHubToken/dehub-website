@@ -20,6 +20,12 @@ function initHeader(data) {
 			$component.find('.header-big-title').remove();
 			$component.find('.header-small-title').remove();
 		}
+		if (options.pageIndicator) {
+			$component
+				.find('.main-logo')
+				.addClass('border border-left-0 border-right-0 border-top-0 pb-10');
+			$component.find('.page-indicator span').html(options.pageIndicator);
+		}
 	}
 
 	// Fix bootstrap dropdown overlow issue inside header
