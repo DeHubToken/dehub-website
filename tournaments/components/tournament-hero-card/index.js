@@ -119,11 +119,3 @@ function countDown($component, countDownDate) {
 		$countdown.text('Started!');
 	}
 }
-
-$(document).ready(function () {
-	$('.upcoming-slider').slick({
-		infinite: true,
-		slidesToShow: 3,
-		slidesToScroll: 3,
-	});
-});
