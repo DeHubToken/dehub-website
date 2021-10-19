@@ -18,7 +18,6 @@ async function initTournamentHeroCard(data) {
 	// Get the data
 	const response = await client.getEntries();
 	const items = response.items;
-	console.log(items);
 	items.forEach((item, index) => {
 		if (index === 0) {
 			updateCoverData(item, $component);
@@ -32,7 +31,6 @@ async function initTournamentHeroCard(data) {
 function updateCoverData(item, $component) {
 	const f = item.fields;
 	const locale = item.sys.locale;
-	console.log(item);
 	// Cover image
 	$component.find('img')[0].src = f.coverImage.fields.file.url;
 	// Title
@@ -46,6 +44,7 @@ function updateCoverData(item, $component) {
 		day: 'numeric',
 		hour: 'numeric',
 		minute: 'numeric',
+		second: 'numeric',
 		timezone: 'UTC',
 		timeZoneName: 'short',
 	};
