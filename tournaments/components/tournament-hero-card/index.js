@@ -103,8 +103,7 @@ function countDown($component, countDownDate) {
 
 	// Display the result in the element with id="demo"
 	$countdown.text(
-		'Starts in ' +
-			days +
+		days +
 			' day(s) ' +
 			hours +
 			' hours ' +
