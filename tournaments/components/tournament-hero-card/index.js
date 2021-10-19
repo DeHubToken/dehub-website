@@ -18,8 +18,9 @@ async function initTournamentHeroCard(data) {
 	// Get the data
 	const response = await client.getEntries();
 	const items = response.items;
+	console.log(items);
 	items.forEach((item, index) => {
-		if (index === 0) {
+		if (item.fields.featured) {
 			updateCoverData(item, $component);
 		}
 	});
