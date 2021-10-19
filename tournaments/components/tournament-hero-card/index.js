@@ -49,7 +49,7 @@ function updateCoverData(item, $component) {
 		timeZoneName: 'short',
 		hour12: false,
 	};
-	$component.find('.date').text(d.toLocaleDateString(locale, options));
+	$component.find('.date').text(d.toUTCString().replace('GMT', 'UTC'));
 	const x = setInterval(countDown, 1000, $component, d);
 	// Badge
 	if (f.badge && f.badge !== '') {
@@ -119,3 +119,11 @@ function countDown($component, countDownDate) {
 		$countdown.text('Started!');
 	}
 }
+
+$(document).ready(function () {
+	$('.upcoming-slider').slick({
+		infinite: true,
+		slidesToShow: 3,
+		slidesToScroll: 3,
+	});
+});
