@@ -47,6 +47,7 @@ function updateCoverData(item, $component) {
 		second: 'numeric',
 		timezone: 'UTC',
 		timeZoneName: 'short',
+		hour12: false,
 	};
 	$component.find('.date').text(d.toLocaleDateString(locale, options));
 	const x = setInterval(countDown, 1000, $component, d);
