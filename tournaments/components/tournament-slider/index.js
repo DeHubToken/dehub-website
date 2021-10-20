@@ -37,7 +37,7 @@ async function initTournamentSlider(data) {
 		order: '-fields.date',
 	});
 	const items = response.items;
-	console.log(items);
+	// console.log(items);
 	addSlides(embla, items, $component);
 }
 
