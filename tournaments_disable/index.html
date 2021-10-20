@@ -73,8 +73,8 @@
 		<!-- Startup CSS (Styles for all blocks) - Remove ".min" if you would edit a css code -->
 		<link href="../css/style.min.css"
 			rel="stylesheet" />
-		<!-- --------------------------- Coin Button CSS --------------------------- -->
-		<link href="../custom/css/coin-button.css"
+		<!-- ------------------------------ Carousel ------------------------------- -->
+		<link href="../custom/css/embla-carousel.css"
 			rel="stylesheet" />
 		<!-- ----------------------------- Contentful ------------------------------ -->
 		<script src="https://cdn.jsdelivr.net/npm/contentful@latest/dist/contentful.browser.min.js"></script>
@@ -92,6 +92,8 @@
 		<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 		<script src="https://kit.fontawesome.com/1481019c19.js"
 			crossorigin="anonymous"></script>
+		<!-- ------------------------------ Carousel ------------------------------- -->
+		<script src="https://unpkg.com/embla-carousel/embla-carousel.umd.js"></script>
 		<!-- Moralis SDK code -->
 		<script src="https://github.com/WalletConnect/walletconnect-monorepo/releases/download/1.6.5/web3-provider.min.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
@@ -118,9 +120,11 @@
 		<script src="../components/disclaimer/index.js"></script>
 		<script type="module"
 			src="./components/tournament-hero-card/index.js"></script>
+		<script type="module"
+			src="./components/tournament-slider/index.js"></script>
 	</head>
 
-	<body style="background:linear-gradient(45deg, rgba(11, 17, 19, 0.9), rgba(5, 17, 24, 0.9) 46%, rgba(6, 12, 29, 1) 71%, rgba(50, 19, 56, 1)), url('../uploads/tournaments/001/cover.jpg') no-repeat fixed center center /cover;">
+	<body>
 
 		<!-- Navigation Mobile type 1 -->
 		<drawer></drawer>
@@ -139,6 +143,13 @@
 				</div>
 			</div>
 		</section>
+
+		<section>
+			<div class="container px-xl-0">
+				<tournament-slider></tournament-slider>
+			</div>
+		</section>
+
 		<!-- Footer 2 -->
 		<footer></footer>
 
