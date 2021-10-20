@@ -1,11 +1,11 @@
 import { constants } from '../../../custom/js/constants.js';
 
 // Fetch template and update the DOM
-fetch('/tournaments/components/tournament-upcoming-slider/template.html')
+fetch('/tournaments/components/tournament-slider/template.html')
 	.then((response) => response.text())
-	.then((data) => initTournamentUpcomingSlider(data));
+	.then((data) => initTournamentSlider(data));
 
-async function initTournamentUpcomingSlider(data) {
+async function initTournamentSlider(data) {
 	const client = contentful.createClient({
 		// This is the space ID. A space is like a project folder in Contentful terms
 		space: '4jicnfvodfm8',
@@ -13,7 +13,7 @@ async function initTournamentUpcomingSlider(data) {
 		accessToken: constants.CONTENTFUL_KEY,
 	});
 	// Update DOM
-	const $component = $('tournament-upcoming-slider');
+	const $component = $('tournament-slider');
 	$component.html(data);
 
 	// Prepare Carousel
