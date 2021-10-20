@@ -1,9 +1,4 @@
-const client = contentful.createClient({
-	// This is the space ID. A space is like a project folder in Contentful terms
-	space: '4jicnfvodfm8',
-	// This is the access token for this space. Normally you get both ID and the token in the Contentful web app
-	accessToken: 'KcnbJh6OlDNIeAD3BmpkwwEbnPla9E_CWytSW4yaRBs',
-});
+import { constants } from '../../../custom/js/constants.js';
 
 // Fetch template and update the DOM
 fetch('/tournaments/components/tournament-hero-card/template.html')
@@ -11,15 +6,25 @@ fetch('/tournaments/components/tournament-hero-card/template.html')
 	.then((data) => initTournamentHeroCard(data));
 
 async function initTournamentHeroCard(data) {
+	const client = contentful.createClient({
+		// This is the space ID. A space is like a project folder in Contentful terms
+		space: '4jicnfvodfm8',
+		// This is the access token for this space. Normally you get both ID and the token in the Contentful web app
+		accessToken: constants.CONTENTFUL_KEY,
+	});
 	// Update DOM
 	const $component = $('tournament-hero-card');
 	$component.html(data);
 
 	// Get the data
-	const response = await client.getEntries();
+	const response = await client.getEntries({
+		content_type: 'tournament',
+		'fields.featured': true,
+		order: '-fields.date',
+	});
 	const items = response.items;
 	console.log(items);
-	items.forEach((item, index) => {
+	items.forEach((item) => {
 		if (item.fields.featured) {
 			updateCoverData(item, $component);
 		}
@@ -31,25 +36,12 @@ async function initTournamentHeroCard(data) {
  */
 function updateCoverData(item, $component) {
 	const f = item.fields;
-	const locale = item.sys.locale;
 	// Cover image
 	$component.find('img')[0].src = f.coverImage.fields.file.url;
 	// Title
 	$component.find('.card-title').text(f.title);
 	// Date and countdown
 	const d = new Date(f.date);
-	const options = {
-		weekday: 'long',
-		year: 'numeric',
-		month: 'long',
-		day: 'numeric',
-		hour: 'numeric',
-		minute: 'numeric',
-		second: 'numeric',
-		timezone: 'UTC',
-		timeZoneName: 'short',
-		hour12: false,
-	};
 	$component.find('.date').text(d.toUTCString().replace('GMT', 'UTC'));
 	const x = setInterval(countDown, 1000, $component, d);
 	// Badge
@@ -82,11 +74,6 @@ function updateCoverData(item, $component) {
 		$cta.attr('href', f.callToActionButtonLink).removeClass('disabled');
 	}
 }
-
-/**
- * Will update slider components.
- */
-function updateSliderData(fields) {}
 
 function countDown($component, countDownDate) {
 	const $countdown = $component.find('.countdown');

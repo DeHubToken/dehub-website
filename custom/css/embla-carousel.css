@@ -4,7 +4,7 @@
 .embla__container {
 	display: grid;
 	grid-auto-flow: column;
-	grid-auto-columns: 29%; /* Each slide covers 80% of the viewport */
+	grid-auto-columns: 31.8%; /* Each slide covers 80% of the viewport */
 	grid-column-gap: 20px;
 }
 /* .embla__slide {
