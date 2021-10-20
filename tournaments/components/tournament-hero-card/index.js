@@ -23,7 +23,7 @@ async function initTournamentHeroCard(data) {
 		order: '-fields.date',
 	});
 	const items = response.items;
-	console.log(items);
+	// console.log(items);
 	items.forEach((item) => {
 		if (item.fields.featured) {
 			updateCoverData(item, $component);
