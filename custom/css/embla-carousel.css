@@ -7,6 +7,12 @@
 	grid-auto-columns: 31.8%; /* Each slide covers 80% of the viewport */
 	grid-column-gap: 20px;
 }
+.embla__prev,
+.embla__next {
+	margin: 10px 0;
+	background-color: rgba(255, 255, 255, 0.8);
+	border-radius: 2px;
+}
 /* .embla__slide {
 	position: relative;
 	flex: 0 0 33.3333%;

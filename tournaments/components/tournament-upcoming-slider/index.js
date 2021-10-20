@@ -70,8 +70,7 @@ const addSlides = (embla, items) => {
 
 const cardTemplate = `
 	<div class="embla__slide">
-		<div class="card bg-transparent bg-gradient-2 radius10 border-0"
-			data-aos="fade-up">
+		<div class="card bg-transparent bg-gradient-2 radius10 border-0">
 			<img src="../uploads/placeholder-1920x1080.jpg"
 				class="card-img-top"
 				alt="Tournament Cover Image">
