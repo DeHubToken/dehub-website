@@ -1,11 +1,11 @@
 import { constants } from '../../../custom/js/constants.js';
 
 // Fetch template and update the DOM
-fetch('/tournaments/components/tournament-hero-card/template.html')
+fetch('/ppv/components/ppv-hero-card/template.html')
 	.then((response) => response.text())
-	.then((data) => initTournamentHeroCard(data));
+	.then((data) => initPPVHeroCard(data));
 
-async function initTournamentHeroCard(data) {
+async function initPPVHeroCard(data) {
 	const client = contentful.createClient({
 		// This is the space ID. A space is like a project folder in Contentful terms
 		space: '4jicnfvodfm8',
@@ -13,12 +13,12 @@ async function initTournamentHeroCard(data) {
 		accessToken: constants.CONTENTFUL_KEY,
 	});
 	// Update DOM
-	const $component = $('tournament-hero-card');
+	const $component = $('ppv-hero-card');
 	$component.html(data);
 
 	// Get the data
 	const response = await client.getEntries({
-		content_type: 'tournament',
+		content_type: 'ppv',
 		'fields.featured': true,
 		order: '-fields.date',
 	});
@@ -75,7 +75,7 @@ function updateCoverData(item, $component) {
 	const converted = documentToHtmlString(f.description, richOptions);
 	$component.find('.description').html(converted);
 	// Button
-	const $cta = $component.find('.tournament-cta');
+	const $cta = $component.find('.ppv-cta');
 	$cta.find('.nonEmpty').text(f.callToActionButtonLabel);
 	if (f.callToActionButtonLink) {
 		$cta.attr('href', f.callToActionButtonLink).removeClass('disabled');
