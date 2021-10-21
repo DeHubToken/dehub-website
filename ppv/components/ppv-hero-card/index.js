@@ -109,6 +109,6 @@ const readMoreBtnTemplate = `
 		data-toggle="collapse"
 		aria-expanded="false"
 		aria-controls="collapseDescription">
-		<span>Read more</span>
+		<span>Read more&nbsp;<i class="far fa-chevron-down"></i></span>
 	</a>
 `;
