@@ -53,6 +53,9 @@ function updateCoverData(item, $component) {
 		const d = new Date(f.date);
 		$component.find('.date').text(d.toUTCString().replace('GMT', 'UTC'));
 		const x = setInterval(countDown, 1000, $component, d);
+		$component
+			.find('.date-container, .countdown-container')
+			.toggleClass('d-none, d-block');
 	}
 	// Badge
 	if (f.badge && f.badge !== '') {
@@ -75,14 +78,37 @@ function updateCoverData(item, $component) {
 			},
 		},
 	};
-	const converted = documentToHtmlString(f.description, richOptions);
-	$component.find('.description').html(converted);
+	const converted = $(
+		documentToHtmlString(f.description, richOptions)
+	).toArray();
+	const pLen = converted.length;
+	const firstParagraph = converted.shift();
+	$component.find('.description-first-p').html(firstParagraph);
+	if (pLen > 1) {
+		const html = $.parseHTML(readMoreBtnTemplate);
+		$component.find('.description-first-p p').append($(html));
+		$component.find('.description-rest').html(converted);
+	}
 	// Button
 	if (f.callToActionButtonLabel) {
 		const $cta = $component.find('.ppv-cta');
-		$cta.find('.nonEmpty').text(f.callToActionButtonLabel);
+		$cta
+			.removeClass('d-none')
+			.find('.nonEmpty')
+			.text(f.callToActionButtonLabel);
 		if (f.callToActionButtonLink) {
 			$cta.attr('href', f.callToActionButtonLink).removeClass('disabled');
 		}
 	}
 }
+
+const readMoreBtnTemplate = `
+	<a href="#collapseDescription"
+		role="button"
+		class="link read-more d-inline badge badge-dark"
+		data-toggle="collapse"
+		aria-expanded="false"
+		aria-controls="collapseDescription">
+		<span>Read more</span>
+	</a>
+`;
