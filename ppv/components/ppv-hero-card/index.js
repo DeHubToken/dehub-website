@@ -1,4 +1,5 @@
 import { constants } from '../../../custom/js/constants.js';
+import { countDown } from '../../../custom/js/helpers.js';
 
 // Fetch template and update the DOM
 fetch('/ppv/components/ppv-hero-card/template.html')
@@ -48,9 +49,11 @@ function updateCoverData(item, $component) {
 	// Title
 	$component.find('.card-title').text(f.title);
 	// Date and countdown
-	const d = new Date(f.date);
-	$component.find('.date').text(d.toUTCString().replace('GMT', 'UTC'));
-	const x = setInterval(countDown, 1000, $component, d);
+	if (f.date) {
+		const d = new Date(f.date);
+		$component.find('.date').text(d.toUTCString().replace('GMT', 'UTC'));
+		const x = setInterval(countDown, 1000, $component, d);
+	}
 	// Badge
 	if (f.badge && f.badge !== '') {
 		$component.find('.badge').text(f.badge).toggleClass('d-none, d-block');
@@ -75,42 +78,11 @@ function updateCoverData(item, $component) {
 	const converted = documentToHtmlString(f.description, richOptions);
 	$component.find('.description').html(converted);
 	// Button
-	const $cta = $component.find('.ppv-cta');
-	$cta.find('.nonEmpty').text(f.callToActionButtonLabel);
-	if (f.callToActionButtonLink) {
-		$cta.attr('href', f.callToActionButtonLink).removeClass('disabled');
-	}
-}
-
-function countDown($component, countDownDate) {
-	const $countdown = $component.find('.countdown');
-	// Get today's date and time
-	const now = new Date().getTime();
-
-	// Find the distance between now and the count down date
-	const distance = countDownDate - now;
-
-	// Time calculations for days, hours, minutes and seconds
-	var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-	var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-	var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-	var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-	// Display the result in the element with id="demo"
-	$countdown.text(
-		days +
-			' day(s) ' +
-			hours +
-			' hours ' +
-			minutes +
-			' minutes ' +
-			seconds +
-			' seconds '
-	);
-
-	// If the count down is finished, write some text
-	if (distance < 0) {
-		clearInterval(x);
-		$countdown.text('Started!');
+	if (f.callToActionButtonLabel) {
+		const $cta = $component.find('.ppv-cta');
+		$cta.find('.nonEmpty').text(f.callToActionButtonLabel);
+		if (f.callToActionButtonLink) {
+			$cta.attr('href', f.callToActionButtonLink).removeClass('disabled');
+		}
 	}
 }

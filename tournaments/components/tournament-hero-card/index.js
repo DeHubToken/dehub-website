@@ -1,4 +1,5 @@
 import { constants } from '../../../custom/js/constants.js';
+import { countDown } from '../../../custom/js/helpers.js';
 
 // Fetch template and update the DOM
 fetch('/tournaments/components/tournament-hero-card/template.html')
@@ -79,38 +80,5 @@ function updateCoverData(item, $component) {
 	$cta.find('.nonEmpty').text(f.callToActionButtonLabel);
 	if (f.callToActionButtonLink) {
 		$cta.attr('href', f.callToActionButtonLink).removeClass('disabled');
-	}
-}
-
-function countDown($component, countDownDate) {
-	const $countdown = $component.find('.countdown');
-	// Get today's date and time
-	const now = new Date().getTime();
-
-	// Find the distance between now and the count down date
-	const distance = countDownDate - now;
-
-	// Time calculations for days, hours, minutes and seconds
-	var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-	var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-	var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-	var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-	// Display the result in the element with id="demo"
-	$countdown.text(
-		days +
-			' day(s) ' +
-			hours +
-			' hours ' +
-			minutes +
-			' minutes ' +
-			seconds +
-			' seconds '
-	);
-
-	// If the count down is finished, write some text
-	if (distance < 0) {
-		clearInterval(x);
-		$countdown.text('Started!');
 	}
 }
