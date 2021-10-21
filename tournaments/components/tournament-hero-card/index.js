@@ -54,7 +54,7 @@ function updateCoverData(item, $component) {
 	const x = setInterval(countDown, 1000, $component, d);
 	// Badge
 	if (f.badge && f.badge !== '') {
-		$component.find('.badge').text(f.badge).toggleClass('d-none, d-block');
+		$component.find('.badge').text(f.badge).toggleClass('d-none d-block');
 	}
 	// Description
 	const richOptions = {

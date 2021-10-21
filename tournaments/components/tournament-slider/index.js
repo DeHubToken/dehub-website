@@ -57,9 +57,9 @@ const addSlides = (embla, items) => {
 		// Badge
 		const now = new Date();
 		if (d < now) {
-			$card.find('.badge.fin').toggleClass('d-none, d-block');
+			$card.find('.badge.fin').toggleClass('d-none d-block');
 		} else {
-			$card.find('.badge.upcoming').toggleClass('d-none, d-block');
+			$card.find('.badge.upcoming').toggleClass('d-none d-block');
 		}
 		// Insert
 		$container.append($card);

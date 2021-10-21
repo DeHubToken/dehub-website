@@ -57,9 +57,9 @@ const addSlides = (embla, items) => {
 		// Badge
 		const now = new Date();
 		if (d < now) {
-			$card.find('.badge.fin').toggleClass('d-none, d-block');
+			$card.find('.badge.fin').toggleClass('d-none d-block');
 		} else {
-			$card.find('.badge.upcoming').toggleClass('d-none, d-block');
+			$card.find('.badge.upcoming').toggleClass('d-none d-block');
 		}
 		// Insert
 		$container.append($card);
@@ -78,7 +78,7 @@ const cardTemplate = `
 				<h6 class="card-title text-uppercase mb-5">
 					...
 				</h6>
-				<span class="date-container d-block float-left w-full mb-5">
+				<span class="date-container d-none float-left w-full mb-5">
 					<i class="fal fa-calendar-alt f-20 pr-5 pt-5"></i>&nbsp;<span class="date text-monospace small f-12 bold">...</span>
 				</span>
 				<span class="badge badge-pill badge-warning d-none float-left mb-20 mt-10 mr-5"></span>
