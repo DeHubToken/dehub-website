@@ -28,52 +28,52 @@
 	&:hover:after {
 		left: 100%;
 	}
-	span:not([class]) {
+	& > span:not([class]) {
 		position: absolute;
 		display: block;
 		transition: 0.5s ease;
 	}
-	span:nth-child(1) {
+	& > span:nth-child(1) {
 		top: 0;
 		left: 0;
 		width: 0;
 		height: 1px;
 		background: #fff;
 	}
-	&:hover span:nth-child(1) {
+	&:hover > span:nth-child(1) {
 		width: 100%;
 		transform: translateX(100%);
 	}
-	span:nth-child(3) {
+	& > span:nth-child(3) {
 		bottom: 0;
 		right: 0;
 		width: 0;
 		height: 1px;
 		background: #fff;
 	}
-	&:hover span:nth-child(3) {
+	&:hover > span:nth-child(3) {
 		width: 100%;
 		transform: translateX(-100%);
 	}
-	span:nth-child(2) {
+	& > span:nth-child(2) {
 		top: 0;
 		left: 0;
 		width: 1px;
 		height: 0;
 		background: #fff;
 	}
-	&:hover span:nth-child(2) {
+	&:hover > span:nth-child(2) {
 		height: 100%;
 		transform: translateY(100%);
 	}
-	span:nth-child(4) {
+	& > span:nth-child(4) {
 		bottom: 0;
 		right: 0;
 		width: 1px;
 		height: 0;
 		background: #fff;
 	}
-	&:hover span:nth-child(4) {
+	&:hover > span:nth-child(4) {
 		height: 100%;
 		transform: translateY(-100%);
 	}

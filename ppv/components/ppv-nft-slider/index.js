@@ -1,11 +1,11 @@
 import { constants } from '../../../custom/js/constants.js';
 
 // Fetch template and update the DOM
-fetch('/ppv/components/ppv-slider/template.html')
+fetch('/ppv/components/ppv-nft-slider/template.html')
 	.then((response) => response.text())
-	.then((data) => initPPVSlider(data));
+	.then((data) => initPPVNFTSlider(data));
 
-async function initPPVSlider(data) {
+async function initPPVNFTSlider(data) {
 	const client = contentful.createClient({
 		// This is the space ID. A space is like a project folder in Contentful terms
 		space: '4jicnfvodfm8',
@@ -13,11 +13,11 @@ async function initPPVSlider(data) {
 		accessToken: constants.CONTENTFUL_KEY,
 	});
 	// Update DOM
-	const $component = $('ppv-slider');
+	const $component = $('ppv-nft-slider');
 	$component.html(data);
 
 	// Prepare Carousel
-	const rootNode = document.querySelector('.embla');
+	const rootNode = document.querySelector('.embla.nft');
 	const viewportNode = rootNode.querySelector('.embla__viewport');
 	const options = {
 		loop: false,
@@ -32,7 +32,7 @@ async function initPPVSlider(data) {
 
 	// Get the data
 	const response = await client.getEntries({
-		content_type: 'ppvSliderPost',
+		content_type: 'ppvNftSliderPost',
 	});
 	const items = response.items;
 	// console.log(items);
@@ -53,14 +53,9 @@ const addSlides = (embla, items) => {
 		$card.find('img')[0].src = f.coverImage.fields.file.url;
 		// Title
 		$card.find('.card-title').text(f.title);
-		// Description
-		const $converted = $(documentToHtmlString(f.description));
-		if (f.callToActionLink) {
-			const html = $.parseHTML(readMoreIndicatorTemplate);
-			$card.find('.description').html($converted);
-			$card.find('a').prepend($(html));
-		} else {
-			$card.find('.description').html($converted);
+		// Badge
+		if (f.rarity) {
+			$card.find('.badge.rarity').text(f.rarity).toggleClass('d-none d-block');
 		}
 		// Insert
 		$container.append($card);
@@ -70,8 +65,8 @@ const addSlides = (embla, items) => {
 };
 
 const cardTemplate = `
-	<div class="embla__slide hvr-shrink">
-			<div class="card bg-transparent bg-gradient-3 radius10 border-0">
+	<div class="embla__slide hover-1-reverse">
+			<div class="card radius10 border-0 glass-1 pt-20">
 				<span></span>
 				<span></span>
 				<span></span>
@@ -83,7 +78,17 @@ const cardTemplate = `
 					<h6 class="card-title text-uppercase mb-5">
 						...
 					</h6>
-					<div class="card-text description d-block float-left small"></div>
+					<span class="badge rarity badge-pill badge-danger d-none float-left mb-20 mt-10 mr-5">...</span>
+				</div>
+				<div class="card-footer text-left">
+					<a href="#"
+						class="btn glass-1 shadow mb-10 text-center mr-10 w-full comingSoon">
+						<span></span>
+						<span></span>
+						<span></span>
+						<span></span>
+						<span class="nonEmpty">Buy</span>
+					</a>
 				</div>
 			</div>
 	</div>`;
