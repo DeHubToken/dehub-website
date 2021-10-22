@@ -65,7 +65,9 @@ const addSlides = (embla, items) => {
 		$container.append($card);
 	});
 	// Activate
-	embla.reInit();
+	setTimeout(function () {
+		embla.reInit();
+	}, 1000);
 };
 
 const cardTemplate = `
