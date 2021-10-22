@@ -45,13 +45,23 @@ const addSlides = (embla, items) => {
 		const $container = $(embla.containerNode());
 		const html = $.parseHTML(cardTemplate);
 		const $card = $(html);
+		// Wrap in href if has CTA
+		if (f.callToActionLink) {
+			$card.find('.card').wrap(`<a href="${f.callToActionLink}"></a>`);
+		}
 		// Cover image
 		$card.find('img')[0].src = f.coverImage.fields.file.url;
 		// Title
 		$card.find('.card-title').text(f.title);
 		// Description
 		const $converted = $(documentToHtmlString(f.description));
-		$card.find('.description').html($converted);
+		if (f.callToActionLink) {
+			const html = $.parseHTML(readMoreIndicatorTemplate);
+			$card.find('.description').html($converted);
+			$card.find('a').prepend($(html));
+		} else {
+			$card.find('.description').html($converted);
+		}
 		// Insert
 		$container.append($card);
 	});
@@ -61,7 +71,6 @@ const addSlides = (embla, items) => {
 
 const cardTemplate = `
 	<div class="embla__slide hvr-shrink">
-		<a href="#">
 			<div class="card bg-transparent bg-gradient-2 radius10 border-0">
 				<img src="../uploads/placeholder-1920x1080.jpg"
 					class="card-img-top"
@@ -73,5 +82,8 @@ const cardTemplate = `
 					<div class="card-text description d-block float-left small"></div>
 				</div>
 			</div>
-		</a>
 	</div>`;
+
+const readMoreIndicatorTemplate = `
+		<span class="badge badge-dark f-12 text-uppercase absolute zi-1" style="right:0; bottom:0;">Read more&nbsp;<i class="fas fa-external-link-square-alt"></i></span>
+`;
