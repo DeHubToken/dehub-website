@@ -1,4 +1,5 @@
-@mixin button-glass() {
+@mixin glass-effect() {
+	overflow: hidden;
 	&:before {
 		content: '';
 		position: absolute;
