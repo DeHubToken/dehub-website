@@ -18,6 +18,10 @@
 	flex: 0 0 33.3333%;
 } */
 
+img {
+	filter: drop-shadow(-4px -4px 1px rgba(0, 0, 0, 0.2));
+}
+
 @media (max-width: 767.98px) {
 	#ppv-nft-slider .embla__container {
 		grid-auto-columns: 100%;
