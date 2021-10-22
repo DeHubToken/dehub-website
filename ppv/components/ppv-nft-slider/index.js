@@ -17,7 +17,7 @@ async function initPPVNFTSlider(data) {
 	$component.html(data);
 
 	// Prepare Carousel
-	const rootNode = document.querySelector('.embla.nft');
+	const rootNode = document.getElementById('ppv-nft-slider');
 	const viewportNode = rootNode.querySelector('.embla__viewport');
 	const options = {
 		loop: false,

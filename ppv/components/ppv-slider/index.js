@@ -17,7 +17,7 @@ async function initPPVSlider(data) {
 	$component.html(data);
 
 	// Prepare Carousel
-	const rootNode = document.querySelector('.embla');
+	const rootNode = document.getElementById('ppv-slider');
 	const viewportNode = rootNode.querySelector('.embla__viewport');
 	const options = {
 		loop: false,
