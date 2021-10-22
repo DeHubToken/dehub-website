@@ -296,12 +296,12 @@ $i: 0;
 		}
 	}
 	&.glass-1 {
-		@include button-glass();
+		@include glass-effect();
 		background: $bg_button_glass1;
 		color: $color_white;
 	}
 	&.glass-2 {
-		@include button-glass();
+		@include glass-effect();
 		background: $bg_button_glass2;
 		color: $color_white;
 	}
@@ -391,6 +391,18 @@ $i: 0;
 	}
 }
 
+div {
+	&.glass-1 {
+		@include glass-effect();
+		background: $bg_button_glass1;
+		color: $color_white;
+	}
+	&.glass-2 {
+		@include glass-effect();
+		background: $bg_button_glass2;
+		color: $color_white;
+	}
+}
 /* inputs */
 
 .input {

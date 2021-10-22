@@ -2,11 +2,11 @@ import { constants } from '../../../custom/js/constants.js';
 import { countDown } from '../../../custom/js/helpers.js';
 
 // Fetch template and update the DOM
-fetch('/tournaments/components/tournament-hero-card/template.html')
+fetch('/ppv/components/ppv-hero-card/template.html')
 	.then((response) => response.text())
-	.then((data) => initTournamentHeroCard(data));
+	.then((data) => initPPVHeroCard(data));
 
-async function initTournamentHeroCard(data) {
+async function initPPVHeroCard(data) {
 	const client = contentful.createClient({
 		// This is the space ID. A space is like a project folder in Contentful terms
 		space: '4jicnfvodfm8',
@@ -14,12 +14,12 @@ async function initTournamentHeroCard(data) {
 		accessToken: constants.CONTENTFUL_KEY,
 	});
 	// Update DOM
-	const $component = $('tournament-hero-card');
+	const $component = $('ppv-hero-card');
 	$component.html(data);
 
 	// Get the data
 	const response = await client.getEntries({
-		content_type: 'tournament',
+		content_type: 'ppv',
 		'fields.featured': true,
 		order: '-fields.date',
 	});
@@ -37,21 +37,20 @@ async function initTournamentHeroCard(data) {
  */
 function updateCoverData(item, $component) {
 	const f = item.fields;
-	// Cover image and body background
+	// Cover image
 	const image = f.coverImage.fields.file.url;
 	$component.find('img')[0].src = image;
-	$('body').css(
-		'background',
-		'linear-gradient(45deg, rgba(11, 17, 19, 0.9), rgba(5, 17, 24, 0.9) 46%, rgba(6, 12, 29, 1) 71%, rgba(50, 19, 56, 1)), url("' +
-			image +
-			'") no-repeat fixed center center /cover'
-	);
 	// Title
 	$component.find('.card-title').text(f.title);
 	// Date and countdown
-	const d = new Date(f.date);
-	$component.find('.date').text(d.toUTCString().replace('GMT', 'UTC'));
-	const x = setInterval(countDown, 1000, $component, d);
+	if (f.date) {
+		const d = new Date(f.date);
+		$component.find('.date').text(d.toUTCString().replace('GMT', 'UTC'));
+		const x = setInterval(countDown, 1000, $component, d);
+		$component
+			.find('.date-container, .countdown-container')
+			.toggleClass('d-none d-block');
+	}
 	// Badge
 	if (f.badge && f.badge !== '') {
 		$component.find('.badge').text(f.badge).toggleClass('d-none d-block');
@@ -73,12 +72,37 @@ function updateCoverData(item, $component) {
 			},
 		},
 	};
-	const converted = documentToHtmlString(f.description, richOptions);
-	$component.find('.description').html(converted);
+	const converted = $(
+		documentToHtmlString(f.description, richOptions)
+	).toArray();
+	const pLen = converted.length;
+	const firstParagraph = converted.shift();
+	$component.find('.description-first-p').html(firstParagraph);
+	if (pLen > 1) {
+		const html = $.parseHTML(readMoreBtnTemplate);
+		$component.find('.description-first-p p').append($(html));
+		$component.find('.description-rest').html(converted);
+	}
 	// Button
-	const $cta = $component.find('.tournament-cta');
-	$cta.find('.nonEmpty').text(f.callToActionButtonLabel);
-	if (f.callToActionButtonLink) {
-		$cta.attr('href', f.callToActionButtonLink).removeClass('disabled');
+	if (f.callToActionButtonLabel) {
+		const $cta = $component.find('.ppv-cta');
+		$cta
+			.removeClass('d-none')
+			.find('.nonEmpty')
+			.text(f.callToActionButtonLabel);
+		if (f.callToActionButtonLink) {
+			$cta.attr('href', f.callToActionButtonLink).removeClass('disabled');
+		}
 	}
 }
+
+const readMoreBtnTemplate = `
+	<a href="#collapseDescription"
+		role="button"
+		class="link read-more d-inline badge badge-dark"
+		data-toggle="collapse"
+		aria-expanded="false"
+		aria-controls="collapseDescription">
+		<span>Read more&nbsp;<i class="far fa-chevron-down"></i></span>
+	</a>
+`;

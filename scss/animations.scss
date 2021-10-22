@@ -8,6 +8,15 @@
 	}
 }
 
+.hover-1-reverse {
+	border-radius: 1rem;
+	transition: transform 1s ease 0s;
+	transform: perspective(3000px) rotateY(0deg) rotateX(0deg);
+	&:hover {
+		transform: perspective(1500px) rotateY(15deg) rotateX(10deg);
+	}
+}
+
 .hover-2 {
 	transform: perspective(800px) rotateY(25deg) scale(0.9) rotateX(10deg);
 	filter: blur(2px);
