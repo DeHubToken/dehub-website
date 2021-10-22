@@ -19,9 +19,9 @@ function initPPVVideo(data) {
 	});
 }
 
+// FIXME: i know i know....
 // $('document').on('ready', function () {
 setTimeout(function () {
-	console.log('!!!!');
 	// If you want to control the embeds, you’ll need to create a Player object.
 	// You can pass either the `<div>` or the `<iframe>` created inside the div.
 	/* get video element */
