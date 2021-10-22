@@ -17,7 +17,7 @@ async function initPPVSlider(data) {
 	$component.html(data);
 
 	// Prepare Carousel
-	const rootNode = document.getElementById('ppv-slider');
+	const rootNode = document.querySelector('.embla');
 	const viewportNode = rootNode.querySelector('.embla__viewport');
 	const options = {
 		loop: false,
@@ -66,7 +66,9 @@ const addSlides = (embla, items) => {
 		$container.append($card);
 	});
 	// Activate
-	embla.reInit();
+	setTimeout(function () {
+		embla.reInit();
+	}, 1000);
 };
 
 const cardTemplate = `
