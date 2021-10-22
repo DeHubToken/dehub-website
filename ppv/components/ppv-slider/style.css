@@ -4,7 +4,8 @@
 #ppv-slider .embla__container {
 	display: grid;
 	grid-auto-flow: column;
-	grid-auto-columns: 31.8%; /* Each slide covers 80% of the viewport */
+	/* grid-auto-columns: 31.8%; */
+	grid-auto-columns: 48.5%;
 	grid-column-gap: 20px;
 }
 #ppv-slider .embla__prev,
@@ -41,7 +42,8 @@
 
 @media (min-width: 992px) {
 	#ppv-slider .embla__container {
-		grid-auto-columns: 31.8%;
+		/* grid-auto-columns: 31.8%; */
+		grid-auto-columns: 48.5%;
 		grid-column-gap: 20px;
 	}
 }
