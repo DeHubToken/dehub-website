@@ -16,7 +16,7 @@ $(async () => {
 			content_type: contentType,
 		});
 		const items = response.items;
-		console.log(items);
+		// console.log(items);
 		if (items.length > 0) {
 			const image = items[0].fields.backgroundImage.fields.file.url;
 			$('body').css(
