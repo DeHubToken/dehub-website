@@ -40,12 +40,12 @@ function updateCoverData(item, $component) {
 	// Cover image and body background
 	const image = f.coverImage.fields.file.url;
 	$component.find('img')[0].src = image;
-	$('body').css(
-		'background',
-		'linear-gradient(45deg, rgba(11, 17, 19, 0.9), rgba(5, 17, 24, 0.9) 46%, rgba(6, 12, 29, 1) 71%, rgba(50, 19, 56, 1)), url("' +
-			image +
-			'") no-repeat fixed center center /cover'
-	);
+	// $('body').css(
+	// 	'background',
+	// 	'linear-gradient(45deg, rgba(11, 17, 19, 0.9), rgba(5, 17, 24, 0.9) 46%, rgba(6, 12, 29, 1) 71%, rgba(50, 19, 56, 1)), url("' +
+	// 		image +
+	// 		'") no-repeat fixed center center /cover'
+	// );
 	// Title
 	$component.find('.card-title').text(f.title);
 	// Date and countdown
