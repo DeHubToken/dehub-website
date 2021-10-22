@@ -19,11 +19,13 @@ function initPPVVideo(data) {
 	});
 }
 
-$('document').ready(() => {
+// $('document').on('ready', function () {
+setTimeout(function () {
+	console.log('!!!!');
 	// If you want to control the embeds, you’ll need to create a Player object.
 	// You can pass either the `<div>` or the `<iframe>` created inside the div.
 	/* get video element */
-	const iframe = document.querySelector('iframe');
+	const iframe = document.getElementById('vimeo-video');
 	const vimeo_player = new Vimeo.Player(iframe);
 	vimeo_player.on('play', function () {
 		/* For debugging - remove this line from your code";*/
@@ -52,4 +54,5 @@ $('document').ready(() => {
 			vimeo_player.play();
 		},
 	});
-});
+}, 3000);
+// });
