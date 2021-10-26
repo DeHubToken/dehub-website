@@ -95,6 +95,7 @@
 		<script src="https://github.com/WalletConnect/walletconnect-monorepo/releases/download/1.6.5/web3-provider.min.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
 		<script src="https://unpkg.com/moralis@0.0.45/dist/moralis.js"></script>
+		<script src="https://cdn.logwork.com/widget/countdown.js"></script>
 		<!-- Global site tag (gtag.js) - Google Analytics -->
 		<script async
 			src="https://www.googletagmanager.com/gtag/js?id=G-10LTL8GSGR"></script>
@@ -109,36 +110,6 @@
 			gtag('config', 'G-10LTL8GSGR');
 		</script>
 
-		<!-- ----------------------------- Typography ------------------------------ -->
-		<style>
-			.ml15 {
-				font-weight: 900;
-				font-size: 3.8em;
-				text-transform: uppercase;
-
-			}
-
-			.ml15 .word {
-				display: inline-block;
-				line-height: 1em;
-			}
-
-			.first {
-				letter-spacing: 1px;
-			}
-
-			.superscript {
-				font-size: 22px;
-				font-weight: 900;
-				top: -2.3rem;
-				left: -0.4rem;
-			}
-
-			.spaced {
-				letter-spacing: 0.2em;
-			}
-		</style>
-
 		<!-- -------------------- Components (Order important) --------------------- -->
 		<script src="../components/header/index.js"></script>
 		<script src="../components/drawer/index.js"></script>
@@ -147,7 +118,7 @@
 		<script src="../components/disclaimer/index.js"></script>
 	</head>
 
-	<body style="background: linear-gradient(45deg, rgba(11, 17, 19, 0.9), rgba(5, 17, 24, 0.9) 46%, rgba(6, 12, 29, 1) 71%, rgba(50, 19, 56, 1)), url('/uploads/prize-draw-bg.jpg') no-repeat fixed center center /cover;">
+	<body style="background: linear-gradient(45deg, rgba(11, 17, 19, 0.9), rgba(5, 17, 24, 0.9) 46%, rgba(6, 12, 29, 1) 71%, rgba(50, 19, 56, 1)), url('/uploads/prize-draw/prize-draw-bg.jpg') no-repeat fixed center center /cover;">
 
 		<!-- Navigation Mobile type 1 -->
 		<drawer></drawer>
@@ -155,28 +126,52 @@
 		<header data-options='{"size": "small"}'></header>
 
 		<!-- Feature 24 -->
-		<section class="pt-50 pb-105 feature_24"
+		<section class="pt-50 feature_24 zi-1"
 			data-bg-src="false"
 			data-bg-src-2x="false">
 			<div class="container px-xl-0">
 				<div class="row justify-content-center">
-					<div class="col-lg-10">
-						<!-- -------------------------------- Logo --------------------------------- -->
+					<div class="col-lg-4 text-center">
+						<img style="max-width: 370px;"
+							class="float-anim w-full"
+							src="/uploads/prize-draw/prize-draw-logo.png">
 					</div>
 				</div>
 			</div>
 		</section>
 
-		<section style="overflow: visible;">
-			<div class="container px-xl-0 min-vh-100">
-				<!-- ----------------------------- Coming soon ----------------------------- -->
-				<h1 class="ml15 text-center">
-					<span class="word d-block w-full">Coming</span>
-					<span class="word d-block w-full"
-						style="line-height: 2em;">
-						1<sup class="superscript">st</sup> of November
-					</span>
-				</h1>
+		<section class="pb-105 feature_24"
+			style="overflow: visible;"
+			data-bg-src="false"
+			data-bg-src-2x="false">
+			<div class="container px-xl-0">
+				<div class="row justify-content-center">
+					<div class="col-lg-7 text-center">
+						<div class="card bg-transparent bg-gradient-2 radius10 border-0 float-anim-2">
+							<div class="card-body text-center pl-0 pr-0 pb-50">
+								<h5 class="title text-uppercase mt-40"
+									style="font-weight: 900;">Coming Soon</h5>
+								<a href="https://logwork.com/countdown-r7u4"
+									class="countdown-timer"
+									data-style="circles"
+									data-timezone="Asia/Istanbul"
+									data-textcolor="#ffffff"
+									data-date="2021-11-01 19:00"
+									data-digitscolor="#ffffff"
+									data-background="#622f88"
+									data-unitscolor="#ffffff">&nbsp;</a>
+								<a href="/uploads/DeHub%20Prize%20Draw%20Whitepaper%20-%20V1.pdf"
+									target="_blank"
+									class="btn glass-1 shadow mr-10 mb-5 mt-30">
+									<span></span>
+									<span></span>
+									<span></span>
+									<span></span>
+									LEARN MORE</a>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</section>
 
@@ -338,27 +333,6 @@
 		<!-- Custom JS outside designmodo -->
 		<script type="module"
 			src="../custom/js/script.js"></script>
-
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
-		<script>
-			anime.timeline({
-					loop: false
-				})
-				.add({
-					targets: '.ml15 .word',
-					scale: [14, 1],
-					opacity: [0, 1],
-					easing: "easeOutCirc",
-					duration: 800,
-					delay: (el, i) => 1000 * (i + 1)
-				}).add({
-					targets: '.ml15',
-					opacity: 1,
-					duration: 1000,
-					easing: "easeOutExpo",
-					delay: 1400
-				});
-		</script>
 
 		<!-- ---------------------- Blockchain gateway start ----------------------- -->
 		<script async
