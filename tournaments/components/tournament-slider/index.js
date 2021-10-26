@@ -65,7 +65,9 @@ const addSlides = (embla, items) => {
 		$container.append($card);
 	});
 	// Activate
-	embla.reInit();
+	setTimeout(function () {
+		embla.reInit();
+	}, 1000);
 };
 
 const cardTemplate = `
@@ -85,17 +87,5 @@ const cardTemplate = `
 				<span class="badge upcoming badge-pill badge-danger d-none float-left mb-20 mt-10 mr-5">Upcoming</span>
 				<span class="badge fin badge-pill badge-secondary d-none float-left mb-20 mt-10 mr-5">Finished</span>
 			</div>
-			<!--
-			<div class="card-footer text-left">
-				<a href="#"
-					class="btn glass-2 shadow mb-10 text-center mr-10 w-full">
-					<span></span>
-					<span></span>
-					<span></span>
-					<span></span>
-					<span class="nonEmpty">More Info</span>
-				</a>
-			</div>
-			-->
 		</div>
 	</div>`;
