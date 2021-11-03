@@ -206,8 +206,8 @@ function onDocumentTouchMove(event) {
 	}
 }
 window.addEventListener('mousemove', onMouseMove, false);
-window.addEventListener('touchstart', onDocumentTouchStart, false);
-window.addEventListener('touchmove', onDocumentTouchMove, false);
+// window.addEventListener('touchstart', onDocumentTouchStart, false);
+// window.addEventListener('touchmove', onDocumentTouchMove, false);
 
 //----------------------------------------------------------------- Lights
 var ambientLight = new THREE.AmbientLight(0xffffff, 4);
