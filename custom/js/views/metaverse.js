@@ -18,6 +18,7 @@ if (window.innerWidth > 800) {
 const container = document.createElement('div');
 document.body.appendChild(container);
 container.appendChild(canvas);
+container.style.touchAction = 'none';
 container.id = 'projector-metaverse';
 // document.body.appendChild(renderer.domElement);
 
