@@ -81,9 +81,9 @@ function init() {
 	var segments = 2;
 	for (var i = 1; i < 100; i++) {
 		var geometry = new THREE.BoxGeometry(
-			1,
-			0.5,
-			1,
+			0.9,
+			0.9,
+			0.9,
 			segments,
 			segments,
 			segments
@@ -93,14 +93,14 @@ function init() {
 			wireframe: false,
 			//opacity:0.9,
 			//transparent:true,
-			//roughness: 0.3,
-			//metalness: 1,
+			roughness: 0.3,
+			metalness: 1,
 			shading: THREE.SmoothShading,
 			//shading:THREE.FlatShading,
 			side: THREE.DoubleSide,
 		});
 		var wmaterial = new THREE.MeshLambertMaterial({
-			color: 0xffffff,
+			color: 0x000000,
 			wireframe: true,
 			transparent: true,
 			opacity: 0.03,
@@ -121,15 +121,22 @@ function init() {
 		//floor.scale.x = floor.scale.z = 1+mathRandom(0.33);
 		floor.scale.y = 0.05; //+mathRandom(0.5);
 		cube.scale.y = 0.1 + Math.abs(mathRandom(8));
-		//TweenMax.to(cube.scale, 1, {y:cube.rotationValue, repeat:-1, yoyo:true, delay:i*0.005, ease:Power1.easeInOut});
+		// TweenMax.to(cube.scale, 1, {
+		// 	y: cube.rotationValue,
+		// 	repeat: -1,
+		// 	yoyo: true,
+		// 	delay: i * 0.005,
+		// 	ease: Power1.easeInOut,
+		// });
+
 		/*cube.setScale = 0.1+Math.abs(mathRandom());
-    
-    TweenMax.to(cube.scale, 4, {y:cube.setScale, ease:Elastic.easeInOut, delay:0.2*i, yoyo:true, repeat:-1});
-    TweenMax.to(cube.position, 4, {y:cube.setScale / 2, ease:Elastic.easeInOut, delay:0.2*i, yoyo:true, repeat:-1});*/
+
+		TweenMax.to(cube.scale, 4, {y:cube.setScale, ease:Elastic.easeInOut, delay:0.2*i, yoyo:true, repeat:-1});
+		TweenMax.to(cube.position, 4, {y:cube.setScale / 2, ease:Elastic.easeInOut, delay:0.2*i, yoyo:true, repeat:-1});*/
 
 		var cubeWidth = 0.9;
 		cube.scale.x = cube.scale.z = cubeWidth + mathRandom(1 - cubeWidth);
-		//cube.position.y = cube.scale.y / 2;
+		// cube.position.y = cube.scale.y / 2;
 		cube.position.x = Math.round(mathRandom());
 		cube.position.z = Math.round(mathRandom());
 
@@ -145,7 +152,7 @@ function init() {
 	//----------------------------------------------------------------- Particular
 
 	var gmaterial = new THREE.MeshToonMaterial({
-		color: 0xffff00,
+		color: 0x622f88,
 		side: THREE.DoubleSide,
 	});
 	var gparticular = new THREE.CircleGeometry(0.01, 3);
@@ -210,9 +217,9 @@ window.addEventListener('mousemove', onMouseMove, false);
 // window.addEventListener('touchmove', onDocumentTouchMove, false);
 
 //----------------------------------------------------------------- Lights
-var ambientLight = new THREE.AmbientLight(0xffffff, 4);
-var lightFront = new THREE.SpotLight(0xffffff, 20, 10);
-var lightBack = new THREE.PointLight(0xffffff, 0.5);
+var ambientLight = new THREE.AmbientLight(0x4dcfe6, 4);
+var lightFront = new THREE.SpotLight(0x4dcfe6, 20, 10);
+var lightBack = new THREE.PointLight(0x4dcfe6, 0.5);
 
 var spotLightHelper = new THREE.SpotLightHelper(lightFront);
 //scene.add( spotLightHelper );
@@ -226,7 +233,7 @@ lightFront.shadow.mapSize.height = lightFront.shadow.mapSize.width;
 lightFront.penumbra = 0.1;
 lightBack.position.set(0, 6, 0);
 
-smoke.position.y = 2;
+smoke.position.y = 5;
 
 scene.add(ambientLight);
 city.add(lightFront);
@@ -236,14 +243,14 @@ city.add(smoke);
 city.add(town);
 
 //----------------------------------------------------------------- GRID Helper
-var gridHelper = new THREE.GridHelper(60, 120, 0xff0000, 0x000000);
+var gridHelper = new THREE.GridHelper(60, 120, 0x6a0eb1, 0x000000);
 city.add(gridHelper);
 
 //----------------------------------------------------------------- CAR world
 var generateCar = function () {};
 //----------------------------------------------------------------- LINES world
 
-var createCars = function (cScale = 2, cPos = 20, cColor = 0xffff00) {
+var createCars = function (cScale = 2, cPos = 20, cColor = 0x1791a7) {
 	var cMat = new THREE.MeshToonMaterial({
 		color: cColor,
 		side: THREE.DoubleSide,
