@@ -1,23 +1,33 @@
 .border-translucent-1 {
-	border-color: $color_border_translucent_1 !important;
+  border-color: $color_border_translucent_1 !important;
 }
 
 .border-translucent-2 {
-	border-color: $color_border_translucent_2 !important;
+  border-color: $color_border_translucent_2 !important;
 }
 
 .border-solid-2px {
-	border: 2px solid $action_2;
+  border: 2px solid $action_2;
 }
 
 .border-solid-4px {
-	border: 4px solid $action_2;
-	&.main {
-		border-color: $color_main;
-	}
+  border: 4px solid $action_2;
+  &.main {
+    border-color: $color_main;
+  }
 }
 
 .border-neon-1 {
-	border: 1px solid #2fadbe7a;
-	box-shadow: 0 0 9px #2fadbe7a;
+  border: 1px solid #2fadbe7a;
+  box-shadow: 0 0 9px #2fadbe7a;
+}
+
+.border-neon-2 {
+  border: 1px solid #d7ca347a;
+  box-shadow: 0 0 9px #cda7147a;
+}
+
+.border-neon-3 {
+  border: 1px solid #8030bd7a;
+  box-shadow: 0 0 9px #8030bd7a;
 }
