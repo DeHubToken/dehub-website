@@ -80,7 +80,7 @@ function setTintColor() {
 function init() {
   var segments = 2;
   for (var i = 1; i < 50; i++) {
-    var geometry = new THREE.BoxGeometry(
+    var geometry = new THREE.BoxBufferGeometry(
       0.9,
       0.9,
       0.9,
@@ -255,7 +255,7 @@ var createCars = function (cScale = 2, cPos = 20, cColor = 0x1791a7) {
     color: cColor,
     side: THREE.DoubleSide,
   });
-  var cGeo = new THREE.BoxGeometry(1, cScale / 40, cScale / 40);
+  var cGeo = new THREE.BoxBufferGeometry(1, cScale / 40, cScale / 40);
   var cElem = new THREE.Mesh(cGeo, cMat);
   var cAmp = 3;
 
