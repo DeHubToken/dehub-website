@@ -79,7 +79,7 @@ function setTintColor() {
 
 function init() {
   var segments = 2;
-  for (var i = 1; i < 100; i++) {
+  for (var i = 1; i < 50; i++) {
     var geometry = new THREE.BoxGeometry(
       0.9,
       0.9,
@@ -158,7 +158,7 @@ function init() {
   var gparticular = new THREE.CircleGeometry(0.01, 3);
   var aparticular = 5;
 
-  for (var h = 1; h < 300; h++) {
+  for (var h = 1; h < 150; h++) {
     var particular = new THREE.Mesh(gparticular, gmaterial);
     particular.position.set(
       mathRandom(aparticular),
@@ -291,7 +291,7 @@ var createCars = function (cScale = 2, cPos = 20, cColor = 0x1791a7) {
 };
 
 var generateLines = function () {
-  for (var i = 0; i < 60; i++) {
+  for (var i = 0; i < 30; i++) {
     createCars(0.1, 20);
   }
 };
