@@ -155,7 +155,7 @@ function init() {
     color: 0x622f88,
     side: THREE.DoubleSide,
   });
-  var gparticular = new THREE.CircleGeometry(0.01, 3);
+  var gparticular = new THREE.CircleBufferGeometry(0.01, 3);
   var aparticular = 5;
 
   for (var h = 1; h < 150; h++) {
@@ -177,7 +177,7 @@ function init() {
     opacity: 0.9,
     transparent: true,
   });
-  var pgeometry = new THREE.PlaneGeometry(60, 60);
+  var pgeometry = new THREE.PlaneBufferGeometry(30, 30);
   var pelement = new THREE.Mesh(pgeometry, pmaterial);
   pelement.rotation.x = (-90 * Math.PI) / 180;
   pelement.position.y = -0.001;
@@ -243,7 +243,7 @@ city.add(smoke);
 city.add(town);
 
 //----------------------------------------------------------------- GRID Helper
-var gridHelper = new THREE.GridHelper(60, 120, 0x6a0eb1, 0x000000);
+var gridHelper = new THREE.GridHelper(30, 60, 0x6a0eb1, 0x000000);
 city.add(gridHelper);
 
 //----------------------------------------------------------------- CAR world
