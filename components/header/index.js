@@ -29,16 +29,6 @@ function initHeader(data) {
 
   // Fix bootstrap dropdown overlow issue inside header
   const $navDropdown = $('#nav-dropdown');
-  $navDropdown.on('show.bs.dropdown', () => {
-    setTimeout(() => {
-      $component.css('overflow', 'visible');
-    }, 1);
-  });
-
-  $navDropdown.on('hidden.bs.dropdown', () => {
-    $component.css('overflow', 'hidden');
-  });
-
   $(window).on('scroll', () => {
     $navDropdown.dropdown('hide');
   });
