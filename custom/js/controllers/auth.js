@@ -136,6 +136,7 @@ export async function logIn(providerName) {
       };
       console.log(params);
       user = await Moralis.Web3.authenticate(params);
+      console.log(user);
       const web3 = await Moralis.Web3.activeWeb3Provider.activate();
       unauthProvider = await web3.currentProvider;
       authProvider = authenticateProvider();
