@@ -12,5 +12,8 @@
 	"editor.formatOnSave": true,
 	"editor.foldingImportsByDefault": true,
 	"editor.defaultFormatter": "esbenp.prettier-vscode",
-	"typescript.preferences.importModuleSpecifier": "relative"
+  "typescript.preferences.importModuleSpecifier": "relative",
+  "cSpell.words": [
+    "flooz"
+  ]
 }
