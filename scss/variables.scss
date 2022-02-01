@@ -1,7 +1,7 @@
 $base_font_size: 16px;
 $base_line_height: 26px;
-$font_heading: Gothic A1;
-$font_main: Metrophobic;
+$font_heading: Exo;
+$font_main: Exo;
 $font_heading_weight: 700;
 $font_main_weight: 400;
 $retina: '(-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 120dpi)';
@@ -41,34 +41,34 @@ $color_border_translucent_1: rgba(0, 0, 0, 0.125);
 $color_border_translucent_2: rgba(255, 255, 255, 0.125);
 $gradient_1: linear-gradient(45deg, #0b1113, #051118 46%, #060c1d 71%, #321338);
 $gradient_2: linear-gradient(
-	128deg,
-	rgba(11, 17, 19, 1) 0%,
-	rgba(26, 50, 63, 0.8) 25%,
-	rgba(50, 19, 56, 0.8) 100%
+  128deg,
+  rgba(11, 17, 19, 1) 0%,
+  rgba(26, 50, 63, 0.8) 25%,
+  rgba(50, 19, 56, 0.8) 100%
 );
 $gradient_3: linear-gradient(
-	45deg,
-	rgba(11, 17, 19, 0.7),
-	rgba(5, 17, 24, 0.7) 46%,
-	rgba(6, 12, 29, 0.7) 71%,
-	rgba(50, 19, 56, 0.7)
+  45deg,
+  rgba(11, 17, 19, 0.7),
+  rgba(5, 17, 24, 0.7) 46%,
+  rgba(6, 12, 29, 0.7) 71%,
+  rgba(50, 19, 56, 0.7)
 );
 $gradient_4: linear-gradient(
-	128deg,
-	rgba(31, 122, 153, 0.5) 0%,
-	rgba(25, 120, 173, 0.5) 45%,
-	rgba(162, 75, 180, 0.5) 100%
+  128deg,
+  rgba(31, 122, 153, 0.5) 0%,
+  rgba(25, 120, 173, 0.5) 45%,
+  rgba(162, 75, 180, 0.5) 100%
 );
 $bg_button_glass1: linear-gradient(
-	128deg,
-	rgba(11, 32, 40, 0.6) 0%,
-	rgba(32, 68, 88, 0.6) 25%,
-	rgba(133, 34, 152, 0.6) 100%
+  128deg,
+  rgba(11, 32, 40, 0.6) 0%,
+  rgba(32, 68, 88, 0.6) 25%,
+  rgba(133, 34, 152, 0.6) 100%
 );
 
 $bg_button_glass2: linear-gradient(
-	128deg,
-	rgba(11, 32, 40, 0.6) 0%,
-	rgba(32, 68, 88, 0.6) 25%,
-	rgba(13, 128, 151, 0.6) 100%
+  128deg,
+  rgba(11, 32, 40, 0.6) 0%,
+  rgba(32, 68, 88, 0.6) 25%,
+  rgba(13, 128, 151, 0.6) 100%
 );
