@@ -88,6 +88,8 @@
     <script src="https://github.com/WalletConnect/walletconnect-monorepo/releases/download/1.7.0/web3-provider.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
     <script src="https://unpkg.com/moralis@0.0.184/dist/moralis.js"></script>
+    <!-- ----------------------------- Contentful ------------------------------ -->
+    <script src="https://cdn.jsdelivr.net/npm/contentful@latest/dist/contentful.browser.min.js"></script>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async
             src="https://www.googletagmanager.com/gtag/js?id=G-10LTL8GSGR"></script>
@@ -117,10 +119,17 @@
     <!-- Header 5 -->
     <!-- <header data-options='{"size": "big"}'></header> -->
 
-    <section>
-        <div class="row">
+
+
+
+    <section id="rebirth">
+        <div class="row text-center">
+            <img src="/uploads/dehub-type-logo.svg"
+                 alt="Logo"
+                 class="main-logo m-auto relative d-block">
+            <div class="main-title m-auto d-block w-full relative text-uppercase f-64 font-weight-bold font-italic">Witness the rebirth</div>
             <div id="countdown"
-                 class="col-12 h-500"></div>
+                 class="col"></div>
         </div>
     </section>
 
@@ -475,6 +484,9 @@
     <!-- ------------------------------- Three.js ------------------------------ -->
     <script type="module"
             src="custom/js/views/countdown.js"></script>
+    <script async
+            type="module"
+            src="custom/js/views/bg-image.js"></script>
     <!-- CMC widget -->
     <script type="text/javascript"
             src="https://files.coinmarketcap.com/static/widget/currency.js"></script>

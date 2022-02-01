@@ -1,0 +1,83 @@
+/*
+Bootstrap 4 breakpoints
+*/
+
+/*
+Extra small devices (portrait phones, less than 576px)
+No media query since this is the default in Bootstrap because it is "mobile first"
+*/
+
+// Extra small devices (portrait phones, less than 576px)
+@media (max-width: 575.98px) {
+  #rebirth .main-logo {
+    width: 80px;
+    top: 60px;
+  }
+  #rebirth .main-title {
+    font-size: 22px;
+    top: 90px;
+  }
+  #countdown {
+    height: 300px;
+  }
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) {
+  #rebirth .main-logo {
+    width: 100px;
+    top: 50px;
+  }
+  #rebirth .main-title {
+    font-size: 24px;
+    top: 90px;
+  }
+  #countdown {
+    height: 300px;
+  }
+}
+
+/* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
+@media (min-width: 768px) {
+  #rebirth .main-logo {
+    width: 120px;
+    top: 100px;
+  }
+  #rebirth .main-title {
+    font-size: 38px;
+    top: 140px;
+  }
+  #countdown {
+    height: 500px;
+  }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+  #rebirth .main-logo {
+    width: 150px;
+    top: 100px;
+  }
+  #rebirth .main-title {
+    font-size: 54px;
+    top: 180px;
+  }
+  #countdown {
+    height: 700px;
+  }
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+  #rebirth .main-logo {
+    width: 200px;
+    top: 100px;
+  }
+  #rebirth .main-title {
+    font-size: 64px;
+    top: 200px;
+  }
+  #countdown {
+    height: 900px;
+  }
+}

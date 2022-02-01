@@ -197,9 +197,11 @@ class CreateParticles {
     this.data.ease = 0.05;
   }
 
-  onMouseMove() {
+  onMouseMove(event) {
+    event.preventDefault();
     this.mouse.x = (event.clientX / this.container.clientWidth) * 2 - 1;
-    this.mouse.y = -(event.clientY / this.container.clientHeight) * 2 + 1;
+    this.mouse.y =
+      -((event.clientY - 100) / this.container.clientHeight) * 2 + 1;
   }
 
   render(level) {
@@ -373,7 +375,7 @@ class CreateParticles {
     geometry.computeBoundingBox();
 
     const xMid =
-      -0.5 * (geometry.boundingBox.max.x - geometry.boundingBox.min.x);
+      -0.56 * (geometry.boundingBox.max.x - geometry.boundingBox.min.x);
     const yMid =
       (geometry.boundingBox.max.y - geometry.boundingBox.min.y) / 2.85;
 
@@ -454,7 +456,7 @@ class CreateParticles {
     geometry.computeBoundingBox();
 
     const xMid =
-      -0.5 * (geometry.boundingBox.max.x - geometry.boundingBox.min.x);
+      -0.56 * (geometry.boundingBox.max.x - geometry.boundingBox.min.x);
     const yMid =
       (geometry.boundingBox.max.y - geometry.boundingBox.min.y) / 2.85;
 
