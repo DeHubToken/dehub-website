@@ -7,11 +7,17 @@ Extra small devices (portrait phones, less than 576px)
 No media query since this is the default in Bootstrap because it is "mobile first"
 */
 
+body,
+html {
+  overscroll-behavior-y: none;
+  overscroll-behavior-x: none;
+}
+
 // Extra small devices (portrait phones, less than 576px)
 @media (max-width: 575.98px) {
   #rebirth .main-logo {
     width: 80px;
-    top: 60px;
+    top: -10px;
   }
   #rebirth .main-title {
     font-size: 22px;
@@ -19,6 +25,12 @@ No media query since this is the default in Bootstrap because it is "mobile firs
   }
   #countdown {
     height: 300px;
+  }
+  #secondsCountdown {
+    float: right;
+    padding-top: 19px;
+    padding-left: 8px !important;
+    font-size: 12px;
   }
   #intro {
     top: -80px;
@@ -29,7 +41,7 @@ No media query since this is the default in Bootstrap because it is "mobile firs
 @media (min-width: 576px) {
   #rebirth .main-logo {
     width: 100px;
-    top: 50px;
+    top: -10px;
   }
   #rebirth .main-title {
     font-size: 24px;
@@ -37,6 +49,12 @@ No media query since this is the default in Bootstrap because it is "mobile firs
   }
   #countdown {
     height: 300px;
+  }
+  #secondsCountdown {
+    float: right;
+    padding-top: 18px;
+    padding-left: 8px !important;
+    font-size: 12px;
   }
   #intro {
     top: -90px;
@@ -47,7 +65,7 @@ No media query since this is the default in Bootstrap because it is "mobile firs
 @media (min-width: 768px) {
   #rebirth .main-logo {
     width: 120px;
-    top: 100px;
+    top: -30px;
   }
   #rebirth .main-title {
     font-size: 38px;
@@ -55,6 +73,11 @@ No media query since this is the default in Bootstrap because it is "mobile firs
   }
   #countdown {
     height: 500px;
+  }
+  #secondsCountdown {
+    float: right;
+    padding-top: 14px;
+    font-size: 14px;
   }
   #intro {
     top: -180px;
@@ -65,7 +88,7 @@ No media query since this is the default in Bootstrap because it is "mobile firs
 @media (min-width: 992px) {
   #rebirth .main-logo {
     width: 150px;
-    top: 100px;
+    top: -30px;
   }
   #rebirth .main-title {
     font-size: 54px;
@@ -73,6 +96,10 @@ No media query since this is the default in Bootstrap because it is "mobile firs
   }
   #countdown {
     height: 700px;
+  }
+  #secondsCountdown {
+    float: right;
+    padding-top: 9px;
   }
   #intro {
     top: -250px;
@@ -83,14 +110,18 @@ No media query since this is the default in Bootstrap because it is "mobile firs
 @media (min-width: 1200px) {
   #rebirth .main-logo {
     width: 200px;
-    top: 100px;
+    top: -80px;
   }
   #rebirth .main-title {
     font-size: 64px;
-    top: 200px;
+    top: 250px;
   }
   #countdown {
     height: 900px;
+  }
+  #secondsCountdown {
+    float: right;
+    padding-top: 5px;
   }
   #intro {
     top: -300px;

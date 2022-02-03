@@ -25,6 +25,8 @@ const fragmentshader = `
 
 /* --------------------------------- Render --------------------------------- */
 
+const deadline = 1645488000;
+
 const preload = () => {
   let manager = new THREE.LoadingManager();
   manager.onLoad = function () {
@@ -44,12 +46,29 @@ const preload = () => {
   );
 };
 
+// Basic seconds countdown
+const renderSecondsCountdown = () => {
+  const now = Date.now();
+  const secContainer = document.querySelector('#secondsCountdown');
+  let left = deadline * 1000 - now;
+  secContainer.innerHTML = left;
+  setInterval(() => {
+    if (left === 0) clearInterval(this);
+    else secContainer.innerHTML = left--;
+  }, 1);
+};
+
 if (
   document.readyState === 'complete' ||
   (document.readyState !== 'loading' && !document.documentElement.doScroll)
-)
+) {
   preload();
-else document.addEventListener('DOMContentLoaded', preload);
+  renderSecondsCountdown();
+} else
+  document.addEventListener('DOMContentLoaded', () => {
+    preload();
+    renderSecondsCountdown();
+  });
 
 class Environment {
   constructor(font, particle) {
@@ -173,6 +192,19 @@ class CreateParticles {
     document.addEventListener('mousedown', this.onMouseDown.bind(this));
     document.addEventListener('mousemove', this.onMouseMove.bind(this));
     document.addEventListener('mouseup', this.onMouseUp.bind(this));
+    document.addEventListener(
+      'touchstart',
+      this.onDocumentTouchStart.bind(this),
+      { passive: false }
+    );
+    document.addEventListener(
+      'touchmove',
+      this.onDocumentTouchMove.bind(this),
+      { passive: false }
+    );
+    document.addEventListener('touchend', this.onDocumentTouchEnd.bind(this), {
+      passive: false,
+    });
   }
 
   onMouseDown(event) {
@@ -202,6 +234,32 @@ class CreateParticles {
     this.mouse.x = (event.clientX / this.container.clientWidth) * 2 - 1;
     this.mouse.y =
       -((event.clientY - 100) / this.container.clientHeight) * 2 + 1;
+  }
+
+  onDocumentTouchStart(event) {
+    if (event.touches.length == 1) {
+      this.mouse.x =
+        (event.touches[0].clientX / this.container.clientWidth) * 2 - 1;
+      this.mouse.y =
+        -((event.touches[0].clientY - 100) / this.container.clientHeight) * 2 +
+        1;
+    }
+  }
+
+  onDocumentTouchEnd(event) {
+    event.preventDefault();
+    this.mouse.x = 1.2;
+    this.mouse.y = -1;
+  }
+
+  onDocumentTouchMove(event) {
+    if (event.touches.length == 1) {
+      this.mouse.x =
+        (event.touches[0].clientX / this.container.clientWidth) * 2 - 1;
+      this.mouse.y =
+        -((event.touches[0].clientY - 100) / this.container.clientHeight) * 2 +
+        1;
+    }
   }
 
   render(level) {
@@ -343,7 +401,6 @@ class CreateParticles {
   }
 
   getNewText() {
-    const deadline = 1645488000;
     const now = Math.floor(Date.now() / 1000);
     const left = deadline - now;
     const date = new Date(left * 1000);
