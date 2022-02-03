@@ -175,7 +175,7 @@ class CreateParticles {
     document.addEventListener('mouseup', this.onMouseUp.bind(this));
   }
 
-  onMouseDown() {
+  onMouseDown(event) {
     this.mouse.x = (event.clientX / this.container.clientWidth) * 2 - 1;
     this.mouse.y = -(event.clientY / this.container.clientHeight) * 2 + 1;
 
@@ -216,7 +216,7 @@ class CreateParticles {
     if (intersects.length > 0) {
       const pos = this.particles.geometry.attributes.position;
       const copy = this.geometryCopy.attributes.position;
-      const coulors = this.particles.geometry.attributes.customColor;
+      const colors = this.particles.geometry.attributes.customColor;
       const size = this.particles.geometry.attributes.size;
 
       const mx = intersects[0].point.x;
@@ -233,13 +233,13 @@ class CreateParticles {
         let pz = pos.getZ(i);
 
         this.colorChange.setHSL(0.5, 1, 1);
-        coulors.setXYZ(
+        colors.setXYZ(
           i,
           this.colorChange.r,
           this.colorChange.g,
           this.colorChange.b
         );
-        coulors.needsUpdate = true;
+        colors.needsUpdate = true;
 
         size.array[i] = this.data.particleSize;
         size.needsUpdate = true;
@@ -258,13 +258,13 @@ class CreateParticles {
           py -= f * Math.sin(t);
 
           this.colorChange.setHSL(0.5 + zigzagTime, 1.0, 0.5);
-          coulors.setXYZ(
+          colors.setXYZ(
             i,
             this.colorChange.r,
             this.colorChange.g,
             this.colorChange.b
           );
-          coulors.needsUpdate = true;
+          colors.needsUpdate = true;
 
           if (
             px > initX + 70 ||
@@ -273,13 +273,13 @@ class CreateParticles {
             py < initY - 70
           ) {
             this.colorChange.setHSL(0.15, 1.0, 0.5);
-            coulors.setXYZ(
+            colors.setXYZ(
               i,
               this.colorChange.r,
               this.colorChange.g,
               this.colorChange.b
             );
-            coulors.needsUpdate = true;
+            colors.needsUpdate = true;
           }
         } else {
           if (mouseDistance < this.data.area) {
@@ -289,13 +289,13 @@ class CreateParticles {
               py -= 0.03 * Math.sin(t);
 
               this.colorChange.setHSL(0.15, 1.0, 0.5);
-              coulors.setXYZ(
+              colors.setXYZ(
                 i,
                 this.colorChange.r,
                 this.colorChange.g,
                 this.colorChange.b
               );
-              coulors.needsUpdate = true;
+              colors.needsUpdate = true;
 
               size.array[i] = this.data.particleSize / 1.2;
               size.needsUpdate = true;
@@ -318,13 +318,13 @@ class CreateParticles {
               py < initY - 10
             ) {
               this.colorChange.setHSL(0.15, 1.0, 0.5);
-              coulors.setXYZ(
+              colors.setXYZ(
                 i,
                 this.colorChange.r,
                 this.colorChange.g,
                 this.colorChange.b
               );
-              coulors.needsUpdate = true;
+              colors.needsUpdate = true;
 
               size.array[i] = this.data.particleSize / 1.8;
               size.needsUpdate = true;
