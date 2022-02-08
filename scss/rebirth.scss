@@ -17,7 +17,7 @@ html {
 @media (max-width: 575.98px) {
   #rebirth .main-logo {
     width: 80px;
-    top: -10px;
+    top: -20px;
   }
   #rebirth .main-title {
     font-size: 22px;
@@ -27,14 +27,18 @@ html {
     height: 300px;
   }
   #secondsCountdown {
-    float: right;
-    padding-top: 19px;
-    padding-left: 8px !important;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5px;
+    margin-bottom: 5px;
     font-size: 12px;
+    padding: 0 !important;
+    width: 100px;
   }
   #intro,
   #team {
-    top: -80px;
+    top: -120px;
   }
 }
 
@@ -53,9 +57,9 @@ html {
   }
   #secondsCountdown {
     float: right;
-    padding-top: 18px;
-    padding-left: 8px !important;
+    margin-top: -10px;
     font-size: 12px;
+    padding: 0 !important;
   }
   #intro,
   #team {
@@ -78,8 +82,9 @@ html {
   }
   #secondsCountdown {
     float: right;
-    padding-top: 14px;
+    margin-top: -20px;
     font-size: 14px;
+    padding: 0 !important;
   }
   #intro,
   #team {
@@ -102,7 +107,8 @@ html {
   }
   #secondsCountdown {
     float: right;
-    padding-top: 9px;
+    margin-top: -20px;
+    padding: 0 !important;
   }
   #intro,
   #team {
@@ -125,7 +131,8 @@ html {
   }
   #secondsCountdown {
     float: right;
-    padding-top: 5px;
+    margin-top: -20px;
+    padding: 0 !important;
   }
   #intro,
   #team {

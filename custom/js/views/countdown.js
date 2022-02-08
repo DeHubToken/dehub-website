@@ -246,8 +246,7 @@ class CreateParticles {
     }
   }
 
-  onDocumentTouchEnd(event) {
-    event.preventDefault();
+  onDocumentTouchEnd() {
     this.mouse.x = 1.2;
     this.mouse.y = -1;
   }
