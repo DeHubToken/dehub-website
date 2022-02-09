@@ -1,0 +1,179 @@
+/*
+Bootstrap 4 breakpoints
+*/
+
+/*
+Extra small devices (portrait phones, less than 576px)
+No media query since this is the default in Bootstrap because it is "mobile first"
+*/
+
+body,
+html {
+  overscroll-behavior-y: none;
+  overscroll-behavior-x: none;
+}
+
+// Extra small devices (portrait phones, less than 576px)
+@media (max-width: 575.98px) {
+  #rebirth .main-logo {
+    width: 80px;
+    top: -20px;
+  }
+  #rebirth .main-title {
+    font-size: 22px;
+    top: 90px;
+  }
+  #rebirth .web3-letter {
+    font-size: 26px;
+  }
+  #countdown {
+    height: 300px;
+  }
+  #secondsCountdown {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    font-size: 12px;
+    padding: 0 !important;
+    width: 100px;
+  }
+  #intro,
+  #team,
+  #teaser {
+    top: -120px;
+  }
+  footer {
+    margin-top: -120px;
+  }
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) {
+  #rebirth .main-logo {
+    width: 100px;
+    top: -10px;
+  }
+  #rebirth .main-title {
+    font-size: 24px;
+    top: 90px;
+  }
+  #rebirth .web3-letter {
+    font-size: 29px;
+  }
+  #countdown {
+    height: 300px;
+  }
+  #secondsCountdown {
+    float: right;
+    margin-top: -10px;
+    font-size: 12px;
+    padding: 0 !important;
+  }
+  #intro,
+  #team,
+  #teaser {
+    top: -90px;
+  }
+  footer {
+    margin-top: -90px;
+  }
+}
+
+/* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
+@media (min-width: 768px) {
+  #rebirth .main-logo {
+    width: 120px;
+    top: -30px;
+  }
+  #rebirth .main-title {
+    font-size: 38px;
+    top: 140px;
+  }
+  #rebirth .web3-letter {
+    font-size: 46px;
+  }
+  #countdown {
+    height: 500px;
+  }
+  #secondsCountdown {
+    float: right;
+    margin-top: -20px;
+    font-size: 14px;
+    padding: 0 !important;
+  }
+  #intro,
+  #team,
+  #teaser {
+    top: -180px;
+  }
+  footer {
+    margin-top: -180px;
+  }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+  #rebirth .main-logo {
+    width: 150px;
+    top: -30px;
+  }
+  #rebirth .main-title {
+    font-size: 54px;
+    top: 180px;
+  }
+  #rebirth .web3-letter {
+    font-size: 66px;
+  }
+  #countdown {
+    height: 700px;
+  }
+  #secondsCountdown {
+    float: right;
+    margin-top: -20px;
+    padding: 0 !important;
+  }
+  #intro,
+  #team,
+  #teaser {
+    top: -250px;
+  }
+  footer {
+    margin-top: -250px;
+  }
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+  #rebirth .main-logo {
+    width: 200px;
+    top: -80px;
+  }
+  #rebirth .main-title {
+    font-size: 64px;
+    top: 250px;
+  }
+  #rebirth .web3-letter {
+    font-size: 77px;
+  }
+  #countdown {
+    height: 900px;
+  }
+  #secondsCountdown {
+    float: right;
+    margin-top: -20px;
+    padding: 0 !important;
+  }
+  #intro,
+  #team,
+  #teaser {
+    top: -370px;
+  }
+  .flooz-container {
+    top: -40px;
+  }
+  footer {
+    margin-top: -370px;
+  }
+}
