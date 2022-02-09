@@ -23,6 +23,9 @@ html {
     font-size: 22px;
     top: 90px;
   }
+  #rebirth .web3-letter {
+    font-size: 26px;
+  }
   #countdown {
     height: 300px;
   }
@@ -41,6 +44,9 @@ html {
   #teaser {
     top: -120px;
   }
+  footer {
+    margin-top: -120px;
+  }
 }
 
 /* Small devices (landscape phones, 576px and up) */
@@ -52,6 +58,9 @@ html {
   #rebirth .main-title {
     font-size: 24px;
     top: 90px;
+  }
+  #rebirth .web3-letter {
+    font-size: 29px;
   }
   #countdown {
     height: 300px;
@@ -67,6 +76,9 @@ html {
   #teaser {
     top: -90px;
   }
+  footer {
+    margin-top: -90px;
+  }
 }
 
 /* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
@@ -78,6 +90,9 @@ html {
   #rebirth .main-title {
     font-size: 38px;
     top: 140px;
+  }
+  #rebirth .web3-letter {
+    font-size: 46px;
   }
   #countdown {
     height: 500px;
@@ -93,6 +108,9 @@ html {
   #teaser {
     top: -180px;
   }
+  footer {
+    margin-top: -180px;
+  }
 }
 
 /* Large devices (desktops, 992px and up) */
@@ -104,6 +122,9 @@ html {
   #rebirth .main-title {
     font-size: 54px;
     top: 180px;
+  }
+  #rebirth .web3-letter {
+    font-size: 66px;
   }
   #countdown {
     height: 700px;
@@ -118,6 +139,9 @@ html {
   #teaser {
     top: -250px;
   }
+  footer {
+    margin-top: -250px;
+  }
 }
 
 /* Extra large devices (large desktops, 1200px and up) */
@@ -129,6 +153,9 @@ html {
   #rebirth .main-title {
     font-size: 64px;
     top: 250px;
+  }
+  #rebirth .web3-letter {
+    font-size: 77px;
   }
   #countdown {
     height: 900px;
@@ -145,5 +172,8 @@ html {
   }
   .flooz-container {
     top: -40px;
+  }
+  footer {
+    margin-top: -370px;
   }
 }
