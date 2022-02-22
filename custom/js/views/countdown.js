@@ -25,7 +25,7 @@ const fragmentshader = `
 
 /* --------------------------------- Render --------------------------------- */
 
-const deadline = 1645488000;
+const deadline = 1646065200;
 
 const preload = () => {
   let manager = new THREE.LoadingManager();
