@@ -25,7 +25,7 @@ const fragmentshader = `
 
 /* --------------------------------- Render --------------------------------- */
 
-const deadline = 1646211778;
+const deadline = 1646238000;
 
 const preload = () => {
   let manager = new THREE.LoadingManager();
@@ -410,7 +410,7 @@ class CreateParticles {
     const min = `${minutes < 10 ? '0' : ''}${minutes}`;
     const sec = `${seconds < 10 ? '0' : ''}${seconds}`;
     const text = `${days}d ${hours}h ${min}m`;
-    return [text, seconds];
+    return ['Today...', seconds];
   }
 
   tick() {
